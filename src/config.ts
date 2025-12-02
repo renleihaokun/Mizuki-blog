@@ -43,7 +43,7 @@ export const siteConfig: SiteConfig = {
 		skills: true, // 技能页面开关
 		timeline: true, // 时间线页面开关
 		albums: true, // 相册页面开关
-		devices: false, // 设备页面开关
+		devices: true, // 设备页面开关
 	},
 
 	// 顶栏标题配置
@@ -135,14 +135,14 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "嗯", // 主页横幅主标题
+			title: "嗯，你怎么来了", // 主页横幅主标题
 
 			subtitle: [
-				"bird",
-				"今birb",
-				"niao",
-				"鸟",
-				"鸡",
+				"你好",
+				"你真的好吗",
+				"我好吗",
+				"我好像不好",
+				"咕咕嘎嘎",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
