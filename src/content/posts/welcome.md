@@ -1,7 +1,7 @@
 ---
 title: 你好
 published: 2025-12-02
-pinned: true
+pinned: false
 description: 试试呢
 tags: [Markdown, Blogging,Welcome]
 category: first blog
