@@ -369,14 +369,14 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 export const commentConfig: CommentConfig = {
 	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	twikoo: {
-		envId: "https://twikoo.vercel.app",
-		lang: "zh-CN", // 设置 Twikoo 评论系统语言为英文
+		envId: "https://renleihaokun-twikoo.netlify.app/.netlify/functions/twikoo",
+		lang: "zh-CN", // 设置 Twikoo 评论系统语言为中文
 	},
 };
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "公告吗", // 公告标题
-	content: "欢迎你来", // 公告内容
+	content: "欢迎你", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
