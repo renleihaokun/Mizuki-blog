@@ -16,6 +16,7 @@ permalink: "Gemini student"
 # 真逆天吧，Gemini学生认证全是信息差
 
 **活动入口：** https://gemini.google/students/
+
 ![gemini](Gemini page.png)
 
 ---
@@ -33,8 +34,7 @@ permalink: "Gemini student"
 
 ###  第二步：SheerID 认证（拒绝奸商）
 
-接下来是认证 SheerID 环节，然后就出现**奸商**了：
-
+接下来是认证 SheerID 环节，然后就出现**奸商**了：  
 
 ![描述](fake page.png)
 
@@ -50,7 +50,7 @@ permalink: "Gemini student"
 ###  第三步：订阅与扣款
 
 回到刚才谷歌优惠套餐的界面，这时候刷新就能看到 **“让你学生认证的按钮”** 变成了 **“订阅”**。
-绑卡订阅就行了（话说都有美区付款信息了会没绑卡吗？）
+绑卡订阅就行了（话说都有美区付款信息了会没绑卡吗？）  
 
 
 ![订阅截图](success page.png)
