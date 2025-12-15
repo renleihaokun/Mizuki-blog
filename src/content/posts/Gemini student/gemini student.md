@@ -14,10 +14,10 @@ image: "./cover.png"
 pubDate: 2025-01-20
 permalink: "encrypted-example"
 ---
-# 真逆天吧，全是信息差
+# 真逆天吧，Gemini学生认证全是信息差
 
 **活动入口：** https://gemini.google/students/
-!gemini 学生优惠的截图 [<sup>1</sup>](你的截图链接)
+!gemini 学生优惠的截图 [./Gemini student/Gemini page.png]
 
 ---
 
@@ -35,7 +35,7 @@ permalink: "encrypted-example"
 ###  第二步：SheerID 认证（拒绝奸商）
 
 接下来是认证 SheerID 环节，然后就出现**奸商**了：
-!奸商的小店的截图 [<sup>1</sup>](你的截图链接)
+!奸商的小店的截图 [./fake page](你的截图链接)
 
 **这年头信息差真好挣钱！** 😡
 机器人认证 SheerID 能卖你 **39**，还不一定是多好的网络环境。
@@ -50,7 +50,7 @@ permalink: "encrypted-example"
 
 回到刚才谷歌优惠套餐的界面，这时候刷新就能看到 **“让你学生认证的按钮”** 变成了 **“订阅”**。
 绑卡订阅就行了（话说都有美区付款信息了会没绑卡吗？）
-!订阅截图 [<sup>1</sup>](你的截图链接)
+!订阅截图 [success page](你的截图链接)
 
 **什么？你说的没非银联卡？**
 
