@@ -64,4 +64,4 @@ permalink: "Gemini student"
 ![ae5a46ce7826ce8337b4f0ca7083dcd8.png](https://c147721a.kunblog--cloudflare-imgbed.pages.dev/file/1765892775679_ae5a46ce7826ce8337b4f0ca7083dcd8.png)  
 
 ~当然是让Gemini写小作文跟谷歌申诉啦~  
-按理说家宽其实没那么容易被封，我朋友之前不知道用的哪个机器人号被停用了申诉也很好过了~批量注册的白号就不好说了~
+按理说家宽其实没那么容易被封，我朋友之前不知道用的哪个机器人号被停用了申诉也很好过了，~批量注册的白号就不好说了~
