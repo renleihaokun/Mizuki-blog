@@ -21,7 +21,7 @@ const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
 	title: "困",
-	subtitle: "demo吗？",
+	subtitle: "并非demo",
 	siteURL: "https://blog.renleihaokun.dpdns.org/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2025-12-02", // 站点开始运行日期，用于站点统计组件计算运行天数
 
@@ -115,7 +115,7 @@ export const siteConfig: SiteConfig = {
 		carousel: {
 			enable: true, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
 
-			interval: 2, // 轮播间隔时间（秒）
+			interval: 3, // 轮播间隔时间（秒）
 		},
 
 		waves: {
