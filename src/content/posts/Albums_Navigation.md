@@ -13,5 +13,9 @@ pubDate: 2025-12-17
 permalink: "Albums_Navigation"
 ---
 
-#鸟  
-**鸟人往这走
+# 这是一个常更新相册导航帖 #
+
+## 鸟  
+*鸟人往这走*  
+[^https://blog.rlhk.dpdns.org/albums/bird]  
+[^https://blog.rlhk.dpdns.org/albums/bird]:当心流量
