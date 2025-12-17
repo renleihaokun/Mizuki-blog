@@ -77,6 +77,14 @@ export const friendsData: FriendItem[] = [
 		siteurl: "https://developer.mozilla.org",
 		tags: ["Docs", "Reference"],
 	},
+	{
+		id: 9,
+		title: "acofork",
+		imgurl: "https://avatars.githubusercontent.com/u/180811437?v=4",
+		desc: "二叉树树的博客",
+		siteurl: "https://blog.acofork.com/",
+		tags: ["blog"],
+	},
 ];
 
 // 获取所有友情链接数据
