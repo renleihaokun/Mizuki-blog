@@ -135,7 +135,7 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "嗯，你怎么来了", // 主页横幅主标题
+			title: "你好", // 主页横幅主标题
 
 			subtitle: [
 				"你好",
