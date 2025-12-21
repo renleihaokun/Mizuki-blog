@@ -23,3 +23,8 @@ permalink: "Albums_Navigation"
   
 <a href="/albums/Scene_SuZhou">*苏州，是家*</a>
 ![1765979896474.webp](https://c147721a.kunblog--cloudflare-imgbed.pages.dev/file/苏州/1765980585733_1765979896474.webp)
+
+## 风光·日本
+  
+<a href="/albums/scene_Japan">*高市早苗我日你的*</a>
+![1766290223773_1765979639148.webp](https://c147721a.kunblog--cloudflare-imgbed.pages.dev/file/苏州/1766290223773_1765979639148.webp)
