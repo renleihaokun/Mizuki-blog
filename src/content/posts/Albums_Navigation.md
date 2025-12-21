@@ -32,4 +32,4 @@ permalink: "Albums_Navigation"
 ## 食
   
 <a href="/albums/food">*好吃好吃好吃好吃好吃*</a>
-![1766292550083_1765978680755.webp](https://imgbed.haokun.me/file/%E9%A3%9F/1766292550083_1765978680755.webp)
+![1765978680755.webp](https://imgbed.haokun.me/file/食/1766292550083_1765978680755.webp)
