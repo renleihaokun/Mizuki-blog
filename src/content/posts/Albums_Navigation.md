@@ -34,3 +34,18 @@ image: "https://imgbed.haokun.me/file/1765952777509_IMG_4313-已增强-NR.webp"
   
 <a href="/albums/food">*好吃好吃好吃好吃好吃*</a>
 ![1765978680755.webp](https://imgbed.haokun.me/file/食/1766292550083_1765978680755.webp)
+
+## 飞机
+  
+<a href="/albums/plane">*这是铁鸟*</a>
+![1765978680755.webp](https://imgbed.haokun.me/file/1766759387328_1765979639327.webp)
+
+## 铁道
+  
+<a href="/albums/train">*这是铁*</a>
+![1765978680755.webp](https://imgbed.haokun.me/file/1766760316721_1765979684407.webp)
+
+## 植
+  
+<a href="/albums/plant">*各种植物体*</a>
+![1765978680755.webp](https://imgbed.haokun.me/file/1766760728027_1765978504029.webp)
