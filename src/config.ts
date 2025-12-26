@@ -285,17 +285,17 @@ export const navBarConfig: NavBarConfig = {
 					icon: "material-symbols:devices",
 					external: false,
 				},
+				{
+					name: "About",
+					url: "/about/",
+					icon: "material-symbols:person",
+				}
 			],
 		},
 		{
 			name: "Friends",
 			url: "/friends/",
 			icon: "material-symbols:group",
-		},
-		{
-			name: "About",
-			url: "/about/",
-			icon: "material-symbols:person",
 		}
 
 		//{
