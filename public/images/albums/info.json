@@ -1,0 +1,36 @@
+{
+  "mode": "external",
+  "title": "飞机",
+  "description": "这是铁鸟",
+  "cover": "https://imgbed.haokun.me/file/1766759387328_1765979639327.webp",
+  "location": "地球",
+  "tags": ["飞机"],
+  "layout": "Grid",
+  "columns": 4,
+  "photos": [
+  {
+    "src": "https://imgbed.haokun.me/file/1766759387328_1765979639327.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759366238_1765979361204.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759365856_1765979361243.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759442034_1765979361270.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759404901_1765979361346.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759446926_1765979398281.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759444687_1765979638304.webp"
+  },
+  {
+    "src": "https://imgbed.haokun.me/file/1766759399871_1765979638734.webp"
+  }
+]
+}
