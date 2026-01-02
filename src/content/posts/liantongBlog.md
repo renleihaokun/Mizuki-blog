@@ -1,3 +1,20 @@
+---
+title: CF静态博客联通网络访问太慢的一种曲线救国的方案
+published: 2026-1-2
+pinned: false
+description: 介绍一种能使联通访问Pages快些的方法
+tags: [cloudflare, Network，EdgeOne]
+category: Network
+licenseName: "CC BY 4.0"
+author: renleihaokun
+draft: false
+date: 2026-1-2
+pubDate: 2026-1-2
+permalink: "liantongBlog"
+image: "https://imgbed.haokun.me/file/1767337314334_image.png"
+---
+
+
 # CF静态博客联通网络访问太慢的一种曲线救国的方案  
 ### **此方法仅适用于使用Pages功能的不想备案的静态博客类项目**，其他项目请自行搜索解决办法  
 先看看前后网站测速（联通）对比  
