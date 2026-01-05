@@ -21,8 +21,8 @@
 
 /* 导入 OPPO Sans 4.0 字体 */
 @font-face {
-	font-family: "OPPO Sans 4.0";
-	src: url("/assets/font/OPPO Sans 4.0.woff2") format("woff2");
+	font-family: "LXGWNeoXiHeiPlus";
+	src: url("/assets/font/LXGWNeoXiHeiPlus.woff2") format("woff2");
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
