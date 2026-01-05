@@ -193,9 +193,9 @@ export const siteConfig: SiteConfig = {
 		},
 		cjkFont: {
 			// 中日韩字体 - 作为回退字体
-			fontFamily: "OPPO Sans 4.0",
-			fontWeight: "700",
-			localFonts: ["OPPO Sans 4.0.ttf"],
+			fontFamily: "LXGWNeoXiHeiPlus",
+			fontWeight: "500",
+			localFonts: ["LXGWNeoXiHeiPlus.ttf"],
 			enableCompress: true, // 启用字体子集优化，减少字体文件大小
 		},
 	},
