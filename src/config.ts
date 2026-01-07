@@ -137,13 +137,7 @@ export const siteConfig: SiteConfig = {
 			enable: true, // 在主页显示自定义文本
 			title: "你好", // 主页横幅主标题
 
-			subtitle: [
-				"你好",
-				"咕咕嘎嘎",
-				"咕嘎咕嘎",
-				"咕嘎",
-				"咕咕嘎嘎",
-			],
+			subtitle: ["你好", "咕咕嘎嘎", "咕嘎咕嘎", "咕嘎", "咕咕嘎嘎"],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
@@ -174,7 +168,7 @@ export const siteConfig: SiteConfig = {
 		// 留空以使用默认 favicon
 		//{
 		//   src: '/favicon/favicon.ico',    // 图标文件路径
-		   //theme: 'light',              // 可选，指定主题 'light' | 'dark'
+		//theme: 'light',              // 可选，指定主题 'light' | 'dark'
 		//   sizes: '32x32',              // 可选，图标大小
 		//}
 	],
@@ -296,10 +290,9 @@ export const navBarConfig: NavBarConfig = {
 					name: "About",
 					url: "/about/",
 					icon: "material-symbols:person",
-				}
+				},
 			],
 		},
-
 
 		//{
 		//	name: "Others",
@@ -346,10 +339,10 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/renleihaokun",
 		},
 		{
-			name:"Steam",
-			icon:"fa6-brands:steam",
-			url:"https://steamcommunity.com/profiles/76561199093441277",
-		}
+			name: "Steam",
+			icon: "fa6-brands:steam",
+			url: "https://steamcommunity.com/profiles/76561199093441277",
+		},
 	],
 };
 
