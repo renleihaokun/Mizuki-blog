@@ -1,0 +1,22 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches: [ "master" ]  # 你的主分支名字，如果是 main 就写 main
+  workflow_dispatch:  # 允许手动点按钮触发
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 必须拉取完整历史，否则无法镜像
+
+      - name: Push to GitLab
+        uses: wangchucheng/git-repo-sync@v0.1.0
+        with:
+          target-url: https://gitlab.com/renleihaokun/renleihaokun-blog.git
+          target-username: renleihaokun
+          target-token: ${{ secrets.GITLAB_TOKEN }}
