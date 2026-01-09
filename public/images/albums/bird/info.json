@@ -5,7 +5,7 @@
 	"cover": "https://imgbed.haokun.me/file/1765894176034_DSC01824-已增强-NR.jpg",
 	"location": "地球",
 	"tags": ["鸟", "景"],
-	"layout": "Masonry",
+	"layout": "masonry",
 	"columns": 4,
 	"photos": [
 		{
