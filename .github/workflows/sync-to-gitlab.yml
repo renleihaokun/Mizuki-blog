@@ -14,8 +14,6 @@ jobs:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
-          target_repo_url:
-            https://gitlab.com/renleihaokun/renleihaokun-blog.git
-          ssh_private_key: "" # 我们用token，所以这里留空
-          target_username: "renleihaokun" # 你的GitLab用户名
-          target_token: ${{ secrets.GITLAB_TOKEN }} # 刚才更新过的Token
+          target_repo_url: https://renleihaokun:${{ secrets.GITLAB_TOKEN }}@gitlab.com/renleihaokun/renleihaokun-blog.git
+          # 注意：上面这一行里，https://用户名:Token@gitlab.com/... 
+          # 这样写，插件就能自动读到密码了
