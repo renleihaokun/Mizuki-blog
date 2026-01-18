@@ -1,4 +1,5 @@
 import type {
+	AUTO_MODE,
 	DARK_MODE,
 	LIGHT_MODE,
 	WALLPAPER_BANNER,
@@ -234,7 +235,7 @@ type TwikooConfig = {
 	lang?: string;
 };
 
-export type LIGHT_DARK_MODE = typeof LIGHT_MODE | typeof DARK_MODE;
+export type LIGHT_DARK_MODE = typeof LIGHT_MODE | typeof DARK_MODE | typeof AUTO_MODE;
 
 export type WALLPAPER_MODE =
 	| typeof WALLPAPER_BANNER

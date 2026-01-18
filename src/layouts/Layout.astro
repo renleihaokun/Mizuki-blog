@@ -19,6 +19,7 @@ const BANNER_HEIGHT_EXTEND = 30;
 const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
 
 import {
+	AUTO_MODE,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -237,7 +238,7 @@ if (siteConfig.font) {
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
 			// Load the theme from local storage
 			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
 			let isDark = false;
@@ -250,6 +251,15 @@ if (siteConfig.font) {
 					document.documentElement.classList.add('dark');
 					isDark = true;
 					break
+				case AUTO_MODE:
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+						document.documentElement.classList.add('dark');
+						isDark = true;
+					} else {
+						document.documentElement.classList.remove('dark');
+						isDark = false;
+					}
+					break
 			}
 			
 			// Set the theme for Expressive Code based on current mode
@@ -260,6 +270,21 @@ if (siteConfig.font) {
 			if (currentTheme !== expressiveTheme) {
 				document.documentElement.setAttribute("data-theme", expressiveTheme);
 			}
+
+			// Listen for system theme changes
+			const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+			mediaQuery.onchange = (e) => {
+				const currentTheme = localStorage.getItem('theme') || DEFAULT_THEME;
+				if (currentTheme === AUTO_MODE) {
+					if (e.matches) {
+						document.documentElement.classList.add('dark');
+						document.documentElement.setAttribute("data-theme", "github-dark");
+					} else {
+						document.documentElement.classList.remove('dark');
+						document.documentElement.setAttribute("data-theme", "github-light");
+					}
+				}
+			};
 
 			// Load the hue from local storage
 			const hue = localStorage.getItem('hue') || configHue;

@@ -1,10 +1,10 @@
 <script lang="ts">
-import { DARK_MODE, LIGHT_MODE } from "@constants/constants.ts";
+import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants.ts";
 import Icon from "@iconify/svelte";
 import { getStoredTheme, setTheme } from "@utils/setting-utils.ts";
 import type { LIGHT_DARK_MODE } from "@/types/config.ts";
 
-const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE];
+const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE, AUTO_MODE];
 let mode: LIGHT_DARK_MODE = $state(getStoredTheme());
 let isChanging = false;
 
@@ -72,7 +72,7 @@ if (typeof window !== "undefined") {
 
 <div class="relative z-50">
     <button 
-        aria-label="Light/Dark Mode" 
+        aria-label="Light/Dark/Auto Mode" 
         class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 theme-switch-btn" 
         id="scheme-switch" 
         onclick={toggleScheme}
@@ -83,6 +83,12 @@ if (typeof window !== "undefined") {
         </div>
         <div class="absolute transition-all duration-300 ease-in-out" class:opacity-0={mode !== DARK_MODE} class:rotate-180={mode !== DARK_MODE}>
             <Icon icon="material-symbols:dark-mode-outline-rounded" class="text-[1.25rem]"></Icon>
+        </div>
+        <div class="absolute transition-all duration-300 ease-in-out flex items-center justify-center" class:opacity-0={mode !== AUTO_MODE} class:rotate-180={mode !== AUTO_MODE}>
+            <div class="relative w-9 h-9 flex items-center justify-center">
+                <Icon icon="material-symbols:wb-sunny-outline-rounded" class="text-[0.85rem] absolute top-1.5 right-1.5"></Icon>
+                <Icon icon="material-symbols:dark-mode-outline-rounded" class="text-[0.85rem] absolute bottom-1.5 left-1.5"></Icon>
+            </div>
         </div>
     </button>
 </div>

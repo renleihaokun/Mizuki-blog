@@ -1,4 +1,5 @@
 import {
+	AUTO_MODE,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -44,6 +45,9 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 			break;
 		case DARK_MODE:
 			targetIsDark = true;
+			break;
+		case AUTO_MODE:
+			targetIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			break;
 		default:
 			// 处理默认情况，使用当前主题状态
