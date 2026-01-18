@@ -135,7 +135,7 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Stay Sleepy ~~", // 主页横幅主标题
+			title: "Stay Sleepy ~", // 主页横幅主标题
 
 			subtitle: ["好困", "咕咕嘎嘎", "困啊", "咕嘎", "咕咕"],
 			typewriter: {
