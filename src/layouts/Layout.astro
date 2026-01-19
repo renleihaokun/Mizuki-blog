@@ -400,8 +400,10 @@ import {
 	// BANNER_HEIGHT_HOME,
 	// BANNER_HEIGHT_EXTEND,
 	// MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
+	AUTO_MODE,
 	DARK_MODE,
-	DEFAULT_THEME
+	DEFAULT_THEME,
+	LIGHT_MODE,
 } from "../constants/constants";
 
 const BANNER_HEIGHT = 35;
@@ -903,8 +905,21 @@ const setup = () => {
 		});
 		
 		// 同步主题状态 - 解决从首页进入文章页面时代码块渲染问题
-		const storedTheme = localStorage.getItem('theme') || DEFAULT_THEME;
-		const isDark = storedTheme === DARK_MODE;
+		const storedTheme = (localStorage.getItem('theme') || DEFAULT_THEME) as (typeof LIGHT_MODE | typeof DARK_MODE | typeof AUTO_MODE);
+		let isDark: boolean;
+
+		switch (storedTheme) {
+			case LIGHT_MODE:
+				isDark = false;
+				break;
+			case DARK_MODE:
+				isDark = true;
+				break;
+			case AUTO_MODE:
+				isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				break;
+		}
+
 		const expectedTheme = isDark ? 'github-dark' : 'github-light';
 		const currentTheme = document.documentElement.getAttribute('data-theme');
 		const hasDarkClass = document.documentElement.classList.contains('dark');
