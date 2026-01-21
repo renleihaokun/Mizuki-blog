@@ -1,1 +1,24 @@
-这里是HTML注入示例，你可以在这个文件中添加自定义的HTML内容
+<!-- 域名检测警告 -->
+<div id="domain-warning" style="display: none; color: #ef4444; font-weight: bold; margin-bottom: 0.5rem; padding: 0.5rem; border: 1px dashed #ef4444; border-radius: 0.5rem;">
+  当前域名并非博客主域名，随时可能删除，如有需要请前往 <a href="https://blog.haokun.me" style="text-decoration: underline; color: inherit;">blog.haokun.me</a>
+</div>
+
+<script>
+  (function() {
+    try {
+      var host = window.location.hostname;
+      // 允许主域名和本地开发环境
+      if (host !== 'blog.haokun.me' && host !== 'localhost' && host !== '127.0.0.1') {
+        var warningDiv = document.getElementById('domain-warning');
+        if (warningDiv) {
+          warningDiv.style.display = 'block';
+        }
+      }
+    } catch (e) {
+      console.log('Domain check error:', e);
+    }
+  })();
+</script>
+
+<!-- 原有内容保留 -->
+<!-- 这里是HTML注入示例，你可以在这个文件中添加自定义的HTML内容 -->
