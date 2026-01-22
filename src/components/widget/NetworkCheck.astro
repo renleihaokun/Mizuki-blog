@@ -155,8 +155,8 @@ const { class: className, style } = Astro.props;
             if (rttValEl && rttBarEl && data.rtt !== undefined) {
                 rttValEl.textContent = `${data.rtt} ms`;
                 
-                // Calculate percentage for bar (cap at 200ms for full bar visually)
-                const percentage = Math.min(100, Math.max(5, (data.rtt / 200) * 100));
+                // Calculate percentage for bar (cap at 300ms for full bar visually)
+                const percentage = Math.min(100, Math.max(5, (data.rtt / 300) * 100));
                 rttBarEl.style.width = `${percentage}%`;
                 
                 // Color coding
