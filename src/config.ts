@@ -484,6 +484,22 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			},
 		},
 		{
+			// 组件类型：网络检查组件
+			type: "network-check",
+			// 是否启用该组件
+			enable: true,
+			// 组件显示顺序
+			order: 4,
+			// 组件位置
+			position: "top",
+			// 所在侧边栏
+			sidebar: "right",
+			// CSS 类名
+			class: "onload-animation",
+			// 动画延迟时间
+			animationDelay: 150,
+		},
+		{
 			// 组件类型：站点统计组件
 			type: "site-stats",
 			// 是否启用该组件
