@@ -24,6 +24,10 @@ image: "https://imgbed.haokun.me/file/1769079105119_image.png"
 网页端背景是另一个伊雷娜随机图项目，那玩意更简单  
 网页端底部的卡片是tool.lu的，那个工具用来查高精度ip归属很好用，毕竟我穷的一杯
 
+# 在本站使用  
+主页右上角那个就是，也是用api实现的
+![image.png](https://imgbed.haokun.me/file/1769080669625_image.png)
+
 # 直接访问网页版  
 
 [直接点击这里][1]可以直接访问，或者你想访问[未经过优选的版本][2]  
@@ -36,7 +40,8 @@ image: "https://imgbed.haokun.me/file/1769079105119_image.png"
 
 # 作为API使用
 
-直接`get` `https://ip.haokun.me/?act=get_ip_info` 就行，会返回`json`
+直接`get` `https://ip.haokun.me/?act=get_ip_info` 就行，会返回`json`  
+**所有节点信息和数据中心信息都是指的cf的**  
  
 **示例请求**:
 
