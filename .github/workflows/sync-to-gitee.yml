@@ -15,17 +15,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. 直接使用 Git 命令推送到 Gitee
+      # 2. 直接使用 Git 命令强制推送到 Gitee
       - name: Push to Gitee
         run: |
-          # 配置 Gitee 远程地址，其中 ${{ secrets.GITEE_TOKEN }} 会自动读取你设置的 Token
-          # 注意：这里使用了 github.repository 变量，它会自动获取 "你的GitHub用户名/仓库名"
-          # 如果你的 Gitee 用户名和 GitHub 不一样，请手动修改下面的 URL
-          
+          # 配置 Gitee 远程地址
+          # 注意：这里硬编码了用户名 renleihaokun，请确保 Gitee 上仓库路径正确
           git remote add gitee "https://renleihaokun:${{ secrets.GITEE_TOKEN }}@gitee.com/renleihaokun/${{ github.event.repository.name }}.git"
           
-          # 这是一个保险措施，防止 Gitee 拒绝不相关的提交历史
-          # 如果是第一次同步，建议先手动在 Gitee 建个空仓库，或者加上 -f 强制覆盖
+          echo "正在强制推送到 Gitee..."
           
-          echo "正在推送到 Gitee..."
-          git push --mirror gitee
+          # 使用 --force --mirror 强制同步所有分支和标签，覆盖远程历史
+          git push --force --mirror gitee
