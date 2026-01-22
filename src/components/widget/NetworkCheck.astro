@@ -118,7 +118,14 @@ const { class: className, style } = Astro.props;
 
             // Node
             const nodeEl = document.getElementById('net-node');
-            if (nodeEl) nodeEl.textContent = data.node?.name || 'Unknown';
+            if (nodeEl) {
+                if (window.location.hostname === 'blog.haokun.me') {
+                    nodeEl.textContent = data.node?.name || 'Unknown';
+                    nodeEl.closest('.flex-col')?.classList.remove('hidden');
+                } else {
+                    nodeEl.closest('.flex-col')?.classList.add('hidden');
+                }
+            }
 
             // Location
             const locEl = document.getElementById('net-location');
