@@ -9,20 +9,20 @@ jobs:
   git-mirror:
     runs-on: ubuntu-latest
     steps:
-      # 1. 检出代码（必须下载完整历史，否则无法镜像）
+      # 1. 检出代码（改为只获取最近 20 条提交）
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 20  # <--- 修改点1：只拉取最近20条历史
 
-      # 2. 直接使用 Git 命令强制推送到 Gitee
+      # 2. 强制推送到 Gitee
       - name: Push to Gitee
         run: |
           # 配置 Gitee 远程地址
-          # 注意：这里硬编码了用户名 renleihaokun，请确保 Gitee 上仓库路径正确
           git remote add gitee "https://renleihaokun:${{ secrets.GITEE_TOKEN }}@gitee.com/renleihaokun/${{ github.event.repository.name }}.git"
           
-          echo "正在强制推送到 Gitee..."
+          echo "正在强制推送到 Gitee (最近20条)..."
           
-          # 使用 --force --mirror 强制同步所有分支和标签，覆盖远程历史
-          git push --force --mirror gitee
+          # <--- 修改点2：去掉 --mirror，改为明确推送 HEAD 到远程的 master
+          # 解释：因为是浅克隆(shallow clone)，不能使用 mirror，必须明确指定分支映射
+          git push --force gitee HEAD:master
