@@ -369,13 +369,13 @@ export const commentConfig: CommentConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "公告吗", // 公告标题
-	content: "欢迎你", // 公告内容
+	title: "这是一个公告", // 公告标题
+	content: "记得去相册看看", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
+		text: "点我去相册", // 链接文本
+		url: "/albums/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
