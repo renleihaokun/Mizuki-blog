@@ -11,10 +11,6 @@ const { class: className, style } = Astro.props;
 ---
 
 <WidgetLayout name="看看你的网" id="network-check" class={className} style={style}>
-    <div slot="title-icon" class="inline-block ml-2 text-[var(--primary)] text-xl align-middle">
-        <Icon name="material-symbols:wifi" />
-    </div>
-
     <div class="network-info-container text-sm space-y-3 mb-2 px-2">
         <div id="net-loading" class="flex items-center justify-center gap-2 py-4 text-neutral-500 dark:text-neutral-400">
             <Icon name="fa6-solid:spinner" class="text-2xl animate-spin" />
@@ -31,12 +27,21 @@ const { class: className, style } = Astro.props;
                 </div>
              </div>
 
-             <!-- Location -->
-             <div class="flex flex-col">
-                <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">位置</span>
-                <div class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100">
-                    <Icon name="material-symbols:location-on-outline" class="text-lg text-[var(--primary)]" />
-                    <span id="net-location"></span>
+             <!-- Node & Location -->
+             <div class="grid grid-cols-2 gap-2">
+                <div class="flex flex-col overflow-hidden">
+                    <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">连接节点</span>
+                    <div class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100">
+                        <Icon name="material-symbols:hub-outline" class="text-base text-[var(--primary)]" />
+                        <span id="net-node" class="truncate text-xs leading-5"></span>
+                    </div>
+                </div>
+                 <div class="flex flex-col overflow-hidden">
+                    <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">地理位置</span>
+                    <div class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100">
+                        <Icon name="material-symbols:location-on-outline" class="text-base text-[var(--primary)]" />
+                        <span id="net-location" class="truncate text-xs leading-5"></span>
+                    </div>
                 </div>
              </div>
 
@@ -119,14 +124,18 @@ const { class: className, style } = Astro.props;
                 flagEl.classList.remove('hidden');
             }
 
+            // Node
+            const nodeEl = document.getElementById('net-node');
+            if (nodeEl) nodeEl.textContent = data.node?.name || 'Unknown';
+
             // Location
             const locEl = document.getElementById('net-location');
             if (locEl) {
                 const parts = [
-                    data.node?.name || data.location?.city, 
+                    data.location?.city, 
                     data.location?.region
                 ].filter(Boolean);
-                locEl.textContent = parts.join(', ');
+                locEl.textContent = parts.join(', ') || 'Unknown';
             }
 
             // ISP
@@ -152,10 +161,10 @@ const { class: className, style } = Astro.props;
                 rttBarEl.style.width = `${percentage}%`;
                 
                 // Color coding
-                if (data.rtt < 50) {
+                if (data.rtt < 100) {
                     rttBarEl.classList.add('bg-green-500');
                     rttBarEl.classList.remove('bg-[var(--primary)]', 'bg-yellow-500', 'bg-red-500');
-                } else if (data.rtt < 100) {
+                } else if (data.rtt < 200) {
                      rttBarEl.classList.add('bg-yellow-500');
                      rttBarEl.classList.remove('bg-[var(--primary)]', 'bg-green-500', 'bg-red-500');
                 } else {
