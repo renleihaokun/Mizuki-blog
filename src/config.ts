@@ -374,7 +374,7 @@ export const announcementConfig: AnnouncementConfig = {
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "点我去相册", // 链接文本
+		text: "Albums", // 链接文本
 		url: "/albums/", // 链接 URL
 		external: false, // 内部链接
 	},
