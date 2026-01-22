@@ -23,7 +23,6 @@ const { class: className, style } = Astro.props;
                 <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">IP 地址</span>
                 <div class="flex items-center gap-2">
                      <span id="net-ip" class="font-bold text-xl text-[var(--primary)] font-mono"></span>
-                     <img id="net-flag" class="h-4 w-6 object-cover rounded-sm shadow-sm hidden" alt="flag" />
                 </div>
              </div>
 
@@ -116,13 +115,6 @@ const { class: className, style } = Astro.props;
             // IP
             const ipEl = document.getElementById('net-ip');
             if (ipEl) ipEl.textContent = data.ip;
-
-            // Flag
-            const flagEl = document.getElementById('net-flag') as HTMLImageElement;
-            if (flagEl && data.node && data.node.iso) {
-                flagEl.src = `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/${data.node.iso.toLowerCase()}.svg`;
-                flagEl.classList.remove('hidden');
-            }
 
             // Node
             const nodeEl = document.getElementById('net-node');
