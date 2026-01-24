@@ -54,7 +54,6 @@ const lines = [
                         </div>
                         
                         <div class="latency-badge transition px-2 h-6 min-w-[2.5rem] rounded-lg text-[10px] font-bold font-mono
-                            text-neutral-400 bg-[oklch(0.95_0.025_var(--hue))] dark:bg-neutral-800
                             flex items-center justify-center ml-2">
                             ---
                         </div>
@@ -66,19 +65,21 @@ const lines = [
 </WidgetLayout>
 
 <style>
-    /* 默认状态（极淡的主题底色） */
+    /* 默认状态 */
     .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 95%);
-        color: var(--primary);
+        color: #000; /* 线路名称文字设为黑色 */
         border: none;
     }
     :global(.dark) .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 92%);
+        color: #fff; /* 暗色模式设为白色 */
     }
 
-    /* 选中状态（显著加深） */
+    /* 选中状态 */
     .line-item.active button {
         background: color-mix(in oklch, var(--primary), transparent 75%);
+        color: var(--primary); /* 选中时恢复主题色 */
         font-weight: bold;
     }
     :global(.dark) .line-item.active button {
@@ -89,31 +90,41 @@ const lines = [
         white-space: pre-wrap;
     }
 
-    /* 延迟徽章样式 */
+    /* 延迟徽章样式 - 默认极淡背景 */
     .latency-badge {
+        background: rgba(0, 0, 0, 0.03);
+        color: #000; /* 徽章内文字也设为黑色 */
+    }
+    :global(.dark) .latency-badge {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+    }
+
+    /* 选中状态下的徽章样式 */
+    .line-item.active .latency-badge {
         background: var(--primary);
         color: var(--btn-content);
     }
-    :global(.dark) .latency-badge {
+    :global(.dark) .line-item.active .latency-badge {
         color: var(--deep-text);
     }
 
-    /* 延迟颜色分级 - 覆盖默认颜色 */
-    .latency-badge.ok {
-        color: #10b981 !important; /* emerald-500 */
-        background: rgba(16, 185, 129, 0.15) !important;
+    /* 延迟颜色分级 - 仅在非激活且测速完成后显示淡色底 */
+    .line-item:not(.active) .latency-badge.ok {
+        color: #10b981 !important;
+        background: rgba(16, 185, 129, 0.1) !important;
     }
-    .latency-badge.lime {
-        color: #84cc16 !important; /* lime-500 */
-        background: rgba(132, 204, 22, 0.15) !important;
+    .line-item:not(.active) .latency-badge.lime {
+        color: #84cc16 !important;
+        background: rgba(132, 204, 22, 0.1) !important;
     }
-    .latency-badge.warn {
-        color: #f59e0b !important; /* amber-500 */
-        background: rgba(245, 158, 11, 0.15) !important;
+    .line-item:not(.active) .latency-badge.warn {
+        color: #f59e0b !important;
+        background: rgba(245, 158, 11, 0.1) !important;
     }
-    .latency-badge.err {
-        color: #ef4444 !important; /* red-500 */
-        background: rgba(239, 68, 68, 0.15) !important;
+    .line-item:not(.active) .latency-badge.err {
+        color: #ef4444 !important;
+        background: rgba(239, 68, 68, 0.1) !important;
     }
     
     iconify-icon, img {
@@ -140,17 +151,13 @@ const lines = [
     }
 
     async function checkLatency(url: string, id: string) {
-        // 先测一次用于快速展示（可选，这里为了准确性我们先不展示或显示"检测中"）
-        // 执行10次测速
         const results = [];
         for (let i = 0; i < 10; i++) {
             const ms = await measurePing(url);
             results.push(ms);
-            // 简单的间隔，避免请求过于密集被浏览器节流
             if (i < 9) await new Promise(r => setTimeout(r, 50));
         }
 
-        // 过滤掉错误结果
         const validResults = results.filter(r => r >= 0);
         
         if (validResults.length === 0) {
@@ -158,7 +165,6 @@ const lines = [
             return;
         }
 
-        // 如果有多次结果，去除第一次（冷启动），取剩余的平均值
         let finalLatency;
         if (validResults.length > 1) {
             const [first, ...rest] = validResults;
