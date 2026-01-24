@@ -68,12 +68,11 @@ const lines = [
 <style>
     /* 激活状态 */
     .line-item.active button {
-        background: rgba(var(--primary-rgb), 0.2);
+        background: color-mix(in oklch, var(--primary), transparent 90%);
         color: var(--primary);
-        padding-left: 1rem;
     }
     :global(.dark) .line-item.active button {
-        background: rgba(var(--primary-rgb), 0.35);
+        background: color-mix(in oklch, var(--primary), transparent 85%);
     }
     .line-item.active .line-name {
         font-weight: bold;
