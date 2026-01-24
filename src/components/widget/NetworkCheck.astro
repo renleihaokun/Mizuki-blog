@@ -160,22 +160,25 @@ const { class: className, style } = Astro.props;
             const rttContainer = document.getElementById('net-rtt-container');
             if (rttContainer) {
                 const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz'];
-                if (allowedHosts.includes(window.location.hostname)) {
+                const rttValue = data.rtt;
+                const hasValidRtt = rttValue !== undefined && rttValue !== null && rttValue !== 0;
+
+                if (allowedHosts.includes(window.location.hostname) && hasValidRtt) {
                     rttContainer.classList.remove('hidden');
                     const rttValEl = document.getElementById('net-rtt-val');
                     const rttBarEl = document.getElementById('net-rtt-bar');
-                    if (rttValEl && rttBarEl && data.rtt !== undefined) {
-                        rttValEl.textContent = `${data.rtt} ms`;
+                    if (rttValEl && rttBarEl) {
+                        rttValEl.textContent = `${rttValue} ms`;
                         
                         // Calculate percentage for bar (cap at 300ms for full bar visually)
-                        const percentage = Math.min(100, Math.max(5, (data.rtt / 300) * 100));
+                        const percentage = Math.min(100, Math.max(5, (rttValue / 300) * 100));
                         rttBarEl.style.width = `${percentage}%`;
                         
                         // Color coding
-                        if (data.rtt < 100) {
+                        if (rttValue < 100) {
                             rttBarEl.classList.add('bg-green-500');
                             rttBarEl.classList.remove('bg-[var(--primary)]', 'bg-yellow-500', 'bg-red-500');
-                        } else if (data.rtt < 200) {
+                        } else if (rttValue < 200) {
                              rttBarEl.classList.add('bg-yellow-500');
                              rttBarEl.classList.remove('bg-[var(--primary)]', 'bg-green-500', 'bg-red-500');
                         } else {
