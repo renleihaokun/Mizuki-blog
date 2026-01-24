@@ -93,36 +93,33 @@ const lines = [
     /* 延迟徽章样式 - 默认极淡背景 */
     .latency-badge {
         background: rgba(0, 0, 0, 0.03);
-        color: #000; /* 徽章内文字也设为黑色 */
+        color: #000;
     }
     :global(.dark) .latency-badge {
         background: rgba(255, 255, 255, 0.05);
         color: #fff;
     }
 
-    /* 选中状态下的徽章样式 */
+    /* 选中状态下的徽章样式 - 移除强制背景色，让状态色能显示 */
     .line-item.active .latency-badge {
-        background: var(--primary);
-        color: var(--btn-content);
-    }
-    :global(.dark) .line-item.active .latency-badge {
-        color: var(--deep-text);
+        /* background: var(--primary); 移除此行 */
+        color: inherit; /* 继承选中按钮的颜色 */
     }
 
-    /* 延迟颜色分级 - 仅在非激活且测速完成后显示淡色底 */
-    .line-item:not(.active) .latency-badge.ok {
+    /* 延迟颜色分级 - 使用 !important 确保在任何状态下都能正确显示颜色背景 */
+    .latency-badge.ok {
         color: #10b981 !important;
         background: rgba(16, 185, 129, 0.1) !important;
     }
-    .line-item:not(.active) .latency-badge.lime {
+    .latency-badge.lime {
         color: #84cc16 !important;
         background: rgba(132, 204, 22, 0.1) !important;
     }
-    .line-item:not(.active) .latency-badge.warn {
+    .latency-badge.warn {
         color: #f59e0b !important;
         background: rgba(245, 158, 11, 0.1) !important;
     }
-    .line-item:not(.active) .latency-badge.err {
+    .latency-badge.err {
         color: #ef4444 !important;
         background: rgba(239, 68, 68, 0.1) !important;
     }
