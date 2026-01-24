@@ -7,8 +7,16 @@
   (function() {
     try {
       var host = window.location.hostname;
-      // 允许主域名和本地开发环境
-      if (host !== 'blog.haokun.me' && host !== 'localhost' && host !== '127.0.0.1') {
+      // 允许官方线路域名和本地开发环境
+      var allowedHosts = [
+        'blog.haokun.me',
+        'blog.4848488.xyz',
+        'eo.blog.haokun.me',
+        'esa.blog.haokun.me',
+        'localhost',
+        '127.0.0.1'
+      ];
+      if (allowedHosts.indexOf(host) === -1) {
         var warningDiv = document.getElementById('domain-warning');
         if (warningDiv) {
           warningDiv.style.display = 'block';

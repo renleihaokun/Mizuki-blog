@@ -1,0 +1,180 @@
+---
+import WidgetLayout from './WidgetLayout.astro';
+
+interface Props {
+	class?: string;
+	style?: string;
+}
+
+const { class: className, style } = Astro.props;
+
+const lines = [
+    { nameEn: "Cloudflare", nameZh: "优选", url: "https://blog.haokun.me", id: "cf-opt", icon: "logos:cloudflare-icon", isLocal: false, size: 27 },
+    { nameEn: "Cloudflare", nameZh: "默认", url: "https://blog.4848488.xyz", id: "cf-def", icon: "logos:cloudflare-icon", isLocal: false, size: 27 },
+    { nameEn: "EdgeOne", nameZh: "海外", url: "https://eo.blog.haokun.me", id: "eo", icon: "/assets/line-switch/icons/tencent-cloud-logo.svg", isLocal: true, size: 27 },
+    { nameEn: "ESA", nameZh: "海外", url: "https://esa.blog.haokun.me", id: "esa", icon: "/assets/line-switch/icons/ali-cloud.svg", isLocal: true, size: 24 },
+];
+---
+
+<WidgetLayout name="线路切换" id="line-switch" class={className} style={style}>
+    <div class="line-switch-container flex flex-col gap-2 mb-2">
+        {lines.map((line) => (
+            <a 
+                href={line.url}
+                data-hostname={new URL(line.url).hostname}
+                data-id={line.id}
+                class="line-item group block w-full "
+            >
+                <button
+                    class="w-full h-12 rounded-lg bg-black/[0.03] dark:bg-white/[0.03] hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition-all pl-4 hover:pl-5 text-neutral-700 hover:text-[var(--primary)] dark:text-neutral-300 dark:hover:text-[var(--primary)] text-left"
+                >
+                    <div class="flex items-center justify-between relative mr-4">
+                        <div class="flex items-center gap-2 overflow-hidden">
+                            <div class="flex items-center text-[14px] line-name">
+                                <span class="w-[72px] truncate text-left">{line.nameEn}</span>
+                                <span class="truncate">{line.nameZh}</span>
+                            </div>
+                            <div class="flex items-center justify-center flex-shrink-0" style={`width: ${line.size}px; height: ${line.size}px`}>
+                                {line.isLocal ? (
+                                    <img 
+                                        src={line.icon} 
+                                        alt="" 
+                                        style={`width: ${line.size}px; height: auto;`}
+                                        class="flex-shrink-0"
+                                    />
+                                ) : (
+                                    <iconify-icon 
+                                        icon={line.icon} 
+                                        width={line.size} 
+                                        height={line.size} 
+                                        class="flex-shrink-0" 
+                                    />
+                                )}
+                            </div>
+                        </div>
+                        
+                        <div class="latency-badge transition px-2 h-6 min-w-[2.5rem] rounded-lg text-[10px] font-bold font-mono
+                            text-neutral-400 bg-[oklch(0.95_0.025_var(--hue))] dark:bg-neutral-800
+                            flex items-center justify-center ml-2">
+                            ---
+                        </div>
+                    </div>
+                </button>
+            </a>
+        ))}
+    </div>
+</WidgetLayout>
+
+<style>
+    /* 激活状态 */
+    .line-item.active button {
+        background: rgba(var(--primary-rgb), 0.15);
+        color: var(--primary);
+        padding-left: 0.75rem;
+    }
+    :global(.dark) .line-item.active button {
+        background: rgba(var(--primary-rgb), 0.25);
+    }
+    .line-item.active .line-name {
+        font-weight: bold;
+    }
+    .line-item.active .latency-badge {
+        background: var(--primary);
+        color: var(--btn-content);
+    }
+    :global(.dark) .line-item.active .latency-badge {
+        color: var(--deep-text);
+    }
+
+    .line-name {
+        white-space: pre-wrap;
+    }
+
+    /* 延迟颜色分级 */
+    .line-item:not(.active) .latency-badge.ok {
+        color: #10b981; /* emerald-500 (翠绿) */
+        background: rgba(16, 185, 129, 0.1);
+    }
+    .line-item:not(.active) .latency-badge.lime {
+        color: #84cc16; /* lime-500 (黄绿) */
+        background: rgba(132, 204, 22, 0.1);
+    }
+    .line-item:not(.active) .latency-badge.warn {
+        color: #f59e0b; /* amber-500 (黄色) */
+        background: rgba(245, 158, 11, 0.1);
+    }
+    .line-item:not(.active) .latency-badge.err {
+        color: #ef4444; /* red-500 (红色) */
+        background: rgba(239, 68, 68, 0.1);
+    }
+    
+    iconify-icon, img {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<script>
+    async function checkLatency(url: string) {
+        const start = performance.now();
+        try {
+            const target = new URL(url);
+            await fetch(target.origin + '/?' + Date.now(), { 
+                method: 'HEAD', 
+                mode: 'no-cors',
+                cache: 'no-store'
+            });
+            return Math.round(performance.now() - start);
+        } catch (e) {
+            return -1;
+        }
+    }
+
+    function updateLatencyUI(id: string, ms: number) {
+        const item = document.querySelector(`[data-id="${id}"]`);
+        if (!item) return;
+
+        const badge = item.querySelector('.latency-badge');
+        if (badge) {
+            badge.classList.remove('ok', 'lime', 'warn', 'err');
+            if (ms < 0) {
+                badge.textContent = 'ERR';
+                badge.classList.add('err');
+            } else {
+                badge.textContent = `${ms}ms`;
+                if (ms > 300) {
+                    badge.classList.add('err');  // 300ms 以上标红
+                } else if (ms > 150) {
+                    badge.classList.add('warn'); // 150-300ms 标黄
+                } else if (ms > 100) {
+                    badge.classList.add('lime'); // 100-150ms 标黄绿
+                } else {
+                    badge.classList.add('ok');   // 100ms 以内标翠绿
+                }
+            }
+        }
+    }
+
+    function initLineSwitch() {
+        const currentHostname = window.location.hostname;
+        const items = document.querySelectorAll('.line-item');
+        
+        items.forEach(item => {
+            const hostname = item.getAttribute('data-hostname');
+            const id = item.getAttribute('data-id');
+            const url = (item as HTMLAnchorElement).href;
+
+            if (hostname === currentHostname) {
+                item.classList.add('active');
+            }
+
+            if (id) {
+                checkLatency(url).then(ms => updateLatencyUI(id, ms));
+            }
+        });
+    }
+
+    initLineSwitch();
+    document.addEventListener('swup:contentReplace', initLineSwitch);
+</script>

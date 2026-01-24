@@ -119,7 +119,8 @@ const { class: className, style } = Astro.props;
             // Node
             const nodeEl = document.getElementById('net-node');
             if (nodeEl) {
-                if (window.location.hostname === 'blog.haokun.me') {
+                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz'];
+                if (allowedHosts.includes(window.location.hostname)) {
                     nodeEl.textContent = data.node?.name || 'Unknown';
                     nodeEl.closest('.flex-col')?.classList.remove('hidden');
                 } else {
@@ -152,7 +153,8 @@ const { class: className, style } = Astro.props;
             // RTT
             const rttContainer = document.getElementById('net-rtt-container');
             if (rttContainer) {
-                if (window.location.hostname === 'blog.haokun.me') {
+                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz'];
+                if (allowedHosts.includes(window.location.hostname)) {
                     rttContainer.classList.remove('hidden');
                     const rttValEl = document.getElementById('net-rtt-val');
                     const rttBarEl = document.getElementById('net-rtt-bar');
