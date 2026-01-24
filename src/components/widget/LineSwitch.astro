@@ -66,49 +66,54 @@ const lines = [
 </WidgetLayout>
 
 <style>
-    /* 激活状态 */
-    .line-item.active button {
+    /* 默认状态（原选中样式） */
+    .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 90%);
         color: var(--primary);
+        border: none;
     }
-    :global(.dark) .line-item.active button {
+    :global(.dark) .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 85%);
     }
-    .line-item.active .line-name {
+
+    /* 选中状态（颜色加深） */
+    .line-item.active button {
+        background: color-mix(in oklch, var(--primary), transparent 80%);
         font-weight: bold;
     }
-    .line-item.active .latency-badge {
-        background: var(--primary);
-        color: var(--btn-content);
-    }
-    :global(.dark) .line-item.active .latency-badge {
-        color: var(--deep-text);
-    }
-
-    .line-item button {
-        border: none;
+    :global(.dark) .line-item.active button {
+        background: color-mix(in oklch, var(--primary), transparent 70%);
     }
 
     .line-name {
         white-space: pre-wrap;
     }
 
-    /* 延迟颜色分级 */
-    .line-item:not(.active) .latency-badge.ok {
-        color: #10b981; /* emerald-500 (翠绿) */
-        background: rgba(16, 185, 129, 0.1);
+    /* 延迟徽章样式 */
+    .latency-badge {
+        background: var(--primary);
+        color: var(--btn-content);
     }
-    .line-item:not(.active) .latency-badge.lime {
-        color: #84cc16; /* lime-500 (黄绿) */
-        background: rgba(132, 204, 22, 0.1);
+    :global(.dark) .latency-badge {
+        color: var(--deep-text);
     }
-    .line-item:not(.active) .latency-badge.warn {
-        color: #f59e0b; /* amber-500 (黄色) */
-        background: rgba(245, 158, 11, 0.1);
+
+    /* 延迟颜色分级 - 覆盖默认颜色 */
+    .latency-badge.ok {
+        color: #10b981 !important; /* emerald-500 */
+        background: rgba(16, 185, 129, 0.15) !important;
     }
-    .line-item:not(.active) .latency-badge.err {
-        color: #ef4444; /* red-500 (红色) */
-        background: rgba(239, 68, 68, 0.1);
+    .latency-badge.lime {
+        color: #84cc16 !important; /* lime-500 */
+        background: rgba(132, 204, 22, 0.15) !important;
+    }
+    .latency-badge.warn {
+        color: #f59e0b !important; /* amber-500 */
+        background: rgba(245, 158, 11, 0.15) !important;
+    }
+    .latency-badge.err {
+        color: #ef4444 !important; /* red-500 */
+        background: rgba(239, 68, 68, 0.15) !important;
     }
     
     iconify-icon, img {

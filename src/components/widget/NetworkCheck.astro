@@ -78,7 +78,13 @@ const { class: className, style } = Astro.props;
 
 <script>
     class NetworkCheckWidget {
-        private apiUrl = 'https://ip.haokun.me/?act=get_ip_info';
+        private get apiUrl() {
+            const host = window.location.hostname;
+            if (host === 'blog.4848488.xyz') {
+                return 'https://ip.4848488.xyz/?act=get_ip_info';
+            }
+            return 'https://ip.haokun.me/?act=get_ip_info';
+        }
         
         constructor() {
             this.init();
