@@ -66,23 +66,23 @@ const lines = [
 </WidgetLayout>
 
 <style>
-    /* 默认状态（原选中样式） */
+    /* 默认状态（极淡的主题底色） */
     .line-item button {
-        background: color-mix(in oklch, var(--primary), transparent 90%);
+        background: color-mix(in oklch, var(--primary), transparent 95%);
         color: var(--primary);
         border: none;
     }
     :global(.dark) .line-item button {
-        background: color-mix(in oklch, var(--primary), transparent 85%);
+        background: color-mix(in oklch, var(--primary), transparent 92%);
     }
 
-    /* 选中状态（颜色加深） */
+    /* 选中状态（显著加深） */
     .line-item.active button {
-        background: color-mix(in oklch, var(--primary), transparent 80%);
+        background: color-mix(in oklch, var(--primary), transparent 75%);
         font-weight: bold;
     }
     :global(.dark) .line-item.active button {
-        background: color-mix(in oklch, var(--primary), transparent 70%);
+        background: color-mix(in oklch, var(--primary), transparent 60%);
     }
 
     .line-name {
