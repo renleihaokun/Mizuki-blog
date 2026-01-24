@@ -68,12 +68,13 @@ const lines = [
 <style>
     /* 激活状态 */
     .line-item.active button {
-        background: rgba(var(--primary-rgb), 0.15);
+        background: rgba(var(--primary-rgb), 0.1);
+        border: 1px solid var(--primary);
         color: var(--primary);
-        padding-left: 0.75rem;
+        padding-left: 0.9375rem; /* 微调内边距以补偿边框增加的宽度 */
     }
     :global(.dark) .line-item.active button {
-        background: rgba(var(--primary-rgb), 0.25);
+        background: rgba(var(--primary-rgb), 0.2);
     }
     .line-item.active .line-name {
         font-weight: bold;
@@ -84,6 +85,10 @@ const lines = [
     }
     :global(.dark) .line-item.active .latency-badge {
         color: var(--deep-text);
+    }
+
+    .line-item button {
+        border: 1px solid transparent; /* 默认透明边框防止激活时闪烁 */
     }
 
     .line-name {
