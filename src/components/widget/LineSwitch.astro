@@ -70,10 +70,21 @@ const lines = [
         background: color-mix(in oklch, var(--primary), transparent 95%);
         color: #000; /* 线路名称文字设为黑色 */
         border: none;
+        transition: all 0.2s ease-in-out;
     }
     :global(.dark) .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 92%);
         color: #fff; /* 暗色模式设为白色 */
+    }
+
+    /* 悬停状态 - 背景加深效果 */
+    .line-item button:hover {
+        background: color-mix(in oklch, var(--primary), transparent 85%);
+        color: var(--primary);
+    }
+    :global(.dark) .line-item button:hover {
+        background: color-mix(in oklch, var(--primary), transparent 80%);
+        color: var(--primary);
     }
 
     /* 选中状态 */
@@ -84,6 +95,23 @@ const lines = [
     }
     :global(.dark) .line-item.active button {
         background: color-mix(in oklch, var(--primary), transparent 60%);
+    }
+
+    /* 选中状态下的悬停 - 进一步加深 */
+    .line-item.active button:hover {
+        background: color-mix(in oklch, var(--primary), transparent 65%);
+    }
+    :global(.dark) .line-item.active button:hover {
+        background: color-mix(in oklch, var(--primary), transparent 50%);
+    }
+
+    /* 点击效果 */
+    .line-item button:active {
+        transform: scale(0.97);
+        background: color-mix(in oklch, var(--primary), transparent 70%);
+    }
+    :global(.dark) .line-item button:active {
+        background: color-mix(in oklch, var(--primary), transparent 55%);
     }
 
     .line-name {
