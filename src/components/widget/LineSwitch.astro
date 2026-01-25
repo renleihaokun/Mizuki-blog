@@ -229,19 +229,32 @@ const lines = [
 
     function initLineSwitch() {
         const currentHostname = window.location.hostname;
+        const currentPath = window.location.pathname;
+        const currentSearch = window.location.search;
         const items = document.querySelectorAll('.line-item');
         
         items.forEach(item => {
             const hostname = item.getAttribute('data-hostname');
             const id = item.getAttribute('data-id');
-            const url = (item as HTMLAnchorElement).href;
+            const originalUrl = item.getAttribute('href'); // 获取原始配置的 URL
+
+            if (originalUrl) {
+                try {
+                    const targetUrl = new URL(originalUrl);
+                    targetUrl.pathname = currentPath;
+                    targetUrl.search = currentSearch;
+                    (item as HTMLAnchorElement).href = targetUrl.toString();
+                } catch (e) {
+                    console.error('LineSwitch: Invalid URL', originalUrl);
+                }
+            }
 
             if (hostname === currentHostname) {
                 item.classList.add('active');
             }
 
-            if (id) {
-                checkLatency(url, id);
+            if (id && originalUrl) {
+                checkLatency(originalUrl, id);
             }
         });
     }
