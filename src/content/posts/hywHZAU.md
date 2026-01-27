@@ -389,9 +389,10 @@ image: "https://imgbed.haokun.me/file/1769329490857_image.png"
 没错对的  
 ![IMG20250919174958.webp](https://imgbed.haokun.me/file/1769331131890_IMG20250919174958.webp)  
 ![IMG20250906164959.webp](https://imgbed.haokun.me/file/1769331136358_IMG20250906164959.webp)  
-## 我们是上床下桌，桌子很大  
+## 我们是上床下桌，桌子很大，有独立卫浴  
 就算是研究生宿舍六人寝也是上床下桌  
 ~~超越某些985~~  
+虽然独立卫浴有点寒酸但至少有  
 ![IMG_20260125_165540.jpg](https://imgbed.haokun.me/file/1769331368884_IMG_20260125_165540.jpg)  
 ## 我们可以骑电瓶车，校内车牌不需要摇号，有武汉车牌就能上  
 ![Screenshot_2026-01-25-16-59-08-57_29161546fab04e109d93deba6d384212.jpg](https://imgbed.haokun.me/file/1769331577032_Screenshot_2026-01-25-16-59-08-57_29161546fab04e109d93deba6d384212.jpg)  
