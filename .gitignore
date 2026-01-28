@@ -43,4 +43,4 @@ src/data/myself.ts
 src/pages/myself.astro
 
 # gemini prompt
-./gemini
+.gemini/
