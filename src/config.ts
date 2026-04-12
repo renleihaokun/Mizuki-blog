@@ -458,7 +458,8 @@ export const commentConfig: CommentConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "这是一个公告", // 公告标题
-	content: "记得去相册和行旅拾光看看", // 公告内容
+	content:
+		"近期发现“blog.wangxianming.top”违规悬挂本站备案号，本站备案有且仅有haokun.me及其子域名，一切非本站域名悬挂本站备案号的网站与本站无任何联系", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
