@@ -11,6 +11,11 @@ const { class: className, style } = Astro.props;
 ---
 
 <WidgetLayout name="看看你的网" id="network-check" class={className} style={style}>
+    <a id="net-api-link" slot="title-icon" href="#" target="_blank" rel="noopener noreferrer" 
+       class="ml-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-all bg-transparent hover:bg-[var(--btn-plain-bg-hover)]"
+       title="访问 API 网页">
+        <Icon name="material-symbols:link" class="text-xl text-[var(--primary)] -rotate-45" />
+    </a>
     <div class="network-info-container text-sm space-y-3 mb-2 px-2">
         <div id="net-loading" class="flex items-center justify-center gap-2 py-4 text-neutral-500 dark:text-neutral-400">
             <Icon name="fa6-solid:spinner" class="text-2xl animate-spin" />
@@ -95,6 +100,17 @@ const { class: className, style } = Astro.props;
 
         init() {
             this.fetchData();
+
+            // Set API link href
+            const apiLink = document.getElementById('net-api-link') as HTMLAnchorElement;
+            if (apiLink) {
+                try {
+                    const url = new URL(this.apiUrl);
+                    apiLink.href = `${url.protocol}//${url.hostname}/`;
+                } catch (e) {
+                    console.error('Failed to parse API URL:', e);
+                }
+            }
             
             // Bind retry button
             const retryBtn = document.getElementById('net-retry-btn');
