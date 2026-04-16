@@ -56,7 +56,7 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 			targetIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			// 注册实时监听器
 			const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-			const listener = (e: MediaQueryListEvent) => {
+			const listener = (_e: MediaQueryListEvent) => {
 				if (getStoredTheme() === AUTO_MODE) {
 					applyThemeToDocument(AUTO_MODE);
 				}

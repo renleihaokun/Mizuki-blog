@@ -24,13 +24,6 @@ export interface SwupHookHandlers {
 	checkKatex?: () => void;
 }
 
-// 访问对象类型
-interface VisitObject {
-	to: {
-		url: string;
-	};
-}
-
 /**
  * Swup 钩子管理器
  * 负责注册和管理所有 Swup 页面过渡钩子
