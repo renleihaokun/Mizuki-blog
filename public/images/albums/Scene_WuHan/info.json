@@ -1,0 +1,27 @@
+{
+	"mode": "external",
+	"title": "风光·武汉",
+	"description": "全员鄂人",
+	"cover": "https://imgbed.haokun.me/file/1772941382517_DSC05973-已增强-NR.webp",
+	"location": "湖北·武汉",
+	"tags": ["武汉", "景"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1774016242288_DSC06294-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772941371286_DSC05954-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772941375518_DSC05927-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772941376569_DSC05986-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772941382517_DSC05973-已增强-NR.webp"
+		}
+	]
+}

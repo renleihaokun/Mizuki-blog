@@ -1,0 +1,7 @@
+{
+  "title": "友链标题",
+  "imgurl": "https://example.com/avatar.webp",
+  "desc": "友链描述",
+  "siteurl": "https://example.com",
+  "tags": ["blog", "friend"]
+}

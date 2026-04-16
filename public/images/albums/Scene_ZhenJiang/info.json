@@ -1,0 +1,57 @@
+{
+	"mode": "external",
+	"title": "风光·镇江",
+	"description": "明明是地级市，怎么感觉像个县级市",
+	"cover": "https://imgbed.haokun.me/file/1772630906175_DSC05352_1.webp",
+	"location": "江苏·镇江",
+	"tags": ["镇江", "景"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1772630893097_DSC05551_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630897156_DSC05530_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630897297_DSC05514_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630899281_DSC05504_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630894701_DSC05496_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630898504_DSC05482_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630900625_DSC05471_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630896245_DSC05466_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630905700_DSC05459_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630898949_DSC05455_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630903906_DSC05445_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630906175_DSC05352_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630908082_DSC05350_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630906101_DSC05329_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772630914587_DSC05314_1.webp"
+		}
+	]
+}

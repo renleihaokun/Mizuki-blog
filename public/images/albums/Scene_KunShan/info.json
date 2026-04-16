@@ -1,0 +1,15 @@
+{
+	"mode": "external",
+	"title": "风光·昆山",
+	"description": "所以昆山什么时候并入上海，我要当沪爷",
+	"cover": "https://imgbed.haokun.me/file/1770992648154_DSC04327_1.webp",
+	"location": "苏州·昆山",
+	"tags": ["昆山", "景"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1770992648154_DSC04327_1.webp"
+		}
+	]
+}

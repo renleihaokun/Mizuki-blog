@@ -14,6 +14,8 @@ import { MusicSidebarWidget } from "../widgets/music-sidebar";
 import Profile from "../widgets/profile/Profile.astro";
 import SiteStats from "../widgets/site-stats/SiteStats.astro";
 import Tags from "../widgets/tags/Tags.astro";
+import LineSwitch from "../widgets/line-switch/LineSwitch.astro";
+import NetworkCheck from "../widgets/network-check/NetworkCheck.astro";
 
 interface Props {
 	side: "left" | "right";
@@ -52,6 +54,8 @@ const componentMap: Record<string, unknown> = {
 	"music-sidebar": MusicSidebarWidget,
 	"site-stats": SiteStats,
 	calendar: Calendar,
+	"line-switch": LineSwitch,
+	"network-check": NetworkCheck,
 };
 
 type WidgetComponentConfig = ReturnType<

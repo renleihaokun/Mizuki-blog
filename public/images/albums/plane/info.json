@@ -1,0 +1,75 @@
+{
+	"mode": "external",
+	"title": "飞机",
+	"description": "这是铁鸟",
+	"cover": "https://imgbed.haokun.me/file/1766759387328_1765979639327.webp",
+	"location": "地球",
+	"tags": ["飞机"],
+	"layout": "Grid",
+	"columns": 4,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1771499885536_DSC05000_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499881437_DSC04953_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499879563_DSC04946_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499886169_DSC04917_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499886828_DSC04868_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499884384_DSC04847_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499884625_DSC04815_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499886690_DSC04801_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499888374_DSC04782_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499889898_DSC04780_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1771499885551_DSC05030_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1770992622683_DSC04215_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1770992612248_DSC04224_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759387328_1765979639327.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759366238_1765979361204.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759365856_1765979361243.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759442034_1765979361270.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759404901_1765979361346.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759446926_1765979398281.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759444687_1765979638304.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1766759399871_1765979638734.webp"
+		}
+	]
+}

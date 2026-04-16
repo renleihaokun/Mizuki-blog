@@ -268,4 +268,39 @@ A: 参考 [内容分离完整指南 - 私有仓库配置](./CONTENT_SEPARATION.m
 
 ---
 
-💡 **提示**: 迁移前建议先在测试环境中验证整个流程!
+---
+
+## 🛠️ 魔改版大版本同步经验 (LyraVoid/Mizuki 9.0 + Astro 6)
+
+如果你像本项目一样对 Mizuki 进行了深度魔改（例如自定义组件、非标准页面结构），在同步到 `LyraVoid/Mizuki` 9.0+ 版本时，请务必关注以下核心差异：
+
+### 1. 架构变更：WidgetLayout 的 Web Component 化
+新版 `WidgetLayout` 采用了自定义元素封装 (`<widget-layout>`)。
+*   **坑点**：老版本的脚本通过 `getElementById` 查找元素，在 Swup 切换页面后会因为 ID 重复或 DOM 未挂载而失效。
+*   **对策**：将自定义组件包装在自定义元素中（如 `<line-switch-widget>`），并在脚本中使用 `class extends HTMLElement`。使用 `this.querySelector` 替代全局 ID 选择器。
+
+### 2. 图标系统全面升级
+图标库从 `FontAwesome 6` 升级到了 `FontAwesome 7`。
+*   **坑点**：所有 `fa6-brands:` 前缀必须改为 `fa7-brands:`，否则页面会崩溃报错无法找到图标集。
+*   **缺失依赖**：新版默认移除了 `logos` 图标集。如果你的配置中使用了 `logos:cloudflare` 等，需要手动 `pnpm add -D @iconify-json/logos`。
+
+### 3. Swup 生命周期监听
+新版 Astro 6 环境下的页面切换监听机制有所变化。
+*   **对策**：必须监听 `astro:page-load` 事件来重新初始化脚本。老版本的 `DOMContentLoaded` 或 `swup:contentReplace` 可能不再可靠。
+
+### 4. 静态资源加载逻辑 (Navbar)
+Navbar 的左侧图标 (`navbarTitle.icon`) 现在带有自动格式转换逻辑。
+*   **坑点**：如果你在 `public/assets/home/` 下同时存在 `home.png` 和旧版的 `home.webp`，浏览器会优先展示 webp。
+*   **对策**：确保物理文件名与 `config.ts` 配置完全一致，并清理掉无用的旧格式资源。
+
+### 5. 侧边栏布局冲突
+新版侧边栏引入了 `collapse-wrapper` 和自动高度计算。
+*   **对策**：自定义折叠组件的 CSS 类名应避免使用 `.collapsed`，改用 `.custom-collapsed`，否则会与 `WidgetLayout` 内部的 `max-height` 逻辑发生“样式战争”。
+
+### 6. TypeScript 类型补全
+新增的自定义侧边栏组件必须在 `src/types/config.ts` 的 `WidgetComponentType` 中手动注册字符串类型，否则 `src/config.ts` 会出现类型标红。
+
+---
+
+💡 **总结**: 同步大版本时，**不要直接 merge 代码**。建议采取“以新版为底座，逐个迁回魔改组件”的策略，并针对 Web Component 生命周期进行适配。
+

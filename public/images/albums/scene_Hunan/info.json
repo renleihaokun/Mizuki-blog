@@ -1,0 +1,57 @@
+{
+	"mode": "external",
+	"title": "风光·湖南",
+	"description": "湘菜会教训每一个不知好歹的苏州人",
+	"cover": "https://imgbed.haokun.me/file/1775469880151_DSC07345_1.webp",
+	"location": "湖南",
+	"tags": ["风光", "湖南"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1775469878229_DSC07383_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469875984_DSC07525_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469870019_DSC07130_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469880151_DSC07345_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469874559_DSC07357_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469877371_DSC07420_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469879960_DSC07150_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469875856_DSC07392_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469885502_DSC07160_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469877320_DSC07458_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469884062_DSC07126_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469888188_DSC07391_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469886415_DSC07408_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469887660_DSC07508_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1775469884989_DSC07162_1.webp"
+		}
+	]
+}

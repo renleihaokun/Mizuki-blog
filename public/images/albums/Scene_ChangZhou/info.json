@@ -1,0 +1,36 @@
+{
+	"mode": "external",
+	"title": "风光·常州",
+	"description": "我真的出苏州了吗，怎么常州和苏州这么像，我恐龙呢",
+	"cover": "https://imgbed.haokun.me/file/1772631218416_DSC05216_1.webp",
+	"location": "江苏·常州",
+	"tags": ["常州", "景"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1772631213258_DSC05255_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631223407_DSC05232_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631218416_DSC05216_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631218078_DSC05184_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631216403_DSC05176_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631218840_DSC05166_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631225250_DSC05146_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1772631220419_DSC05102_1.webp"
+		}
+	]
+}

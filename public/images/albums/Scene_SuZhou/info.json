@@ -1,0 +1,60 @@
+{
+	"mode": "external",
+	"title": "风光·苏州",
+	"description": "苏州，是家",
+	"cover": "https://imgbed.haokun.me/file/苏州/1765980589317_1765979896723.webp",
+	"location": "江苏·苏州",
+	"tags": ["苏州", "景"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1770992637951_DSC04164_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980569599_1765979896820.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980566154_1765978182078.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980564401_1765978223348.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980569509_1765978262173.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980571744_1765978301519.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980565143_1765978442302.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980573315_1765978599778.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980578895_1765978736356.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980579806_1765978802864.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980581035_1765979051892_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980575039_1765979896386.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980585733_1765979896474.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980587200_1765979896557.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980588248_1765979896635.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/苏州/1765980589317_1765979896723.webp"
+		}
+	]
+}

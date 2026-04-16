@@ -120,6 +120,9 @@ export const zh_CN: Translation = {
 	[Key.unknownSong]: "未知歌曲",
 	[Key.unknownArtist]: "未知艺术家",
 
+	[Key.favorites]: "行旅拾光",
+	[Key.favoritesSubtitle]: "车票、门票、明信片以及各种各样的回忆",
+
 	// 相册页面
 	[Key.albums]: "相册",
 	[Key.albumsSubtitle]: "记录生活中的美好瞬间",

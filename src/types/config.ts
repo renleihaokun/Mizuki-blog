@@ -62,6 +62,7 @@ export interface SiteConfig {
 		anime: boolean; // 番剧页面开关
 		diary: boolean; // 日记页面开关
 		friends: boolean; // 友链页面开关
+		favorites: boolean; // 收藏页面开关
 		projects: boolean; // 项目页面开关
 		skills: boolean; // 技能页面开关
 		timeline: boolean; // 时间线页面开关
@@ -213,6 +214,7 @@ export enum LinkPreset {
 	Projects = 7,
 	Skills = 8,
 	Timeline = 9,
+	Favorites = 10,
 }
 
 export interface NavBarLink {
@@ -376,6 +378,8 @@ export type WidgetComponentType =
 	| "pio" // 添加 pio 组件类型
 	| "site-stats" // 站点统计组件
 	| "calendar" // 日历组件
+	| "line-switch" // 线路切换组件
+	| "network-check" // 网络检查组件
 	| "custom";
 
 export interface WidgetComponentConfig {
@@ -522,3 +526,15 @@ export interface ThirdPartyAnalyticsConfig {
 	enable: boolean; // 是否启用第三方统计（Microsoft Clarity），默认关闭
 	clarityId?: string; // Clarity 项目 ID
 }
+
+export type LineConfig = {
+	nameEn: string;
+	nameZh: string;
+	url: string;
+	id: string;
+	icon: string;
+	isLocal: boolean;
+	size: number;
+};
+
+export type LineSwitchConfig = LineConfig[];

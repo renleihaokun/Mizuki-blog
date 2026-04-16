@@ -2,13 +2,18 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"module": "ESNext",
-		"moduleResolution": "bundler",
+		"moduleResolution": "Bundler",
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",
 		"baseUrl": ".",
-		"strictNullChecks": true,
-		"allowJs": false,
-		"declaration": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"checkJs": false,
+		"strict": true,
+		"noEmit": true,
+		"allowImportingTsExtensions": false,
+		"isolatedModules": true,
+		"skipLibCheck": true,
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"

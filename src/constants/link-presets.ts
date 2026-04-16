@@ -54,4 +54,9 @@ export const LinkPresets: Record<LinkPreset, NavBarLink> = {
 		url: "/timeline/",
 		icon: "material-symbols:timeline",
 	},
+	[LinkPreset.Favorites]: {
+		name: i18n(I18nKey.favorites),
+		url: "/favorites/",
+		icon: "material-symbols:loyalty",
+	},
 };

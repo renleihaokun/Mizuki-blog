@@ -1,4 +1,5 @@
-﻿import type {
+// biome-ignore assist/source/organizeImports: <explanation>
+import type {
 	AnnouncementConfig,
 	CommentConfig,
 	ExpressiveCodeConfig,
@@ -15,36 +16,38 @@
 	ShareConfig,
 	SidebarLayoutConfig,
 	SiteConfig,
+	LineSwitchConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
 // 移除i18n导入以避免循环依赖
 
 // 定义站点语言
-const SITE_LANG = "ja"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
+const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
-	title: "Mizuki",
-	subtitle: "One demo website",
-	siteURL: "https://mizuki.mysqil.com/", // 请替换为你的站点URL，以斜杠结尾
-	siteStartDate: "2025-01-01", // 站点开始运行日期，用于站点统计组件计算运行天数
+	title: "困",
+	subtitle: "并非demo",
+	siteURL: "https://blog.haokun.me/", // 请替换为你的站点URL，以斜杠结尾
+	siteStartDate: "2025-12-02", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
 
 	lang: SITE_LANG,
 
 	themeColor: {
-		hue: 240, // 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
+		hue: 90, // 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
 		fixed: false, // 对访问者隐藏主题色选择器
 	},
 
 	// 特色页面开关配置（关闭未使用的页面有助于提升 SEO，关闭后请记得在 navbarConfig 中移除对应链接）
 	featurePages: {
-		anime: true, // 番剧页面开关
+		anime: false, // 番剧页面开关
 		diary: true, // 日记页面开关
 		friends: true, // 友链页面开关
-		projects: true, // 项目页面开关
-		skills: true, // 技能页面开关
+		favorites: true, // 收藏页面开关
+		projects: false, // 项目页面开关
+		skills: false, // 技能页面开关
 		timeline: true, // 时间线页面开关
 		albums: true, // 相册页面开关
 		devices: true, // 设备页面开关
@@ -55,11 +58,11 @@ export const siteConfig: SiteConfig = {
 		// 显示模式："text-icon" 显示图标+文本，"logo" 仅显示Logo
 		mode: "text-icon",
 		// 顶栏标题文本
-		text: "MizukiUI",
-		// 顶栏标题图标路径，默认使用 public/assets/home/home.webp
+		text: "困",
+		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
 		icon: "assets/home/home.webp",
 		// 网站Logo图片路径
-		logo: "assets/home/default-logo.webp",
+		logo: "assets/home/home.webp",
 	},
 
 	// 页面自动缩放配置
@@ -78,12 +81,6 @@ export const siteConfig: SiteConfig = {
 		fetchOnDev: false, // 是否在开发环境下获取 Bilibili 数据（默认 false）
 		coverMirror: "", // 封面图片镜像源（可选，如果需要使用镜像源，例如 "https://images.weserv.nl/?url="）
 		useWebp: true, // 是否使用WebP格式（默认 true）
-
-		// bilibili 观看进度配置说明(可选，如需配置仔细阅读):
-		// 1. 本地开发：请在 .env 文件中填写 BILI_SESSDATA=your_SESSDATA
-		// 2. 远程构建：请在 GitHub 仓库 Settings -> Secrets 中添加 BILI_SESSDATA
-		// 注意：SESSDATA 为账号凭证，为防止泄露，切记不可使用硬编码。
-		// 安全提示：如 SESSDATA 已泄露，请打开 B站手机端 —— 我的 —— 设置 —— 安全隐私 —— 登陆设备管理 —— 一键退登，销毁已泄露的账号凭证
 	},
 
 	anime: {
@@ -129,12 +126,16 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/2.webp",
 				"/assets/desktop-banner/3.webp",
 				"/assets/desktop-banner/4.webp",
+				"/assets/desktop-banner/5.webp",
+				"/assets/desktop-banner/6.webp",
 			], // 桌面横幅图片
 			mobile: [
 				"/assets/mobile-banner/1.webp",
 				"/assets/mobile-banner/2.webp",
 				"/assets/mobile-banner/3.webp",
 				"/assets/mobile-banner/4.webp",
+				"/assets/mobile-banner/5.webp",
+				"/assets/mobile-banner/6.webp",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
@@ -156,21 +157,12 @@ export const siteConfig: SiteConfig = {
 			enable: false, // 启用图片API
 			url: "http://domain.com/api_v2.php?format=text&count=4", // API地址，返回每行一个图片链接的文本
 		},
-		// 这里需要使用PicFlow API的Text返回类型,所以我们需要format=text参数
-		// 项目地址:https://github.com/matsuzaka-yuki/PicFlow-API
-		// 请自行搭建API
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "わたしの部屋", // 主页横幅主标题
+			title: "Stay Sleepy ~", // 主页横幅主标题
 
-			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
-			],
+			subtitle: ["好困", "咕咕嘎嘎", "困啊", "咕嘎", "咕咕"],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
@@ -202,12 +194,11 @@ export const siteConfig: SiteConfig = {
 	showCoverInContent: true, // 在文章内容页显示文章封面
 	generateOgImages: false, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
 	favicon: [
-		// 留空以使用默认 favicon
-		// {
-		//   src: '/favicon/icon.png',    // 图标文件路径
-		//   theme: 'light',              // 可选，指定主题 'light' | 'dark'
-		//   sizes: '32x32',              // 可选，图标大小
-		// }
+		{
+			src: "/favicon/favicon.ico",
+			theme: "light",
+			sizes: "32x32",
+		},
 	],
 
 	// 字体配置
@@ -224,9 +215,9 @@ export const siteConfig: SiteConfig = {
 		},
 		cjkFont: {
 			// 中日韩字体 - 作为回退字体
-			fontFamily: "萝莉体 第二版",
-			fontWeight: "500",
-			localFonts: ["loli.ttf"],
+			fontFamily: "DouyinSansBold",
+			fontWeight: "200",
+			localFonts: ["DouyinSansBold.ttf"],
 			enableCompress: true, // 启用字体子集优化，减少字体文件大小
 		},
 	},
@@ -249,18 +240,26 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 			"/assets/desktop-banner/2.webp",
 			"/assets/desktop-banner/3.webp",
 			"/assets/desktop-banner/4.webp",
+			"/assets/desktop-banner/5.webp",
+			"/assets/desktop-banner/6.webp",
+			"/assets/desktop-banner/7.webp",
+			"/assets/desktop-banner/8.webp",
 		], // 桌面横幅图片
 		mobile: [
 			"/assets/mobile-banner/1.webp",
 			"/assets/mobile-banner/2.webp",
 			"/assets/mobile-banner/3.webp",
 			"/assets/mobile-banner/4.webp",
+			"/assets/mobile-banner/5.webp",
+			"/assets/mobile-banner/6.webp",
+			"/assets/mobile-banner/7.webp",
+			"/assets/mobile-banner/8.webp",
 		], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
 	carousel: {
 		enable: true, // 启用轮播
-		interval: 5, // 轮播间隔时间（秒）
+		interval: 30, // 轮播间隔时间（秒）
 	},
 	zIndex: -1, // 层级，确保壁纸在背景层
 	opacity: 0.8, // 壁纸透明度
@@ -273,94 +272,31 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		// 支持自定义导航栏链接，支持多级菜单
 		{
-			name: "Links",
-			url: "/links/",
-			icon: "material-symbols:link",
-			children: [
-				{
-					name: "GitHub",
-					url: "https://github.com/LyraVoid/Mizuki",
-					external: true,
-					icon: "fa7-brands:github",
-				},
-				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
-					external: true,
-					icon: "fa7-brands:bilibili",
-				},
-				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
-					external: true,
-					icon: "mdi:git",
-				},
-			],
+			name: "Gallery",
+			url: "/albums/",
+			icon: "material-symbols:photo-library",
 		},
+		{
+			name: "Friends",
+			url: "/friends/",
+			icon: "material-symbols:group",
+		},
+		LinkPreset.Favorites,
 		{
 			name: "My",
 			url: "/content/",
 			icon: "material-symbols:person",
 			children: [
 				{
-					name: "Anime",
-					url: "/anime/",
-					icon: "material-symbols:movie",
-				},
-				{
-					name: "Diary",
-					url: "/diary/",
-					icon: "material-symbols:book",
-				},
-				{
-					name: "Gallery",
-					url: "/albums/",
-					icon: "material-symbols:photo-library",
-				},
-				{
 					name: "Devices",
 					url: "/devices/",
 					icon: "material-symbols:devices",
 					external: false,
 				},
-			],
-		},
-		{
-			name: "About",
-			url: "/content/",
-			icon: "material-symbols:info",
-			children: [
 				{
 					name: "About",
 					url: "/about/",
 					icon: "material-symbols:person",
-				},
-				{
-					name: "Friends",
-					url: "/friends/",
-					icon: "material-symbols:group",
-				},
-			],
-		},
-		{
-			name: "Others",
-			url: "#",
-			icon: "material-symbols:more-horiz",
-			children: [
-				{
-					name: "Projects",
-					url: "/projects/",
-					icon: "material-symbols:work",
-				},
-				{
-					name: "Skills",
-					url: "/skills/",
-					icon: "material-symbols:psychology",
-				},
-				{
-					name: "Timeline",
-					url: "/timeline/",
-					icon: "material-symbols:timeline",
 				},
 			],
 		},
@@ -369,37 +305,27 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "まつざか ゆき",
-	bio: "世界は大きい、君は行かなければならない",
+	name: "人类好困",
+	bio: "过客而已，就像不曾存在过",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
 		speed: 80, // 打字速度（毫秒）
 	},
 	links: [
 		{
-			name: "Bilibili",
+			name: "Bilibli",
 			icon: "fa7-brands:bilibili",
-			url: "https://space.bilibili.com/701864046",
-		},
-		{
-			name: "Gitee",
-			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
+			url: "https://space.bilibili.com/356128765",
 		},
 		{
 			name: "GitHub",
 			icon: "fa7-brands:github",
-			url: "https://github.com/matsuzaka-yuki",
+			url: "https://github.com/renleihaokun",
 		},
 		{
-			name: "Codeberg",
-			icon: "simple-icons:codeberg",
-			url: "https://codeberg.org",
-		},
-		{
-			name: "Discord",
-			icon: "fa7-brands:discord",
-			url: "https://discord.gg/MqW6TcQtVM",
+			name: "Steam",
+			icon: "fa7-brands:steam",
+			url: "https://steamcommunity.com/profiles/76561199093441277",
 		},
 	],
 };
@@ -413,28 +339,6 @@ export const licenseConfig: LicenseConfig = {
 // Permalink 固定链接配置
 export const permalinkConfig: PermalinkConfig = {
 	enable: false, // 是否启用全局 permalink 功能，关闭时使用默认的文件名作为链接
-	/**
-	 * permalink 格式模板
-	 * 支持的占位符：
-	 * - %year% : 4位年份 (2024)
-	 * - %monthnum% : 2位月份 (01-12)
-	 * - %day% : 2位日期 (01-31)
-	 * - %hour% : 2位小时 (00-23)
-	 * - %minute% : 2位分钟 (00-59)
-	 * - %second% : 2位秒数 (00-59)
-	 * - %post_id% : 文章序号（按发布时间升序排列，最早的文章为1）
-	 * - %postname% : 文章文件名（slug，通常为全小写）
-	 * - %raw_postname% : 文章原始文件名（保留大小写）
-	 * - %category% : 分类名（无分类时为 "uncategorized"）
-	 *
-	 * 示例：
-	 * - "%year%-%monthnum%-%postname%" => "/2024-12-my-post/"
-	 * - "%post_id%-%postname%" => "/42-my-post/"
-	 * - "%category%-%postname%" => "/tech-my-post/"
-	 * - "%year%/%monthnum%/%day%/%postname%" => "/2024/12/01/my-post/"
-	 *
-	 * 注意：支持使用斜杠 "/" 构建嵌套路径。
-	 */
 	format: "%postname%", // 默认使用文件名
 };
 
@@ -447,11 +351,11 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	system: "twikoo", // 评论系统选择: "twikoo" | "giscus"
 	twikoo: {
-		envId: "https://twikoo.vercel.app",
-		lang: SITE_LANG,
+		envId: "https://nemuitaaaaarenleihaokunnimade-twikoo.netlify.app/.netlify/functions/twikoo",
+		lang: "zh-CN",
 	},
 	giscus: {
 		repo: "your-github-username/your-repo-name",
@@ -474,13 +378,14 @@ export const shareConfig: ShareConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "", // 公告标题，填空使用i18n字符串Key.announcement
-	content: "ブログへようこそ！これはサンプルの告知です", // 公告内容
+	title: "这是一个公告", // 公告标题
+	content:
+		"近期发现“blog.wangxianming.top”违规悬挂本站备案号，本站备案有且仅有haokun.me及其子域名，一切非本站域名悬挂本站备案号的网站与本站无任何联系", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
+		text: "Albums", // 链接文本
+		url: "/albums/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
@@ -489,20 +394,17 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	enable: true, // 启用音乐播放器功能
 	showFloatingPlayer: true, // 显示悬浮播放器 UI
 	floatingEntryMode: "fab", // 悬浮入口模式："default" 为独立悬浮播放器，"fab" 为集成到通用 FAB 组
-	mode: "local", // 音乐播放器模式，可选 "local" 或 "meting"
+	mode: "meting", // 音乐播放器模式，可选 "local" 或 "meting"
 	meting_api:
 		"https://meting.mysqil.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r", // Meting API 地址
-	id: "14164869977", // 歌单ID
+	id: "13232813799", // 歌单ID
 	server: "netease", // 音乐源服务器。有的meting的api源支持更多平台,一般来说,netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
 	type: "playlist", // 播单类型
 };
 
 export const footerConfig: FooterConfig = {
-	enable: false, // 是否启用Footer HTML注入功能
+	enable: true, // 是否启用Footer HTML注入功能
 	customHtml: "", // HTML格式的自定义页脚信息，例如备案号等，默认留空
-	// 也可以直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
-	// 注意：若 customHtml 不为空，则使用 customHtml 中的内容；若 customHtml 留空，则使用 FooterConfig.html 文件中的内容
-	// FooterConfig.html 可能会在未来的某个版本弃用
 };
 
 /**
@@ -511,7 +413,7 @@ export const footerConfig: FooterConfig = {
  * sidebar: 控制组件所在的侧边栏（left 或 right）。注意：移动端通常不显示右侧栏内容。若组件设置在 right，请确保 layout.position 为 "both"。
  */
 export const sidebarLayoutConfig: SidebarLayoutConfig = {
-	// 侧边栏组件属性配置列表
+	// 侧栏组件属性配置列表
 	properties: [
 		{
 			// 组件类型：用户资料组件
@@ -600,12 +502,26 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 动画延迟时间
 			animationDelay: 250,
 		},
+		{
+			// 组件类型：线路切换组件
+			type: "line-switch",
+			position: "sticky",
+			class: "onload-animation",
+			animationDelay: 200,
+		},
+		{
+			// 组件类型：网络检查组件
+			type: "network-check",
+			position: "top",
+			class: "onload-animation",
+			animationDelay: 150,
+		},
 	],
 
 	// 侧栏组件布局配置
 	components: {
-		left: ["profile", "announcement", "tags", "card-toc"],
-		right: ["site-stats", "calendar", "categories", "music-sidebar"],
+		left: ["profile", "announcement", "tags", "card-toc", "line-switch"],
+		right: ["network-check", "site-stats", "calendar", "categories", "music-sidebar"],
 		drawer: [
 			"profile",
 			"announcement",
@@ -702,6 +618,82 @@ export const randomPostsConfig: RandomPostsConfig = {
 	maxCount: 5,
 };
 
+export const lineSwitchConfig: LineSwitchConfig = [
+	// 线路切换配置
+	{
+		nameEn: " ", // 线路名称（英文）
+		nameZh: "本站默认", // 线路名称（中文）
+		url: "https://blog.haokun.me", // 线路URL
+		id: "default", // 线路ID
+		icon: "", // 线路图标
+		isLocal: false, // 是否为本地线路
+		size: 27, // 图标大小
+	},
+	{
+		nameEn: "Cloudflare",
+		nameZh: "海外",
+		url: "https://cf.blog.haokun.me",
+		id: "cf-def",
+		icon: "logos:cloudflare-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "Cloudflare",
+		nameZh: "IPv6",
+		url: "https://6.blog.haokun.me",
+		id: "cf-ipv6",
+		icon: "logos:cloudflare-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "EdgeOne",
+		nameZh: "全球",
+		url: "https://eo.blog.haokun.me",
+		id: "eo",
+		icon: "/assets/line-switch/icons/tencent-cloud-logo.svg",
+		isLocal: true,
+		size: 27,
+	},
+	{
+		nameEn: "ESA",
+		nameZh: "全球",
+		url: "https://esa.blog.haokun.me",
+		id: "esa",
+		icon: "/assets/line-switch/icons/ali-cloud.svg",
+		isLocal: true,
+		size: 27,
+	},
+	{
+		nameEn: "Vercel",
+		nameZh: "海外",
+		url: "https://vercel.blog.haokun.me",
+		id: "vercel",
+		icon: "logos:vercel-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "Netlify",
+		nameZh: "海外",
+		url: "https://netlify.blog.haokun.me",
+		id: "netlify",
+		icon: "logos:netlify-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "Render",
+		nameZh: "海外",
+		url: "https://render.blog.haokun.me",
+		id: "render",
+		icon: "/assets/line-switch/icons/render.svg",
+		isLocal: true,
+		size: 27,
+	},
+];
+
 // 导出所有配置的统一接口
 export const widgetConfigs = {
 	profile: profileConfig,
@@ -714,6 +706,5 @@ export const widgetConfigs = {
 	share: shareConfig,
 	relatedPosts: relatedPostsConfig,
 	randomPosts: randomPostsConfig,
+	lineSwitch: lineSwitchConfig,
 } as const;
-
-// umamiConfig相关配置已移动至astro.config.mjs中,统计脚本请自行在Layout.astro文件的<head>中插入

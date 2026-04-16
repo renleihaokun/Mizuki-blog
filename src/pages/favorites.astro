@@ -1,0 +1,127 @@
+---
+import { siteConfig } from "@/config";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { scanFavorites } from "@utils/favScanner";
+import FavoriteCard from "@components/FavoriteCard.astro";
+
+// 检查收藏页面是否启用
+if (!siteConfig.featurePages.favorites) {
+	return Astro.redirect("/404/");
+}
+
+// 获取收藏数据
+const favoritesData = await scanFavorites();
+
+// 按年份分组
+const groupedFavorites = favoritesData.reduce((groups, item) => {
+	const date = new Date(item.date);
+	const year = date.getFullYear().toString();
+	if (!groups[year]) {
+		groups[year] = [];
+	}
+	groups[year].push(item);
+	return groups;
+}, {} as Record<string, typeof favoritesData>);
+
+// 显式按年份降序排列，确保 2026 在 2025 之前
+const years = Object.keys(groupedFavorites).sort((a, b) => Number(b) - Number(a));
+---
+
+<MainGridLayout title={i18n(I18nKey.favorites)} description={i18n(I18nKey.favoritesSubtitle)}>
+  <script>
+    import '../scripts/right-sidebar-layout.js';
+  </script>
+
+  <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-6 py-8 md:px-9 md:py-10 relative w-full">
+      
+      <!-- 页面标题 -->
+      <header class="mb-16">
+        <h1 class="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-3 relative
+                  before:w-1 before:h-8 before:rounded-md before:bg-[var(--primary)]
+                  before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4">
+          {i18n(I18nKey.favorites)}
+        </h1>
+        <p class="text-neutral-600 dark:text-neutral-400">
+          {i18n(I18nKey.favoritesSubtitle)}
+        </p>
+      </header>
+
+      <!-- 时间轴内容 -->
+      <div class="relative px-4 md:px-0">
+        <!-- 连贯轴线：移动端在左侧 [31px] -->
+        <div class="absolute left-[31px] md:left-1/2 top-0 bottom-0 w-px bg-dashed-line block"></div>
+        
+        {years.map((year) => (
+          <div class="year-group mb-20 relative">
+            <!-- 年份标签 -->
+            <div class="flex justify-start md:justify-center mb-12 sticky top-24 z-30 pl-12 md:pl-0">
+              <span class="px-6 py-1.5 rounded-full bg-[var(--primary)] text-white text-base font-black shadow-lg border-2 border-white dark:border-neutral-900 tracking-widest">
+                {year}
+              </span>
+            </div>
+
+            <!-- 桌面端布局 -->
+            <div class="hidden md:flex gap-16 relative">
+              <div class="flex-1 space-y-10">
+                {groupedFavorites[year].filter((_, i) => i % 2 === 0).map((item) => (
+                  <div class="favorite-item relative">
+                    <div class="absolute top-1/2 -right-8 w-8 h-px bg-neutral-200 dark:bg-neutral-800">
+                      <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--primary)] border-2 border-white dark:border-neutral-900 shadow-[0_0_8px_var(--primary)]"></div>
+                    </div>
+                    <FavoriteCard item={item} />
+                  </div>
+                ))}
+              </div>
+
+              <div class="flex-1 space-y-10 mt-24">
+                {groupedFavorites[year].filter((_, i) => i % 2 !== 0).map((item) => (
+                  <div class="favorite-item relative">
+                    <div class="absolute top-1/2 -left-8 w-8 h-px bg-neutral-200 dark:bg-neutral-800">
+                      <div class="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[var(--primary)] border-2 border-white dark:border-neutral-900 shadow-[0_0_8px_var(--primary)]"></div>
+                    </div>
+                    <FavoriteCard item={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- 移动端布局 -->
+            <div class="md:hidden space-y-8 pl-8 ml-4">
+              {groupedFavorites[year].map((item) => (
+                <div class="relative">
+                  <div class="absolute -left-[33px] top-6 w-3 h-3 rounded-full bg-[var(--primary)] border-2 border-white dark:border-neutral-900"></div>
+                  <FavoriteCard item={item} />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- 空状态 -->
+      {favoritesData.length === 0 && (
+        <div class="text-center py-24">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-neutral-50 dark:bg-neutral-900 mb-6 text-neutral-300">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">记录点滴</h3>
+          <p class="text-neutral-500 dark:text-neutral-500 max-w-xs mx-auto text-sm">在 <code class="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-xs">public/images/favorites/</code> 中放入图片。</p>
+        </div>
+      )}
+    </div>
+  </div>
+</MainGridLayout>
+
+<style>
+  .bg-dashed-line {
+    background-image: linear-gradient(to bottom, #e5e7eb 50%, transparent 50%);
+    background-size: 1px 12px;
+    background-repeat: repeat-y;
+  }
+  :global(.dark) .bg-dashed-line {
+    background-image: linear-gradient(to bottom, #262626 50%, transparent 50%);
+  }
+</style>
