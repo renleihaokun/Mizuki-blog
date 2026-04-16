@@ -385,7 +385,16 @@ export class SwupHooksManager {
 		const storedTheme =
 			localStorage.getItem(THEME_CONFIG.themeStorageKey) ||
 			THEME_CONFIG.lightMode;
-		const isDark = storedTheme === THEME_CONFIG.darkMode;
+		
+		let isDark: boolean;
+		if (storedTheme === THEME_CONFIG.darkMode) {
+			isDark = true;
+		} else if (storedTheme === THEME_CONFIG.autoMode) {
+			isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		} else {
+			isDark = false;
+		}
+
 		const expectedTheme = isDark
 			? THEME_CONFIG.darkExpressiveTheme
 			: THEME_CONFIG.lightExpressiveTheme;
