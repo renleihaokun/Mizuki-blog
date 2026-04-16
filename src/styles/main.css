@@ -43,6 +43,14 @@
   font-display: swap;
 }
 
+/* 导入 抖音斜体（加粗） 字体 */
+@font-face {
+  font-family: "DouyinSansBold";
+  src: url("/assets/font/DouyinSansBold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
 /* 确保平滑滚动，并稳定滚动条宽度以避免布局左右抖动 */
 html {
   scroll-behavior: smooth;

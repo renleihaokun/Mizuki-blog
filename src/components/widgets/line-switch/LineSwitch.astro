@@ -40,7 +40,7 @@ const lines = lineSwitchConfig;
                 >
                     <div class="flex items-center justify-between w-full relative mr-4">
                         <div class="flex items-center gap-2 overflow-hidden">
-                            <div class="flex items-center text-[14px] line-name-container">
+                            <div class="flex items-center text-[14px] line-name-container text-90">
                                 <span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">{line.nameEn}</span>
                                 <span class="line-name-zh truncate font-medium">{line.nameZh}</span>
                             </div>
@@ -116,14 +116,7 @@ const lines = lineSwitchConfig;
         background: color-mix(in oklch, var(--primary), transparent 60%) !important;
     }
 
-    /* 4. 核心修复：暗色模式文字颜色 */
-    .line-name-zh, .line-name-en {
-        color: #000 !important;
-    }
-    :global(.dark) .line-name-zh, 
-    :global(.dark) .line-name-en {
-        color: #fff !important;
-    }
+    /* 4. 核心修复：暗色模式文字颜色已通过 text-90 类处理 */
     
     /* 悬停和激活状态下文字变主题色 */
     .line-item-link button:hover .line-name-zh,
