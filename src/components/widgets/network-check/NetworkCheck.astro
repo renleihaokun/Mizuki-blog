@@ -166,7 +166,7 @@ const { class: className, style } = Astro.props;
             }
 
             // ISP
-            const ispEl = this.querySelector('.net-isp');
+            const ispEl = this.querySelector('.net-isp') as HTMLElement;
             if (ispEl) {
                 const ispName = data.isp?.name || data.isp?.raw || 'Unknown';
                 ispEl.textContent = ispName;
