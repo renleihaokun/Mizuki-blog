@@ -378,7 +378,7 @@ export class SwupHooksManager {
 		const storedTheme =
 			localStorage.getItem(THEME_CONFIG.themeStorageKey) ||
 			THEME_CONFIG.lightMode;
-		
+
 		let isDark: boolean;
 		if (storedTheme === THEME_CONFIG.darkMode) {
 			isDark = true;

@@ -11,242 +11,338 @@ const { class: className, style } = Astro.props;
 ---
 
 <network-check-widget style="display: contents;">
-    <WidgetLayout name="看看你的网" id="network-check" class={className} style={style}>
-        <a slot="title-icon" href="#" target="_blank" rel="noopener noreferrer" 
-           class="net-api-link ml-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-all bg-transparent hover:bg-[var(--btn-plain-bg-hover)]"
-           title="访问 API 网页">
-            <Icon name="material-symbols:link" class="text-xl text-[var(--primary)] -rotate-45" />
-        </a>
-        <div class="network-info-container text-sm space-y-3 mb-2 px-2">
-            <div class="net-loading flex items-center justify-center gap-2 py-4 text-neutral-500 dark:text-neutral-400">
-                <Icon name="fa7-solid:spinner" class="text-2xl animate-spin" />
-                <span>正在检测网络...</span>
-            </div>
-            
-            <div class="net-data hidden flex-col gap-3">
-                 <!-- IP -->
-                 <div class="flex flex-col bg-[var(--card-bg)] rounded-lg">
-                    <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">IP 地址</span>
-                    <div class="flex items-center gap-2">
-                         <span class="net-ip font-bold text-lg text-[var(--primary)] font-mono break-all"></span>
-                    </div>
-                 </div>
-    
-                 <!-- Node & Location -->
-                 <div class="grid grid-cols-2 gap-2">
-                    <div class="flex flex-col overflow-hidden">
-                        <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">连接节点</span>
-                        <div class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100">
-                            <Icon name="material-symbols:hub-outline" class="text-base text-[var(--primary)]" />
-                            <span class="net-node truncate text-xs leading-5"></span>
-                        </div>
-                    </div>
-                     <div class="flex flex-col overflow-hidden">
-                        <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">地理位置</span>
-                        <div class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100">
-                            <Icon name="material-symbols:location-on-outline" class="text-base text-[var(--primary)]" />
-                            <span class="net-location truncate text-xs leading-5"></span>
-                        </div>
-                    </div>
-                 </div>
-    
-                 <!-- ISP & ASN -->
-                 <div class="grid grid-cols-2 gap-2">
-                    <div class="flex flex-col overflow-hidden">
-                        <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">ISP</span>
-                        <span class="net-isp text-neutral-900 dark:text-neutral-100 truncate text-xs leading-5" title=""></span>
-                    </div>
-                     <div class="flex flex-col">
-                        <span class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">ASN</span>
-                        <span class="net-asn text-neutral-900 dark:text-neutral-100 text-xs leading-5 font-mono"></span>
-                    </div>
-                 </div>
-                 
-                 <!-- RTT -->
-                 <div class="net-rtt-container flex flex-col">
-                    <div class="flex justify-between items-center mb-1">
-                         <span class="text-xs text-neutral-500 dark:text-neutral-400">握手延迟 (RTT)</span>
-                         <span class="net-rtt-val font-mono text-xs font-bold text-[var(--primary)]"></span>
-                    </div>
-                    <div class="h-2 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
-                        <div class="net-rtt-bar h-full bg-[var(--primary)] w-0 transition-all duration-500 ease-out"></div>
-                    </div>
-                 </div>
-            </div>
-            
-            <div class="net-error hidden flex-col items-center justify-center py-4 text-center">
-                <Icon name="material-symbols:error-outline" class="text-3xl text-red-500 mb-2" />
-                <span class="text-xs text-neutral-500 dark:text-neutral-400">网络检测失败</span>
-                <button class="net-retry-btn mt-2 text-xs text-[var(--primary)] hover:underline">重试</button>
-            </div>
-        </div>
-    </WidgetLayout>
+	<WidgetLayout
+		name="看看你的网"
+		id="network-check"
+		class={className}
+		style={style}
+	>
+		<a
+			slot="title-icon"
+			href="#"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="net-api-link ml-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-all bg-transparent hover:bg-[var(--btn-plain-bg-hover)]"
+			title="访问 API 网页"
+		>
+			<Icon
+				name="material-symbols:link"
+				class="text-xl text-[var(--primary)] -rotate-45"
+			/>
+		</a>
+		<div class="network-info-container text-sm space-y-3 mb-2 px-2">
+			<div
+				class="net-loading flex items-center justify-center gap-2 py-4 text-neutral-500 dark:text-neutral-400"
+			>
+				<Icon name="fa7-solid:spinner" class="text-2xl animate-spin" />
+				<span>正在检测网络...</span>
+			</div>
+
+			<div class="net-data hidden flex-col gap-3">
+				<!-- IP -->
+				<div class="flex flex-col bg-[var(--card-bg)] rounded-lg">
+					<span
+						class="text-xs text-neutral-500 dark:text-neutral-400 mb-1"
+						>IP 地址</span
+					>
+					<div class="flex items-center gap-2">
+						<span
+							class="net-ip font-bold text-lg text-[var(--primary)] font-mono break-all"
+						></span>
+					</div>
+				</div>
+
+				<!-- Node & Location -->
+				<div class="grid grid-cols-2 gap-2">
+					<div class="flex flex-col overflow-hidden">
+						<span
+							class="text-xs text-neutral-500 dark:text-neutral-400 mb-1"
+							>连接节点</span
+						>
+						<div
+							class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100"
+						>
+							<Icon
+								name="material-symbols:hub-outline"
+								class="text-base text-[var(--primary)]"
+							/>
+							<span class="net-node truncate text-xs leading-5"
+							></span>
+						</div>
+					</div>
+					<div class="flex flex-col overflow-hidden">
+						<span
+							class="text-xs text-neutral-500 dark:text-neutral-400 mb-1"
+							>地理位置</span
+						>
+						<div
+							class="flex items-center gap-1 text-neutral-900 dark:text-neutral-100"
+						>
+							<Icon
+								name="material-symbols:location-on-outline"
+								class="text-base text-[var(--primary)]"
+							/>
+							<span
+								class="net-location truncate text-xs leading-5"
+							></span>
+						</div>
+					</div>
+				</div>
+
+				<!-- ISP & ASN -->
+				<div class="grid grid-cols-2 gap-2">
+					<div class="flex flex-col overflow-hidden">
+						<span
+							class="text-xs text-neutral-500 dark:text-neutral-400 mb-1"
+							>ISP</span
+						>
+						<span
+							class="net-isp text-neutral-900 dark:text-neutral-100 truncate text-xs leading-5"
+							title=""></span>
+					</div>
+					<div class="flex flex-col">
+						<span
+							class="text-xs text-neutral-500 dark:text-neutral-400 mb-1"
+							>ASN</span
+						>
+						<span
+							class="net-asn text-neutral-900 dark:text-neutral-100 text-xs leading-5 font-mono"
+						></span>
+					</div>
+				</div>
+
+				<!-- RTT -->
+				<div class="net-rtt-container flex flex-col">
+					<div class="flex justify-between items-center mb-1">
+						<span
+							class="text-xs text-neutral-500 dark:text-neutral-400"
+							>握手延迟 (RTT)</span
+						>
+						<span
+							class="net-rtt-val font-mono text-xs font-bold text-[var(--primary)]"
+						></span>
+					</div>
+					<div
+						class="h-2 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden"
+					>
+						<div
+							class="net-rtt-bar h-full bg-[var(--primary)] w-0 transition-all duration-500 ease-out"
+						>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="net-error hidden flex-col items-center justify-center py-4 text-center"
+			>
+				<Icon
+					name="material-symbols:error-outline"
+					class="text-3xl text-red-500 mb-2"
+				/>
+				<span class="text-xs text-neutral-500 dark:text-neutral-400"
+					>网络检测失败</span
+				>
+				<button
+					class="net-retry-btn mt-2 text-xs text-[var(--primary)] hover:underline"
+					>重试</button
+				>
+			</div>
+		</div>
+	</WidgetLayout>
 </network-check-widget>
 
 <script>
-    class NetworkCheckWidget extends HTMLElement {
-        private get apiUrl() {
-            const host = window.location.hostname;
-            if (host === 'blog.4848488.xyz') {
-                return 'https://ip.4848488.xyz/?act=get_ip_info';
-            }
-            if (host === '6.blog.haokun.me') {
-                return 'https://ipv6.4848488.xyz/?act=get_ip_info';
-            }
-            return 'https://ipv4.4848488.xyz/?act=get_ip_info';
-        }
-        
-        connectedCallback() {
-            this.init();
-        }
+	class NetworkCheckWidget extends HTMLElement {
+		private get apiUrl() {
+			const host = window.location.hostname;
+			if (host === "blog.4848488.xyz") {
+				return "https://ip.4848488.xyz/?act=get_ip_info";
+			}
+			if (host === "6.blog.haokun.me") {
+				return "https://ipv6.4848488.xyz/?act=get_ip_info";
+			}
+			return "https://ipv4.4848488.xyz/?act=get_ip_info";
+		}
 
-        init() {
-            this.fetchData();
+		connectedCallback() {
+			this.init();
+		}
 
-            // Set API link href
-            const apiLink = this.querySelector('.net-api-link') as HTMLAnchorElement;
-            if (apiLink) {
-                try {
-                    const url = new URL(this.apiUrl);
-                    apiLink.href = `${url.protocol}//${url.hostname}/`;
-                } catch (e) {
-                    console.error('Failed to parse API URL:', e);
-                }
-            }
-            
-            // Bind retry button
-            const retryBtn = this.querySelector('.net-retry-btn');
-            if (retryBtn) {
-                retryBtn.addEventListener('click', () => {
-                    this.showLoading();
-                    this.fetchData();
-                });
-            }
-        }
+		init() {
+			this.fetchData();
 
-        async fetchData() {
-            try {
-                const response = await fetch(this.apiUrl);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                this.updateUI(data);
-            } catch (error) {
-                console.error('Failed to fetch network info:', error);
-                this.showError();
-            }
-        }
+			// Set API link href
+			const apiLink = this.querySelector(
+				".net-api-link",
+			) as HTMLAnchorElement;
+			if (apiLink) {
+				try {
+					const url = new URL(this.apiUrl);
+					apiLink.href = `${url.protocol}//${url.hostname}/`;
+				} catch (e) {
+					console.error("Failed to parse API URL:", e);
+				}
+			}
 
-        updateUI(data: any) {
-            // IP
-            const ipEl = this.querySelector('.net-ip');
-            if (ipEl) ipEl.textContent = data.ip;
+			// Bind retry button
+			const retryBtn = this.querySelector(".net-retry-btn");
+			if (retryBtn) {
+				retryBtn.addEventListener("click", () => {
+					this.showLoading();
+					this.fetchData();
+				});
+			}
+		}
 
-            // Node
-            const nodeEl = this.querySelector('.net-node');
-            if (nodeEl) {
-                const allowedHosts = ['cf.blog.haokun.me', 'blog.4848488.xyz', '6.blog.haokun.me'];
-                if (allowedHosts.includes(window.location.hostname)) {
-                    nodeEl.textContent = data.node?.name || 'Unknown';
-                    nodeEl.closest('.flex-col')?.classList.remove('hidden');
-                } else {
-                    nodeEl.closest('.flex-col')?.classList.add('hidden');
-                }
-            }
+		async fetchData() {
+			try {
+				const response = await fetch(this.apiUrl);
+				if (!response.ok) {
+					throw new Error("Network response was not ok");
+				}
+				const data = await response.json();
+				this.updateUI(data);
+			} catch (error) {
+				console.error("Failed to fetch network info:", error);
+				this.showError();
+			}
+		}
 
-            // Location
-            const locEl = this.querySelector('.net-location');
-            if (locEl) {
-                const parts = [
-                    data.location?.city, 
-                    data.location?.region
-                ].filter(Boolean);
-                locEl.textContent = parts.join(', ') || 'Unknown';
-            }
+		updateUI(data: any) {
+			// IP
+			const ipEl = this.querySelector(".net-ip");
+			if (ipEl) ipEl.textContent = data.ip;
 
-            // ISP
-            const ispEl = this.querySelector('.net-isp') as HTMLElement;
-            if (ispEl) {
-                const ispName = data.isp?.name || data.isp?.raw || 'Unknown';
-                ispEl.textContent = ispName;
-                ispEl.title = ispName;
-            }
+			// Node
+			const nodeEl = this.querySelector(".net-node");
+			if (nodeEl) {
+				const allowedHosts = [
+					"cf.blog.haokun.me",
+					"blog.4848488.xyz",
+					"6.blog.haokun.me",
+				];
+				if (allowedHosts.includes(window.location.hostname)) {
+					nodeEl.textContent = data.node?.name || "Unknown";
+					nodeEl.closest(".flex-col")?.classList.remove("hidden");
+				} else {
+					nodeEl.closest(".flex-col")?.classList.add("hidden");
+				}
+			}
 
-            // ASN
-            const asnEl = this.querySelector('.net-asn');
-            if (asnEl) asnEl.textContent = `AS${data.asn}`;
+			// Location
+			const locEl = this.querySelector(".net-location");
+			if (locEl) {
+				const parts = [
+					data.location?.city,
+					data.location?.region,
+				].filter(Boolean);
+				locEl.textContent = parts.join(", ") || "Unknown";
+			}
 
-            // RTT
-            const rttContainer = this.querySelector('.net-rtt-container') as HTMLElement;
-            if (rttContainer) {
-                const allowedHosts = ['cf.blog.haokun.me', 'blog.4848488.xyz', '6.blog.haokun.me'];
-                const rttValue = data.rtt;
-                const hasValidRtt = rttValue !== undefined && rttValue !== null && rttValue !== 0;
+			// ISP
+			const ispEl = this.querySelector(".net-isp") as HTMLElement;
+			if (ispEl) {
+				const ispName = data.isp?.name || data.isp?.raw || "Unknown";
+				ispEl.textContent = ispName;
+				ispEl.title = ispName;
+			}
 
-                if (allowedHosts.includes(window.location.hostname) && hasValidRtt) {
-                    rttContainer.classList.remove('hidden');
-                    const rttValEl = this.querySelector('.net-rtt-val');
-                    const rttBarEl = this.querySelector('.net-rtt-bar') as HTMLElement;
-                    if (rttValEl && rttBarEl) {
-                        rttValEl.textContent = `${rttValue} ms`;
-                        const percentage = Math.min(100, Math.max(5, (rttValue / 300) * 100));
-                        rttBarEl.style.width = `${percentage}%`;
-                        
-                        rttBarEl.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-red-500');
-                        if (rttValue < 100) {
-                            rttBarEl.classList.add('bg-green-500');
-                        } else if (rttValue < 200) {
-                             rttBarEl.classList.add('bg-yellow-500');
-                        } else {
-                             rttBarEl.classList.add('bg-red-500');
-                        }
-                    }
-                } else {
-                    rttContainer.classList.add('hidden');
-                }
-            }
+			// ASN
+			const asnEl = this.querySelector(".net-asn");
+			if (asnEl) asnEl.textContent = `AS${data.asn}`;
 
-            this.showData();
-        }
+			// RTT
+			const rttContainer = this.querySelector(
+				".net-rtt-container",
+			) as HTMLElement;
+			if (rttContainer) {
+				const allowedHosts = [
+					"cf.blog.haokun.me",
+					"blog.4848488.xyz",
+					"6.blog.haokun.me",
+				];
+				const rttValue = data.rtt;
+				const hasValidRtt =
+					rttValue !== undefined &&
+					rttValue !== null &&
+					rttValue !== 0;
 
-        private getElements() {
-            return {
-                loading: this.querySelector('.net-loading'),
-                data: this.querySelector('.net-data'),
-                error: this.querySelector('.net-error')
-            };
-        }
+				if (
+					allowedHosts.includes(window.location.hostname) &&
+					hasValidRtt
+				) {
+					rttContainer.classList.remove("hidden");
+					const rttValEl = this.querySelector(".net-rtt-val");
+					const rttBarEl = this.querySelector(
+						".net-rtt-bar",
+					) as HTMLElement;
+					if (rttValEl && rttBarEl) {
+						rttValEl.textContent = `${rttValue} ms`;
+						const percentage = Math.min(
+							100,
+							Math.max(5, (rttValue / 300) * 100),
+						);
+						rttBarEl.style.width = `${percentage}%`;
 
-        showLoading() {
-            const els = this.getElements();
-            els.loading?.classList.remove('hidden');
-            els.data?.classList.add('hidden');
-            els.data?.classList.remove('flex');
-            els.error?.classList.add('hidden');
-            els.error?.classList.remove('flex');
-        }
+						rttBarEl.classList.remove(
+							"bg-green-500",
+							"bg-yellow-500",
+							"bg-red-500",
+						);
+						if (rttValue < 100) {
+							rttBarEl.classList.add("bg-green-500");
+						} else if (rttValue < 200) {
+							rttBarEl.classList.add("bg-yellow-500");
+						} else {
+							rttBarEl.classList.add("bg-red-500");
+						}
+					}
+				} else {
+					rttContainer.classList.add("hidden");
+				}
+			}
 
-        showData() {
-            const els = this.getElements();
-            els.loading?.classList.add('hidden');
-            els.data?.classList.remove('hidden');
-            els.data?.classList.add('flex');
-            els.error?.classList.add('hidden');
-            els.error?.classList.remove('flex');
-        }
+			this.showData();
+		}
 
-        showError() {
-            const els = this.getElements();
-            els.loading?.classList.add('hidden');
-            els.data?.classList.add('hidden');
-            els.data?.classList.remove('flex');
-            els.error?.classList.remove('hidden');
-            els.error?.classList.add('flex');
-        }
-    }
+		private getElements() {
+			return {
+				loading: this.querySelector(".net-loading"),
+				data: this.querySelector(".net-data"),
+				error: this.querySelector(".net-error"),
+			};
+		}
 
-    if (!customElements.get('network-check-widget')) {
-        customElements.define('network-check-widget', NetworkCheckWidget);
-    }
+		showLoading() {
+			const els = this.getElements();
+			els.loading?.classList.remove("hidden");
+			els.data?.classList.add("hidden");
+			els.data?.classList.remove("flex");
+			els.error?.classList.add("hidden");
+			els.error?.classList.remove("flex");
+		}
+
+		showData() {
+			const els = this.getElements();
+			els.loading?.classList.add("hidden");
+			els.data?.classList.remove("hidden");
+			els.data?.classList.add("flex");
+			els.error?.classList.add("hidden");
+			els.error?.classList.remove("flex");
+		}
+
+		showError() {
+			const els = this.getElements();
+			els.loading?.classList.add("hidden");
+			els.data?.classList.add("hidden");
+			els.data?.classList.remove("flex");
+			els.error?.classList.remove("hidden");
+			els.error?.classList.add("flex");
+		}
+	}
+
+	if (!customElements.get("network-check-widget")) {
+		customElements.define("network-check-widget", NetworkCheckWidget);
+	}
 </script>

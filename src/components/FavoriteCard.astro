@@ -1,72 +1,104 @@
 ---
 const { item } = Astro.props;
-const type = item.meta?.type || 'COLL';
-const code = item.meta?.code || 'MEMO';
+const type = item.meta?.type || "COLL";
+const code = item.meta?.code || "MEMO";
 ---
 
-<div class="favorite-card group bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 border border-neutral-100 dark:border-neutral-800">
-  <div class="relative overflow-hidden bg-neutral-50 dark:bg-neutral-950">
-    <a 
-      href="javascript:void(0)"
-      data-src={item.src}
-      data-fancybox="gallery"
-      data-caption={item.title}
-      class="block cursor-pointer"
-    >
-      <img 
-        src={item.src} 
-        alt={item.alt} 
-        class="favorite-img w-full h-auto object-cover" 
-        loading="lazy" 
-      />
-    </a>
-    <div class="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-  </div>
-  
-  <div class="p-5">
-    <div class="flex items-start justify-between gap-4 mb-3">
-      <h3 class="font-bold text-lg text-neutral-800 dark:text-neutral-100 group-hover:text-[var(--primary)] transition-colors duration-300 leading-snug truncate">
-        {item.title}
-      </h3>
-      <span class="shrink-0 text-[10px] font-black px-1.5 py-0.5 rounded border border-[var(--primary)]/30 text-[var(--primary)] uppercase tracking-tighter">
-        {code}
-      </span>
-    </div>
-    
-    <div class="flex items-center gap-3">
-      <!-- 日期 -->
-      <div class="flex items-center gap-1.5 text-xs text-neutral-400 font-medium">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        {item.date}
-      </div>
-      
-      <!-- 分隔圆点 -->
-      <div class="h-1 w-1 rounded-full bg-neutral-200 dark:bg-neutral-800"></div>
-      
-      <div class="flex items-center gap-1">
-        <span class="text-xs text-neutral-400 font-medium uppercase tracking-wider">
-          {type}
-        </span>
-      </div>
-    </div>
-  </div>
+<div
+	class="favorite-card group bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 border border-neutral-100 dark:border-neutral-800"
+>
+	<div class="relative overflow-hidden bg-neutral-50 dark:bg-neutral-950">
+		<a
+			href="javascript:void(0)"
+			data-src={item.src}
+			data-fancybox="gallery"
+			data-caption={item.title}
+			class="block cursor-pointer"
+		>
+			<img
+				src={item.src}
+				alt={item.alt}
+				class="favorite-img w-full h-auto object-cover"
+				loading="lazy"
+			/>
+		</a>
+		<div
+			class="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+		>
+		</div>
+	</div>
+
+	<div class="p-5">
+		<div class="flex items-start justify-between gap-4 mb-3">
+			<h3
+				class="font-bold text-lg text-neutral-800 dark:text-neutral-100 group-hover:text-[var(--primary)] transition-colors duration-300 leading-snug truncate"
+			>
+				{item.title}
+			</h3>
+			<span
+				class="shrink-0 text-[10px] font-black px-1.5 py-0.5 rounded border border-[var(--primary)]/30 text-[var(--primary)] uppercase tracking-tighter"
+			>
+				{code}
+			</span>
+		</div>
+
+		<div class="flex items-center gap-3">
+			<!-- 日期 -->
+			<div
+				class="flex items-center gap-1.5 text-xs text-neutral-400 font-medium"
+			>
+				<svg
+					class="w-3.5 h-3.5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2.5"
+						d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+					></path>
+				</svg>
+				{item.date}
+			</div>
+
+			<!-- 分隔圆点 -->
+			<div
+				class="h-1 w-1 rounded-full bg-neutral-200 dark:bg-neutral-800"
+			>
+			</div>
+
+			<div class="flex items-center gap-1">
+				<span
+					class="text-xs text-neutral-400 font-medium uppercase tracking-wider"
+				>
+					{type}
+				</span>
+			</div>
+		</div>
+	</div>
 </div>
 
 <style>
-  .favorite-card {
-    animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .favorite-img {
-    transition: transform 2.0s cubic-bezier(0.22, 1, 0.36, 1) !important;
-  }
-  .favorite-card:hover .favorite-img {
-    transform: scale(1.05);
-  }
-  @keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.98) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
+	.favorite-card {
+		animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+		transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.favorite-img {
+		transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+	}
+	.favorite-card:hover .favorite-img {
+		transform: scale(1.05);
+	}
+	@keyframes fadeInScale {
+		from {
+			opacity: 0;
+			transform: scale(0.98) translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateY(0);
+		}
+	}
 </style>

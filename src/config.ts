@@ -520,7 +520,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 
 	// 侧栏组件布局配置
 	components: {
-		left: ["profile", "announcement", "tags","categories", "line-switch" ],
+		left: ["profile", "announcement", "tags", "categories", "line-switch"],
 		right: ["network-check", "site-stats", "calendar", "music-sidebar"],
 		drawer: [
 			"profile",

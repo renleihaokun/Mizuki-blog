@@ -36,7 +36,10 @@ export function setHue(hue: number): void {
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 	// 清理旧的监听器（如果有）
 	if ((window as any).themeMediaQuery) {
-		(window as any).themeMediaQuery.removeEventListener("change", (window as any).themeMediaListener);
+		(window as any).themeMediaQuery.removeEventListener(
+			"change",
+			(window as any).themeMediaListener,
+		);
 	}
 
 	// 获取当前主题状态的完整信息
@@ -44,7 +47,7 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 	const currentTheme = document.documentElement.getAttribute("data-theme");
 
 	// 计算目标主题状态
-	let targetIsDark = false; 
+	let targetIsDark = false;
 	switch (theme) {
 		case LIGHT_MODE:
 			targetIsDark = false;
@@ -53,9 +56,13 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 			targetIsDark = true;
 			break;
 		case AUTO_MODE:
-			targetIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			targetIsDark = window.matchMedia(
+				"(prefers-color-scheme: dark)",
+			).matches;
 			// 注册实时监听器
-			const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+			const mediaQuery = window.matchMedia(
+				"(prefers-color-scheme: dark)",
+			);
 			const listener = (_e: MediaQueryListEvent) => {
 				if (getStoredTheme() === AUTO_MODE) {
 					applyThemeToDocument(AUTO_MODE);

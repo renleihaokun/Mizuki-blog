@@ -1,5 +1,5 @@
 ---
-import { lineSwitchConfig } from "@/config"; 
+import { lineSwitchConfig } from "@/config";
 import WidgetLayout from "../common/WidgetLayout.astro";
 
 interface Props {
@@ -12,222 +12,272 @@ const lines = lineSwitchConfig;
 ---
 
 <line-switch-widget style="display: contents;">
-    <WidgetLayout name="线路切换" id="line-switch" class={className} style={style}>
-        <div slot="title-icon" class="ml-auto mr-4 flex items-center">
-            <button 
-                class="line-switch-toggle-btn btn-regular rounded-lg h-8 w-8 active:scale-95 transition-all flex items-center justify-center hover:bg-[var(--btn-plain-bg-hover)] cursor-pointer"
-                aria-label="Toggle collapse"
-            >
-                <iconify-icon 
-                    class="line-switch-arrow"
-                    icon="material-symbols:keyboard-arrow-up-rounded" 
-                    width="20" 
-                    height="20"
-                    style="transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); color: var(--primary);"
-                ></iconify-icon>
-            </button>
-        </div>
+	<WidgetLayout
+		name="线路切换"
+		id="line-switch"
+		class={className}
+		style={style}
+	>
+		<div slot="title-icon" class="ml-auto mr-4 flex items-center">
+			<button
+				class="line-switch-toggle-btn btn-regular rounded-lg h-8 w-8 active:scale-95 transition-all flex items-center justify-center hover:bg-[var(--btn-plain-bg-hover)] cursor-pointer"
+				aria-label="Toggle collapse"
+			>
+				<iconify-icon
+					class="line-switch-arrow"
+					icon="material-symbols:keyboard-arrow-up-rounded"
+					width="20"
+					height="20"
+					style="transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); color: var(--primary);"
+				></iconify-icon>
+			</button>
+		</div>
 
-        <div class="line-switch-inner-content flex flex-col gap-2 mb-2 overflow-hidden">
-            {lines.map((line) => (
-                <a 
-                    href={line.url}
-                    data-hostname={new URL(line.url).hostname}
-                    data-line-id={line.id}
-                    class="line-item-link group block w-full no-underline"
-                >
-                    <button
-                        class="w-full h-12 rounded-lg transition-all pl-4 hover:pl-5 text-left cursor-pointer flex items-center"
-                    >
-                        <div class="flex items-center justify-between w-full relative mr-4">
-                            <div class="flex items-center gap-2 overflow-hidden">
-                                <div class="flex items-center text-[14px] line-name-container text-90">
-                                    <span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">{line.nameEn}</span>
-                                    <span class="line-name-zh truncate font-medium">{line.nameZh}</span>
-                                </div>
-                                <div class="flex items-center justify-center flex-shrink-0" style={`width: ${line.size}px; height: ${line.size}px`}>
-                                    {line.isLocal ? (
-                                        <img src={line.icon} alt="" style={`width: ${line.size}px; height: auto;`} class="flex-shrink-0" />
-                                    ) : (
-                                        <iconify-icon icon={line.icon} width={line.size} height={line.size} class="flex-shrink-0" />
-                                    )}
-                                </div>
-                            </div>
-                            <div class="latency-badge transition px-2 h-6 min-w-[2.5rem] rounded-lg text-[10px] font-bold font-mono flex items-center justify-center ml-2">
-                                ---
-                            </div>
-                        </div>
-                    </button>
-                </a>
-            ))}
-        </div>
-    </WidgetLayout>
+		<div
+			class="line-switch-inner-content flex flex-col gap-2 mb-2 overflow-hidden"
+		>
+			{
+				lines.map((line) => (
+					<a
+						href={line.url}
+						data-hostname={new URL(line.url).hostname}
+						data-line-id={line.id}
+						class="line-item-link group block w-full no-underline"
+					>
+						<button class="w-full h-12 rounded-lg transition-all pl-4 hover:pl-5 text-left cursor-pointer flex items-center">
+							<div class="flex items-center justify-between w-full relative mr-4">
+								<div class="flex items-center gap-2 overflow-hidden">
+									<div class="flex items-center text-[14px] line-name-container text-90">
+										<span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">
+											{line.nameEn}
+										</span>
+										<span class="line-name-zh truncate font-medium">
+											{line.nameZh}
+										</span>
+									</div>
+									<div
+										class="flex items-center justify-center flex-shrink-0"
+										style={`width: ${line.size}px; height: ${line.size}px`}
+									>
+										{line.isLocal ? (
+											<img
+												src={line.icon}
+												alt=""
+												style={`width: ${line.size}px; height: auto;`}
+												class="flex-shrink-0"
+											/>
+										) : (
+											<iconify-icon
+												icon={line.icon}
+												width={line.size}
+												height={line.size}
+												class="flex-shrink-0"
+											/>
+										)}
+									</div>
+								</div>
+								<div class="latency-badge transition px-2 h-6 min-w-[2.5rem] rounded-lg text-[10px] font-bold font-mono flex items-center justify-center ml-2">
+									---
+								</div>
+							</div>
+						</button>
+					</a>
+				))
+			}
+		</div>
+	</WidgetLayout>
 </line-switch-widget>
 
 <style is:global>
-    /* 动画修复 */
-    .line-switch-inner-content {
-        transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
-                    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                    margin 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                    padding 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        max-height: 1200px;
-        opacity: 1;
-    }
+	/* 动画修复 */
+	.line-switch-inner-content {
+		transition:
+			max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+			margin 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+			padding 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+		max-height: 1200px;
+		opacity: 1;
+	}
 
-    .line-switch-inner-content.collapsed {
-        max-height: 0 !important;
-        opacity: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        pointer-events: none;
-    }
+	.line-switch-inner-content.collapsed {
+		max-height: 0 !important;
+		opacity: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		pointer-events: none;
+	}
 
-    .line-switch-arrow.collapsed {
-        transform: rotate(180deg) !important;
-    }
+	.line-switch-arrow.collapsed {
+		transform: rotate(180deg) !important;
+	}
 
-    /* 背景色与状态逻辑 */
-    .line-item-link button {
-        background: color-mix(in oklch, var(--primary), transparent 95%);
-        border: none;
-    }
-    .dark .line-item-link button {
-        background: color-mix(in oklch, var(--primary), transparent 92%);
-    }
-    .line-item-link button:hover {
-        background: color-mix(in oklch, var(--primary), transparent 85%);
-    }
-    .dark .line-item-link button:hover {
-        background: color-mix(in oklch, var(--primary), transparent 80%);
-    }
-    .line-item-link.active button {
-        background: color-mix(in oklch, var(--primary), transparent 75%);
-    }
-    .dark .line-item-link.active button {
-        background: color-mix(in oklch, var(--primary), transparent 60%);
-    }
+	/* 背景色与状态逻辑 */
+	.line-item-link button {
+		background: color-mix(in oklch, var(--primary), transparent 95%);
+		border: none;
+	}
+	.dark .line-item-link button {
+		background: color-mix(in oklch, var(--primary), transparent 92%);
+	}
+	.line-item-link button:hover {
+		background: color-mix(in oklch, var(--primary), transparent 85%);
+	}
+	.dark .line-item-link button:hover {
+		background: color-mix(in oklch, var(--primary), transparent 80%);
+	}
+	.line-item-link.active button {
+		background: color-mix(in oklch, var(--primary), transparent 75%);
+	}
+	.dark .line-item-link.active button {
+		background: color-mix(in oklch, var(--primary), transparent 60%);
+	}
 
-    .line-item-link button:hover .line-name-zh,
-    .line-item-link button:hover .line-name-en,
-    .line-item-link.active .line-name-zh,
-    .line-item-link.active .line-name-en {
-        color: var(--primary);
-    }
+	.line-item-link button:hover .line-name-zh,
+	.line-item-link button:hover .line-name-en,
+	.line-item-link.active .line-name-zh,
+	.line-item-link.active .line-name-en {
+		color: var(--primary);
+	}
 
-    .line-item-link:hover .line-name-en {
-        width: 71px;
-        opacity: 1;
-        margin-right: 4px;
-    }
-    .line-name-en {
-        transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+	.line-item-link:hover .line-name-en {
+		width: 71px;
+		opacity: 1;
+		margin-right: 4px;
+	}
+	.line-name-en {
+		transition:
+			width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	}
 
-    .latency-badge.ok { color: #10b981; background: rgba(16, 185, 129, 0.1); }
-    .latency-badge.lime { color: #84cc16; background: rgba(132, 204, 22, 0.1); }
-    .latency-badge.warn { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
-    .latency-badge.err { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+	.latency-badge.ok {
+		color: #10b981;
+		background: rgba(16, 185, 129, 0.1);
+	}
+	.latency-badge.lime {
+		color: #84cc16;
+		background: rgba(132, 204, 22, 0.1);
+	}
+	.latency-badge.warn {
+		color: #f59e0b;
+		background: rgba(245, 158, 11, 0.1);
+	}
+	.latency-badge.err {
+		color: #ef4444;
+		background: rgba(239, 68, 68, 0.1);
+	}
 </style>
 
 <script>
-    import { siteConfig } from "@/config";
+	import { siteConfig } from "@/config";
 
-    class LineSwitchWidget extends HTMLElement {
-        connectedCallback() {
-            this.init();
-        }
+	class LineSwitchWidget extends HTMLElement {
+		connectedCallback() {
+			this.init();
+		}
 
-        private async getPing(url: string) {
-            const ctrl = new AbortController();
-            const tid = setTimeout(() => ctrl.abort(), 2000);
-            try {
-                const target = new URL(url);
-                const start = performance.now();
-                await fetch(target.origin + '/', {
-                    method: 'HEAD',
-                    mode: 'no-cors',
-                    cache: 'reload',
-                    signal: ctrl.signal
-                });
-                return Math.round(performance.now() - start);
-            } catch { return -1; } finally { clearTimeout(tid); }
-        }
+		private async getPing(url: string) {
+			const ctrl = new AbortController();
+			const tid = setTimeout(() => ctrl.abort(), 2000);
+			try {
+				const target = new URL(url);
+				const start = performance.now();
+				await fetch(target.origin + "/", {
+					method: "HEAD",
+					mode: "no-cors",
+					cache: "reload",
+					signal: ctrl.signal,
+				});
+				return Math.round(performance.now() - start);
+			} catch {
+				return -1;
+			} finally {
+				clearTimeout(tid);
+			}
+		}
 
-        private async updateBadge(id: string, url: string) {
-            const badge = this.querySelector(`[data-line-id="${id}"] .latency-badge`);
-            if(!badge) return;
+		private async updateBadge(id: string, url: string) {
+			const badge = this.querySelector(
+				`[data-line-id="${id}"] .latency-badge`,
+			);
+			if (!badge) return;
 
-            await this.getPing(url); 
-            let results = [];
-            for(let i=0; i<3; i++) {
-                const ms = await this.getPing(url);
-                if(ms > 0) results.push(ms);
-                await new Promise(r => setTimeout(r, 60));
-            }
+			await this.getPing(url);
+			let results = [];
+			for (let i = 0; i < 3; i++) {
+				const ms = await this.getPing(url);
+				if (ms > 0) results.push(ms);
+				await new Promise((r) => setTimeout(r, 60));
+			}
 
-            const res = results.length > 0 ? Math.min(...results) : -1;
-            badge.classList.remove('ok','lime','warn','err');
-            if(res < 0) { 
-                badge.textContent = 'ERR'; 
-                badge.classList.add('err'); 
-            } else {
-                badge.textContent = res + 'ms';
-                if(res < 150) badge.classList.add('ok');
-                else if(res < 300) badge.classList.add('warn');
-                else badge.classList.add('err');
-            }
-        }
+			const res = results.length > 0 ? Math.min(...results) : -1;
+			badge.classList.remove("ok", "lime", "warn", "err");
+			if (res < 0) {
+				badge.textContent = "ERR";
+				badge.classList.add("err");
+			} else {
+				badge.textContent = res + "ms";
+				if (res < 150) badge.classList.add("ok");
+				else if (res < 300) badge.classList.add("warn");
+				else badge.classList.add("err");
+			}
+		}
 
-        init() {
-            const btn = this.querySelector('.line-switch-toggle-btn') as HTMLElement;
-            const content = this.querySelector('.line-switch-inner-content') as HTMLElement;
-            const arrow = this.querySelector('.line-switch-arrow');
-            const currentHostname = window.location.hostname;
+		init() {
+			const btn = this.querySelector(
+				".line-switch-toggle-btn",
+			) as HTMLElement;
+			const content = this.querySelector(
+				".line-switch-inner-content",
+			) as HTMLElement;
+			const arrow = this.querySelector(".line-switch-arrow");
+			const currentHostname = window.location.hostname;
 
-            if(!btn || !content || !arrow) return;
+			if (!btn || !content || !arrow) return;
 
-            // 自动折叠逻辑
-            const mainHostname = new URL(siteConfig.siteURL).hostname;
-            if (currentHostname === mainHostname) {
-                content.classList.add('collapsed');
-                arrow.classList.add('collapsed');
-                content.style.maxHeight = '0px';
-            }
+			// 自动折叠逻辑
+			const mainHostname = new URL(siteConfig.siteURL).hostname;
+			if (currentHostname === mainHostname) {
+				content.classList.add("collapsed");
+				arrow.classList.add("collapsed");
+				content.style.maxHeight = "0px";
+			}
 
-            btn.onclick = (e) => {
-                e.preventDefault();
-                const isCollapsed = content.classList.contains('collapsed');
-                if(isCollapsed) {
-                    content.classList.remove('collapsed');
-                    arrow.classList.remove('collapsed');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    setTimeout(() => {
-                        if (!content.classList.contains('collapsed')) {
-                            content.style.maxHeight = '1200px';
-                        }
-                    }, 800);
-                } else {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    content.offsetHeight; // trigger reflow
-                    content.classList.add('collapsed');
-                    arrow.classList.add('collapsed');
-                    content.style.maxHeight = '0px';
-                }
-            };
+			btn.onclick = (e) => {
+				e.preventDefault();
+				const isCollapsed = content.classList.contains("collapsed");
+				if (isCollapsed) {
+					content.classList.remove("collapsed");
+					arrow.classList.remove("collapsed");
+					content.style.maxHeight = content.scrollHeight + "px";
+					setTimeout(() => {
+						if (!content.classList.contains("collapsed")) {
+							content.style.maxHeight = "1200px";
+						}
+					}, 800);
+				} else {
+					content.style.maxHeight = content.scrollHeight + "px";
+					content.offsetHeight; // trigger reflow
+					content.classList.add("collapsed");
+					arrow.classList.add("collapsed");
+					content.style.maxHeight = "0px";
+				}
+			};
 
-            this.querySelectorAll('.line-item-link').forEach(link => {
-                const id = link.getAttribute('data-line-id');
-                const url = link.getAttribute('href');
-                if (link.getAttribute('data-hostname') === currentHostname) {
-                    link.classList.add('active');
-                }
-                if(id && url) setTimeout(() => this.updateBadge(id, url), 1000);
-            });
-        }
-    }
+			this.querySelectorAll(".line-item-link").forEach((link) => {
+				const id = link.getAttribute("data-line-id");
+				const url = link.getAttribute("href");
+				if (link.getAttribute("data-hostname") === currentHostname) {
+					link.classList.add("active");
+				}
+				if (id && url)
+					setTimeout(() => this.updateBadge(id, url), 1000);
+			});
+		}
+	}
 
-    if (!customElements.get('line-switch-widget')) {
-        customElements.define('line-switch-widget', LineSwitchWidget);
-    }
+	if (!customElements.get("line-switch-widget")) {
+		customElements.define("line-switch-widget", LineSwitchWidget);
+	}
 </script>

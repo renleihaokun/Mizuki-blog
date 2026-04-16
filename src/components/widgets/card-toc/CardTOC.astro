@@ -30,10 +30,7 @@ const useJapaneseBadge = siteConfig.toc.useJapaneseBadge;
 	class={"group " + (className || "")}
 	style={style}
 >
-	<div
-		data-card-toc-root
-		data-japanese-badge={String(useJapaneseBadge)}
-	>
+	<div data-card-toc-root data-japanese-badge={String(useJapaneseBadge)}>
 		<div class="toc-scroll-container">
 			<div class="toc-content" data-card-toc-content></div>
 		</div>
@@ -83,8 +80,7 @@ const useJapaneseBadge = siteConfig.toc.useJapaneseBadge;
 				existingManager.cleanup();
 			}
 
-			const useJapaneseBadge =
-				root.dataset.japaneseBadge === "true";
+			const useJapaneseBadge = root.dataset.japaneseBadge === "true";
 
 			const manager = new TOCManager({
 				contentElement: tocContent,

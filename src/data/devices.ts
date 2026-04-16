@@ -21,14 +21,16 @@ export const devicesData: DeviceCategory = {
 			name: "OPPO Find X8 Pro",
 			image: "/images/device/x8p.png",
 			specs: "Blue / 16G + 512GB",
-			description: "Flagship performance, Hasselblad imaging, 80W SuperVOOC.",
+			description:
+				"Flagship performance, Hasselblad imaging, 80W SuperVOOC.",
 			link: "https://www.oppo.com/cn/smartphones/series-find-x/find-x8-pro/",
 		},
 		{
 			name: "OPPO Pad",
 			image: "/images/device/opad.webp",
 			specs: "Blue / 8G + 256GB",
-			description: "No Flagship performance, No Hasselblad imaging, 33W SuperVOOC.",
+			description:
+				"No Flagship performance, No Hasselblad imaging, 33W SuperVOOC.",
 			link: "https://www.oppo.com/cn/accessories/oppo-pad/",
 		},
 	],
