@@ -520,7 +520,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 
 	// 侧栏组件布局配置
 	components: {
-		left: ["profile", "announcement", "tags", "line-switch"],
+		left: ["profile", "announcement", "tags", "card-toc", "line-switch"],
 		right: ["network-check", "site-stats", "calendar", "categories", "music-sidebar"],
 		drawer: [
 			"profile",
@@ -707,6 +707,4 @@ export const widgetConfigs = {
 	relatedPosts: relatedPostsConfig,
 	randomPosts: randomPostsConfig,
 	lineSwitch: lineSwitchConfig,
-} as const;
-ig,
 } as const;
