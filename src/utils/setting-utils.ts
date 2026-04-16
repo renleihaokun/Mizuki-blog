@@ -55,7 +55,7 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 		case DARK_MODE:
 			targetIsDark = true;
 			break;
-		case AUTO_MODE:
+		case AUTO_MODE: {
 			targetIsDark = window.matchMedia(
 				"(prefers-color-scheme: dark)",
 			).matches;
@@ -72,6 +72,7 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 			(window as any).themeMediaQuery = mediaQuery;
 			(window as any).themeMediaListener = listener;
 			break;
+		}
 		default:
 			targetIsDark = currentIsDark;
 			break;

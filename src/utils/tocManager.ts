@@ -4,9 +4,9 @@
  * 基于 Firefly 项目的 TOCManager 实现
  */
 
+import { JAPANESE_KATAKANA } from "../components/features/toc/utils/japanese-katakana";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
-import { JAPANESE_KATAKANA } from "../components/features/toc/utils/japanese-katakana";
 
 export interface TOCConfig {
 	contentId?: string;

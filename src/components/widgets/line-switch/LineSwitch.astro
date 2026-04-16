@@ -1,5 +1,6 @@
 ---
 import { lineSwitchConfig } from "@/config";
+
 import WidgetLayout from "../common/WidgetLayout.astro";
 
 interface Props {
@@ -177,7 +178,7 @@ const lines = lineSwitchConfig;
 			this.init();
 		}
 
-		private async getPing(url: string) {
+		async getPing(url: string) {
 			const ctrl = new AbortController();
 			const tid = setTimeout(() => ctrl.abort(), 2000);
 			try {
@@ -197,7 +198,7 @@ const lines = lineSwitchConfig;
 			}
 		}
 
-		private async updateBadge(id: string, url: string) {
+		async updateBadge(id: string, url: string) {
 			const badge = this.querySelector(
 				`[data-line-id="${id}"] .latency-badge`,
 			);

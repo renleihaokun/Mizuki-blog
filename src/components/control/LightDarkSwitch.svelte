@@ -2,6 +2,7 @@
 	import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants";
 	import Icon from "@iconify/svelte";
 	import { getStoredTheme, setTheme } from "@utils/setting-utils";
+
 	import type { LIGHT_DARK_MODE } from "@/types/config";
 
 	const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE, AUTO_MODE];
@@ -10,7 +11,7 @@
 
 	function switchScheme(newMode: LIGHT_DARK_MODE) {
 		// 防止连续快速点击
-		if (isChanging) return;
+		if (isChanging) {return;}
 
 		isChanging = true;
 		mode = newMode;
@@ -23,7 +24,7 @@
 	}
 
 	function toggleScheme() {
-		if (isChanging) return;
+		if (isChanging) {return;}
 
 		let i = 0;
 		for (; i < seq.length; i++) {

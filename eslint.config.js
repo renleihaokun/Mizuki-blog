@@ -62,6 +62,8 @@ export default tseslint.config(
 			"src/components/widgets/announcement/Announcement.astro",
 			"src/components/widgets/common/WidgetLayout.astro",
 			"src/components/widgets/profile/Profile.astro",
+			"src/components/widgets/network-check/NetworkCheck.astro",
+			"src/components/widgets/line-switch/LineSwitch.astro",
 			"src/components/features/posts/CategoryBar.astro",
 			"src/components/widgets/card-toc/CardTOC.astro",
 			"src/layouts/Layout.astro",

@@ -6,6 +6,7 @@ import type {
 	FooterConfig,
 	FullscreenWallpaperConfig,
 	LicenseConfig,
+	LineSwitchConfig,
 	MusicPlayerConfig,
 	NavBarConfig,
 	PermalinkConfig,
@@ -16,7 +17,6 @@ import type {
 	ShareConfig,
 	SidebarLayoutConfig,
 	SiteConfig,
-	LineSwitchConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 

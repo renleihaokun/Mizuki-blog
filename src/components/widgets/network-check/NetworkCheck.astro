@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+
 import WidgetLayout from "../common/WidgetLayout.astro";
 
 interface Props {
@@ -116,8 +117,7 @@ const { class: className, style } = Astro.props;
 					<div class="flex justify-between items-center mb-1">
 						<span
 							class="text-xs text-neutral-500 dark:text-neutral-400"
-							>握手延迟 (RTT)</span
-						>
+							>握手延迟 (RTT)</span>
 						<span
 							class="net-rtt-val font-mono text-xs font-bold text-[var(--primary)]"
 						></span>
@@ -154,7 +154,7 @@ const { class: className, style } = Astro.props;
 
 <script>
 	class NetworkCheckWidget extends HTMLElement {
-		private get apiUrl() {
+		getApiUrl() {
 			const host = window.location.hostname;
 			if (host === "blog.4848488.xyz") {
 				return "https://ip.4848488.xyz/?act=get_ip_info";
@@ -173,12 +173,13 @@ const { class: className, style } = Astro.props;
 			this.fetchData();
 
 			// Set API link href
+			const apiUrl = this.getApiUrl();
 			const apiLink = this.querySelector(
 				".net-api-link",
 			) as HTMLAnchorElement;
 			if (apiLink) {
 				try {
-					const url = new URL(this.apiUrl);
+					const url = new URL(apiUrl);
 					apiLink.href = `${url.protocol}//${url.hostname}/`;
 				} catch (e) {
 					console.error("Failed to parse API URL:", e);
@@ -197,7 +198,7 @@ const { class: className, style } = Astro.props;
 
 		async fetchData() {
 			try {
-				const response = await fetch(this.apiUrl);
+				const response = await fetch(this.getApiUrl());
 				if (!response.ok) {
 					throw new Error("Network response was not ok");
 				}
@@ -306,7 +307,7 @@ const { class: className, style } = Astro.props;
 			this.showData();
 		}
 
-		private getElements() {
+		getElements() {
 			return {
 				loading: this.querySelector(".net-loading"),
 				data: this.querySelector(".net-data"),
