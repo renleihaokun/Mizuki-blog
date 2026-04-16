@@ -48,7 +48,7 @@
 		"astro": "6.1.2",
 		"astro-expressive-code": "^0.41.7",
 		"astro-icon": "^1.1.5",
-		"axios": "^1.14.0",
+		"axios": "^1.15.0",
 		"crypto-js": "^4.2.0",
 		"dayjs": "^1.11.20",
 		"hastscript": "^9.0.1",
