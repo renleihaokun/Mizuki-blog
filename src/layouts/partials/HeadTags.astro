@@ -9,6 +9,7 @@
 import { profileConfig, siteConfig } from "@/config";
 
 import {
+	AUTO_MODE,
 	DARK_MODE,
 	DEFAULT_THEME,
 	LIGHT_MODE,
@@ -105,6 +106,7 @@ const favicons: Favicon[] =
 		DEFAULT_THEME,
 		LIGHT_MODE,
 		DARK_MODE,
+		AUTO_MODE,
 		BANNER_HEIGHT_EXTEND: 30,
 		configHue,
 		pageScaling: siteConfig.pageScaling,
@@ -121,6 +123,14 @@ const favicons: Favicon[] =
 		case DARK_MODE:
 			document.documentElement.classList.add("dark");
 			isDark = true;
+			break;
+		case AUTO_MODE:
+			isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+			if (isDark) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
 			break;
 	}
 
