@@ -18,7 +18,7 @@ const {
 	</h1>
 	{
 		subtitle && (
-			<p class="text-lg text-black/60 dark:text-white/60">{subtitle}</p>
+			<p class="text-lg text-black/60 dark:text-white/60" set:html={subtitle} />
 		)
 	}
 </div>

@@ -27,8 +27,9 @@ export const zh_CN: Translation = {
 
 	[Key.comments]: "评论",
 	[Key.friends]: "友链",
-	[Key.friendsSubtitle]: "发现更多优质网站",
-	[Key.friendsSearchPlaceholder]: "搜索友链名称或描述...",
+	[Key.friendsSubtitle]:
+		'欢迎互换友链，<a href="https://github.com/renleihaokun/renleihaokun-blog/tree/master/src/data/friends" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--primary)] hover:underline transition-colors">点这里提交</a>',
+	[Key.friendsSearchPlaceholder]: "搜索友链名称...",
 	[Key.friendsFilterAll]: "全部",
 	[Key.friendsNoResults]: "未找到匹配的友链",
 	[Key.friendsVisit]: "访问",
