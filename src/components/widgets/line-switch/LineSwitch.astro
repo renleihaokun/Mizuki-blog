@@ -1,5 +1,5 @@
 ---
-import { lineSwitchConfig } from "@/config"; 
+import { lineSwitchConfig, siteConfig } from "@/config"; 
 import WidgetLayout from "../common/WidgetLayout.astro";
 
 interface Props {
@@ -33,22 +33,22 @@ const lines = lineSwitchConfig;
                 href={line.url}
                 data-hostname={new URL(line.url).hostname}
                 data-line-id={line.id}
-                class="line-item-link group block w-full "
+                class="line-item-link group block w-full no-underline"
             >
                 <button
-                    class="w-full h-12 rounded-lg bg-black/[0.03] dark:bg-white/[0.03] hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition-all pl-4 hover:pl-5 text-left cursor-pointer"
+                    class="w-full h-12 rounded-lg bg-black/[0.03] dark:bg-white/[0.03] hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition-all pl-4 hover:pl-5 text-left cursor-pointer flex items-center"
                 >
-                    <div class="flex items-center justify-between relative mr-4">
+                    <div class="flex items-center justify-between w-full relative mr-4">
                         <div class="flex items-center gap-2 overflow-hidden">
-                            <div class="flex items-center text-[14px] line-name">
+                            <div class="flex items-center text-[14px] line-name-container">
                                 <span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">{line.nameEn}</span>
-                                <span class="line-name-zh truncate">{line.nameZh}</span>
+                                <span class="line-name-zh truncate font-medium">{line.nameZh}</span>
                             </div>
                             <div class="flex items-center justify-center flex-shrink-0" style={`width: ${line.size}px; height: ${line.size}px`}>
                                 {line.isLocal ? (
-                                    <img src={line.icon} alt="" style={`width: ${line.size}px; height: auto;`} />
+                                    <img src={line.icon} alt="" style={`width: ${line.size}px; height: auto;`} class="flex-shrink-0" />
                                 ) : (
-                                    <iconify-icon icon={line.icon} width={line.size} height={line.size} />
+                                    <iconify-icon icon={line.icon} width={line.size} height={line.size} class="flex-shrink-0" />
                                 )}
                             </div>
                         </div>
@@ -63,19 +63,13 @@ const lines = lineSwitchConfig;
 </WidgetLayout>
 
 <style is:global>
-    /* 核心修复：确保自定义组件在侧边栏中撑满并显示背景 */
+    /* 1. 基础容器与卡片样式适配 */
     widget-layout[data-id="line-switch"] {
         display: block !important;
         background-color: var(--card-bg) !important;
-        cursor: default;
     }
 
-    /* 指针修复 */
-    .line-switch-toggle-btn, .line-item-link, .line-item-link button {
-        cursor: pointer !important;
-    }
-
-    /* 动画修复：精准复刻老版本曲线 */
+    /* 2. 动画修复：精准复刻老版本曲线 */
     .line-switch-inner-content {
         transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
                     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
@@ -89,8 +83,7 @@ const lines = lineSwitchConfig;
         max-height: 0 !important;
         opacity: 0 !important;
         margin: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding: 0 !important;
         pointer-events: none;
     }
 
@@ -101,41 +94,46 @@ const lines = lineSwitchConfig;
         transform: rotate(180deg) !important;
     }
 
-    /* 线路详情样式还原 */
+    /* 3. 背景色逻辑（还原 95%/85%/75% 逻辑） */
     .line-item-link button {
         background: color-mix(in oklch, var(--primary), transparent 95%) !important;
-        color: #000 !important; 
-        border: none;
+        border: none !important;
         transition: all 0.2s ease-in-out;
     }
     :global(.dark) .line-item-link button {
         background: color-mix(in oklch, var(--primary), transparent 92%) !important;
-        color: #fff !important; 
     }
-
-    /* 悬停状态 */
     .line-item-link button:hover {
         background: color-mix(in oklch, var(--primary), transparent 85%) !important;
-        color: var(--primary) !important;
     }
     :global(.dark) .line-item-link button:hover {
         background: color-mix(in oklch, var(--primary), transparent 80%) !important;
     }
-
-    /* 激活（当前线路）状态 */
     .line-item-link.active button {
         background: color-mix(in oklch, var(--primary), transparent 75%) !important;
-        color: var(--primary) !important; 
-        font-weight: bold !important;
     }
     :global(.dark) .line-item-link.active button {
         background: color-mix(in oklch, var(--primary), transparent 60%) !important;
     }
 
-    /* 点击效果 */
-    .line-item-link button:active {
-        transform: scale(0.97) !important;
-        background: color-mix(in oklch, var(--primary), transparent 70%) !important;
+    /* 4. 核心修复：暗色模式文字颜色 */
+    .line-name-zh, .line-name-en {
+        color: #000 !important;
+    }
+    :global(.dark) .line-name-zh, 
+    :global(.dark) .line-name-en {
+        color: #fff !important;
+    }
+    
+    /* 悬停和激活状态下文字变主题色 */
+    .line-item-link button:hover .line-name-zh,
+    .line-item-link.active .line-name-zh {
+        color: var(--primary) !important;
+    }
+
+    /* 5. 交互与其它 */
+    .line-switch-toggle-btn, .line-item-link, .line-item-link button {
+        cursor: pointer !important;
     }
 
     .line-item-link:hover .line-name-en {
@@ -176,7 +174,7 @@ const lines = lineSwitchConfig;
         const badge = container.querySelector(`[data-line-id="${id}"] .latency-badge`);
         if(!badge) return;
 
-        await getPing(url); // warm
+        await getPing(url); 
         let results = [];
         for(let i=0; i<5; i++) {
             const ms = await getPing(url);
@@ -196,7 +194,6 @@ const lines = lineSwitchConfig;
     }
 
     function initLineSwitch() {
-        // 查找所有 line-switch 类型的组件
         const widgets = document.querySelectorAll('widget-layout[data-id="line-switch"]');
         
         widgets.forEach(widget => {
@@ -208,7 +205,6 @@ const lines = lineSwitchConfig;
 
             if(!btn || !content || !arrow) return;
 
-            // 初始折叠
             const mainHostname = new URL(siteConfig.siteURL).hostname;
             if (currentHostname === mainHostname && !container.hasAttribute('data-inited')) {
                 content.classList.add('collapsed');
@@ -217,7 +213,6 @@ const lines = lineSwitchConfig;
             }
             container.setAttribute('data-inited', 'true');
 
-            // 绑定点击
             (btn as HTMLElement).onclick = (e) => {
                 e.preventDefault();
                 const isCollapsed = content.classList.contains('collapsed');
@@ -239,7 +234,6 @@ const lines = lineSwitchConfig;
                 }
             };
 
-            // 测速
             container.querySelectorAll('.line-item-link').forEach(link => {
                 const id = link.getAttribute('data-line-id');
                 const url = link.getAttribute('href');
@@ -251,7 +245,6 @@ const lines = lineSwitchConfig;
         });
     }
 
-    // 生命周期挂载
     initLineSwitch();
     document.addEventListener('astro:page-load', initLineSwitch);
 </script>
