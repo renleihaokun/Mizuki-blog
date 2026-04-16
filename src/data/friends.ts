@@ -11,7 +11,7 @@ export interface FriendItem {
 
 // 友情链接数据
 // 使用 import.meta.glob 读取所有 .json 文件
-const allFriendJsonFiles = import.meta.glob<FriendItem>('./friends/*.json', { eager: true });
+const allFriendJsonFiles = import.meta.glob<{ default: FriendItem }>('./friends/*.json', { eager: true });
 
 // 将导入的 JSON 数据转换为 FriendItem 数组
 const friendsData: FriendItem[] = Object.values(allFriendJsonFiles).map(module => module.default);

@@ -16,9 +16,12 @@ export const WIDGET_COMPONENT_MAP = {
 	toc: "../components/widgets/toc/TOC.astro",
 	"card-toc": "../components/widgets/card-toc/CardTOC.astro",
 	"music-player": "../components/widgets/music-player/MusicPlayer.svelte",
-	pio: "../components/widget/Pio.astro",
+	"music-sidebar": "../components/widgets/music-sidebar/MusicSidebar.astro",
+	pio: "../components/features/pio/Pio.svelte",
 	"site-stats": "../components/widgets/site-stats/SiteStats.astro",
 	calendar: "../components/widgets/calendar/Calendar.astro",
+	"line-switch": "../components/widgets/line-switch/LineSwitch.astro",
+	"network-check": "../components/widgets/network-check/NetworkCheck.astro",
 	custom: null,
 } as const;
 

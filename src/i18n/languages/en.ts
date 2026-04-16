@@ -124,7 +124,10 @@ export const en: Translation = {
 	[Key.unknownSong]: "Unknown Song",
 	[Key.unknownArtist]: "Unknown Artist",
 
-	// Albums Page
+	[Key.favorites]: "Favorites",
+	[Key.favoritesSubtitle]: "Tickets, postcards, and all kinds of memories",
+
+	// 相册页面
 	[Key.albums]: "Albums",
 	[Key.albumsSubtitle]: "Record beautiful moments in life",
 	[Key.albumsEmpty]: "No content",

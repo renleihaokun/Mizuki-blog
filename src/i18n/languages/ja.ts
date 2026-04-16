@@ -125,6 +125,9 @@ export const ja: Translation = {
 	[Key.unknownSong]: "不明な曲",
 	[Key.unknownArtist]: "不明なアーティスト",
 
+	[Key.favorites]: "お気に入り",
+	[Key.favoritesSubtitle]: "チケット、絵葉書、そしてあらゆる思い出",
+
 	// アルバムページ
 	[Key.albums]: "アルバム",
 	[Key.albumsSubtitle]: "人生の美しい瞬間の記録です",
@@ -190,7 +193,7 @@ export const ja: Translation = {
 		"このサイトの購読はFeedly、Inoreaderまたはその他のRSSリーダーの使用をおすすめします。",
 	[Key.rssCopied]: "RSSのリンクをクリップボードにコピーしました!",
 	[Key.rssCopyFailed]:
-		"コピーに失敗しました。リンクを手動で追加してください。",
+		"コピーに失敗しました。リンクを手动で追加してください。",
 
 	// Atomページ
 	[Key.atom]: "Atomフィード",
@@ -213,9 +216,9 @@ export const ja: Translation = {
 		"このサイトの購読はFeedly、Inoreaderまたはその他のAtomリーダーの使用をおすすめします。",
 	[Key.atomCopied]: "Atomのリンクをクリップボードにコピーしました!",
 	[Key.atomCopyFailed]:
-		"コピーに失敗しました。リンクを手動で追加してください。",
+		"コピーに失敗しました。リンクを手动で追加してください。",
 
-	// 壁紙モード
+	// 壁纸モード
 	[Key.wallpaperBanner]: "バナーモード",
 	[Key.wallpaperFullscreen]: "フルスクリーンモード",
 	[Key.wallpaperNone]: "壁紙を非表示",
@@ -294,7 +297,7 @@ export const ja: Translation = {
 	[Key.decryptionError]: "復号中にエラーが発生しました:",
 	[Key.passwordHint]: "ヒント",
 
-	// 最終更新時間カード
+	// 最终更新時間カード
 	[Key.lastModifiedPrefix]: "最終編集からの時間: ",
 	[Key.lastModifiedOutdated]: "一部の情報は古い可能性があります",
 	[Key.year]: "年",

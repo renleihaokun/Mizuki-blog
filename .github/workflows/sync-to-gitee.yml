@@ -1,0 +1,28 @@
+name: Sync to Gitee (HTTPS Only)
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch: # 允许手动点击按钮触发
+
+jobs:
+  git-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 检出代码（改为只获取最近 20 条提交）
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20  # <--- 修改点1：只拉取最近20条历史
+
+      # 2. 强制推送到 Gitee
+      - name: Push to Gitee
+        run: |
+          # 配置 Gitee 远程地址
+          git remote add gitee "https://renleihaokun:${{ secrets.GITEE_TOKEN }}@gitee.com/renleihaokun/${{ github.event.repository.name }}.git"
+          
+          echo "正在强制推送到 Gitee (最近20条)..."
+          
+          # <--- 修改点2：去掉 --mirror，改为明确推送 HEAD 到远程的 master
+          # 解释：因为是浅克隆(shallow clone)，不能使用 mirror，必须明确指定分支映射
+          git push --force gitee HEAD:master
