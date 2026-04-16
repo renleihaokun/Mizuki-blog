@@ -300,7 +300,14 @@ Navbar 的左侧图标 (`navbarTitle.icon`) 现在带有自动格式转换逻辑
 ### 6. TypeScript 类型补全
 新增的自定义侧边栏组件必须在 `src/types/config.ts` 的 `WidgetComponentType` 中手动注册字符串类型，否则 `src/config.ts` 会出现类型标红。
 
+### 7. 自动亮暗主题 (AUTO_MODE) 的回归
+新版主题默认可能只支持“亮/暗”两档切换，忽略了系统偏好。
+*   **常量补全**：在 `src/constants/constants.ts` 中重新定义 `AUTO_MODE = "auto"`。
+*   **逻辑注入**：在 `src/layouts/partials/HeadTags.astro` 初始脚本中加入 `window.matchMedia("(prefers-color-scheme: dark)")` 检测。
+*   **Swup 同步（深坑）**：由于新版使用了 Swup 局部刷新，必须在 `src/scripts/core/swup-hooks.ts` 的 `syncThemeState` 函数中手动处理 `auto` 逻辑。否则从首页（自动模式）点入文章页时，页面会被 Swup 强制重置为默认的亮色。
+*   **实时监听**：为了体验更佳，建议在 `src/utils/setting-utils.ts` 中为 `AUTO_MODE` 注册 `change` 监听器，实现网页不刷新即可跟随系统亮暗切换。
+
 ---
 
-💡 **总结**: 同步大版本时，**不要直接 merge 代码**。建议采取“以新版为底座，逐个迁回魔改组件”的策略，并针对 Web Component 生命周期进行适配。
+💡 **总结**: 同步大版本时，**不要直接 merge 代码**。建议采取“以新版为底座，逐个迁回魔改组件”的策略，并针对 Web Component 生命周期和 Swup 状态持久化进行深度适配。
 
