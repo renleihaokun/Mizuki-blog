@@ -234,6 +234,8 @@ const lines = lineSwitchConfig;
 			) as HTMLElement;
 			const arrow = this.querySelector(".line-switch-arrow");
 			const currentHostname = window.location.hostname;
+			const currentPathname = window.location.pathname;
+			const currentSearch = window.location.search;
 
 			if (!btn || !content || !arrow) return;
 
@@ -268,12 +270,28 @@ const lines = lineSwitchConfig;
 
 			this.querySelectorAll(".line-item-link").forEach((link) => {
 				const id = link.getAttribute("data-line-id");
-				const url = link.getAttribute("href");
+				const baseUrl = link.getAttribute("href");
 				if (link.getAttribute("data-hostname") === currentHostname) {
 					link.classList.add("active");
 				}
-				if (id && url)
-					setTimeout(() => this.updateBadge(id, url), 1000);
+
+				// 更新链接以包含当前路径
+				if (baseUrl) {
+					try {
+						const urlObj = new URL(baseUrl);
+						urlObj.pathname =
+							currentPathname === "/"
+								? urlObj.pathname
+								: currentPathname;
+						urlObj.search = currentSearch;
+						link.setAttribute("href", urlObj.toString());
+					} catch (e) {
+						console.error("Failed to update line switch URL", e);
+					}
+				}
+
+				if (id && baseUrl)
+					setTimeout(() => this.updateBadge(id, baseUrl), 1000);
 			});
 		}
 	}

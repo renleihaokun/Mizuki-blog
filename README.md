@@ -6,6 +6,9 @@
 魔改自[Mizuki][mizuki]，由[Astro][astro]驱动  
 本仓库在[gitee][1]和[gitlab][2]有同名备份，主仓库在[GitHub][3]   
 
+🌏 **README 语言:**
+[**中文**](./README.md) / [**English**](./README.en.md) / [**日本語**](./README.ja.md) / [**中文繁體**](./README.tw.md)
+
 ## 欢迎[友好讨论](https://github.com/renleihaokun/Mizuki-blog/issues)与[提交友链！](https://github.com/renleihaokun/Mizuki-blog/tree/master/src/data/friends)
 
 
