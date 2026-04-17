@@ -388,7 +388,7 @@ export const shareConfig: ShareConfig = {
 export const announcementConfig: AnnouncementConfig = {
 	title: "这是一个公告", // 公告标题
 	content:
-		"近期发现“blog.wangxianming.top”的主页banner图使用了本人拍摄的图片，本人从未授权他人使用，特此声明", // 公告内容
+		"记得去相册看看", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
