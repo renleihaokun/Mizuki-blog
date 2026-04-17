@@ -40,7 +40,8 @@ const lines = lineSwitchConfig;
 			{
 				lines.map((line) => (
 					<a
-						href={line.url}
+						href="javascript:void(0)"
+						data-base-url={line.url}
 						data-hostname={new URL(line.url).hostname}
 						data-line-id={line.id}
 						class="line-item-link group block w-full no-underline"
@@ -233,15 +234,12 @@ const lines = lineSwitchConfig;
 				".line-switch-inner-content",
 			) as HTMLElement;
 			const arrow = this.querySelector(".line-switch-arrow");
-			const currentHostname = window.location.hostname;
-			const currentPathname = window.location.pathname;
-			const currentSearch = window.location.search;
 
 			if (!btn || !content || !arrow) return;
 
 			// 自动折叠逻辑
 			const mainHostname = new URL(siteConfig.siteURL).hostname;
-			if (currentHostname === mainHostname) {
+			if (window.location.hostname === mainHostname) {
 				content.classList.add("collapsed");
 				arrow.classList.add("collapsed");
 				content.style.maxHeight = "0px";
@@ -268,31 +266,59 @@ const lines = lineSwitchConfig;
 				}
 			};
 
+			// 处理点击跳转逻辑：实时获取当前路径
 			this.querySelectorAll(".line-item-link").forEach((link) => {
-				const id = link.getAttribute("data-line-id");
-				const baseUrl = link.getAttribute("href");
-				if (link.getAttribute("data-hostname") === currentHostname) {
-					link.classList.add("active");
-				}
+				link.addEventListener("click", (e) => {
+					const baseUrl = link.getAttribute("data-base-url");
+					if (!baseUrl) return;
 
-				// 更新链接以包含当前路径
-				if (baseUrl) {
+					e.preventDefault();
 					try {
 						const urlObj = new URL(baseUrl);
+						// 实时获取当前的路径和参数
 						urlObj.pathname =
-							currentPathname === "/"
+							window.location.pathname === "/"
 								? urlObj.pathname
-								: currentPathname;
-						urlObj.search = currentSearch;
-						link.setAttribute("href", urlObj.toString());
-					} catch (e) {
-						console.error("Failed to update line switch URL", e);
-					}
-				}
+								: window.location.pathname;
+						urlObj.search = window.location.search;
 
-				if (id && baseUrl)
-					setTimeout(() => this.updateBadge(id, baseUrl), 1000);
+						// 执行跳转
+						window.location.href = urlObj.toString();
+					} catch (err) {
+						console.error("Line switch jump failed", err);
+						// 回退方案
+						window.location.href = baseUrl;
+					}
+				});
+
+				// 初始化 Ping 和 Active 状态
+				this.refreshStatus(link as HTMLElement);
 			});
+
+			// 监听 Swup 页面切换，更新 Active 状态
+			document.addEventListener("swup:contentReplace", () => {
+				this.querySelectorAll(".line-item-link").forEach((link) => {
+					this.updateActiveState(link as HTMLElement);
+				});
+			});
+		}
+
+		refreshStatus(link: HTMLElement) {
+			const id = link.getAttribute("data-line-id");
+			const baseUrl = link.getAttribute("data-base-url");
+			this.updateActiveState(link);
+			if (id && baseUrl) {
+				setTimeout(() => this.updateBadge(id, baseUrl), 1000);
+			}
+		}
+
+		updateActiveState(link: HTMLElement) {
+			const currentHostname = window.location.hostname;
+			if (link.getAttribute("data-hostname") === currentHostname) {
+				link.classList.add("active");
+			} else {
+				link.classList.remove("active");
+			}
 		}
 	}
 
