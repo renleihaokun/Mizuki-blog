@@ -4,13 +4,13 @@
  */
 
 import { pathsEqual, url } from "../../utils/url-utils";
+import { applyThemeToDocument, getStoredTheme } from "../../utils/setting-utils";
 import type { FancyboxHandler } from "../handlers/fancybox-handler";
 import type { ScrollHandler } from "../handlers/scroll-handler";
 import {
 	ANIMATION_CONFIG,
 	BANNER_HEIGHT,
 	SWUP_SELECTORS,
-	THEME_CONFIG,
 } from "./swup-config";
 
 // 钩子处理器接口
@@ -372,51 +372,20 @@ export class SwupHooksManager {
 
 	/**
 	 * 同步主题状态
-	 * 解决从首页进入文章页面时代码块渲染问题
+	 * 解决 Swup 页面切换后 AUTO 模式系统监听器丢失的问题
+	 * 以及从首页进入文章页面时代码块渲染问题
 	 */
 	private syncThemeState(): void {
-		const storedTheme =
-			localStorage.getItem(THEME_CONFIG.themeStorageKey) ||
-			THEME_CONFIG.lightMode;
+		// 使用 getStoredTheme 获取当前存储的主题（默认 AUTO_MODE）
+		const storedTheme = getStoredTheme();
 
-		let isDark: boolean;
-		if (storedTheme === THEME_CONFIG.darkMode) {
-			isDark = true;
-		} else if (storedTheme === THEME_CONFIG.autoMode) {
-			isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		} else {
-			isDark = false;
-		}
-
-		const expectedTheme = isDark
-			? THEME_CONFIG.darkExpressiveTheme
-			: THEME_CONFIG.lightExpressiveTheme;
-
-		const currentTheme =
-			document.documentElement.getAttribute("data-theme");
-		const hasDarkClass =
-			document.documentElement.classList.contains("dark");
-
-		// 如果主题不匹配，使用批量更新减少重绘
-		if (currentTheme !== expectedTheme || hasDarkClass !== isDark) {
-			requestAnimationFrame(() => {
-				// 同步 data-theme 属性
-				if (currentTheme !== expectedTheme) {
-					document.documentElement.setAttribute(
-						"data-theme",
-						expectedTheme,
-					);
-				}
-				// 同步 dark class
-				if (hasDarkClass !== isDark) {
-					if (isDark) {
-						document.documentElement.classList.add("dark");
-					} else {
-						document.documentElement.classList.remove("dark");
-					}
-				}
-			});
-		}
+		// 使用 applyThemeToDocument 重新应用主题
+		// 这会：
+		// 1. 清理旧的系统监听器
+		// 2. 根据当前存储的主题重新计算 dark 状态
+		// 3. 如果是 AUTO_MODE，重新注册 prefers-color-scheme 监听器
+		// 4. 同步 dark class 和 data-theme 属性
+		applyThemeToDocument(storedTheme);
 	}
 
 	/**
