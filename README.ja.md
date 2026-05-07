@@ -7,7 +7,7 @@
 このリポジトリは [Gitee][1] と [GitLab][2] に同名のバックアップがあり、メインリポジトリは [GitHub][3] にあります。  
 
 🌏 **README 言語:**
-[**中文**](./README.md) / [**English**](./README.en.md) / [**日本語**](./README.ja.md) / [**中文繁體**](./README.tw.md)
+[**English**](./README.md) / [**日本語**](./README.ja.md) / [**中文繁體**](./README.tw.md)
 
 ---
 

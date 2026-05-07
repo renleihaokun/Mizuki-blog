@@ -7,7 +7,7 @@
 本倉庫在[Gitee][1]和[GitLab][2]有同名備份，主倉庫在[GitHub][3]  
 
 🌏 **README 語言:**
-[**中文**](./README.md) / [**English**](./README.en.md) / [**日本語**](./README.ja.md) / [**中文繁體**](./README.tw.md)
+[**English**](./README.md) / [**日本語**](./README.ja.md) / [**中文繁體**](./README.tw.md)
 
 ---
 
