@@ -24,15 +24,15 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 卤仿：$\mathrm{CHX_3}$，如氯仿$\mathrm{CHCl_3}$  
 * 苦味酸是2,4,6-三硝基苯酚  
 * NBS是这个东西![image.webp](https://imgbed.haokun.me/file/化/1778569201702_image.webp)  
-* 烯烃和冷稀的$\mathrm{KMnO_4}$和烯烃反应生成邻二醇(双键断开，俩碳离子各连一个羟基)
+* 烯烃和冷稀的$\mathrm{KMnO_4}$反应生成邻二醇(双键断开，俩碳离子各连一个羟基)
 * $\mathrm{O_3}$氧化烯烃后经$\mathrm{Zn/H_2O}$换元可以将双键变为C=O，不变酸  
-* 烯烃在500°C时发生$\mathrm{alpha-H}$卤代反应，并非加成  
+* 烯烃在500°C时发生$\mathrm{α-H}$卤代反应，并非加成  
 ![image.webp](https://imgbed.haokun.me/file/化/1778568918666_image.webp)
 * 记得$\mathrm{HBr}$能开环，$\mathrm{Br_2}$和$\mathrm{H_2也可以}$  
   ![image.webp](https://imgbed.haokun.me/file/1778568083038_image.webp)  
 * 端炔可以和$\mathrm{Na}$、$\mathrm{NaNH_2}$、$\mathrm{RX}$、银氨和氯化亚铜氨（去H加Ag\Cu）反应  
-* 邻对位定位基： $> -\mathrm{NH_2}$ (氨基) $> -\mathrm{OH}$ (羟基) $> -\mathrm{OCH_3}$ (甲氧基) $> -\mathrm{NH-COCH_3}$ (乙酰氨基) $> -\mathrm{OCOCH_3}$ (乙酰氧基) $> -\mathrm{CH_3}$ (甲基) $> \mathrm{C_6H_5}$ (苯基) $> -\mathrm{X}$ ($\mathrm{F, Cl, Br, I}$) 等  
-* 间位定位基：$> -\mathrm{CN}$ (氰基) $> -\mathrm{SO_3H}$ (磺酸基) $> -\mathrm{CHO}$ (醛基) $> -\mathrm{COCH_3}$ (乙酰基) $> -\mathrm{COOH}$ (羧基) $> -\mathrm{COOCH_3}$ (甲氧酰基) $> -\mathrm{CONH_2}$ (氨基甲酰基) 等。  
+* 邻对位定位基： $-\mathrm{N(CH_3)_2}$ (二甲氨基) $> -\mathrm{NH_2}$ (氨基) $> -\mathrm{OH}$ (羟基) $> -\mathrm{OCH_3}$ (甲氧基) $> -\mathrm{NH-COCH_3}$ (乙酰氨基) $> -\mathrm{OCOCH_3}$ (乙酰氧基) $> -\mathrm{CH_3}$ (甲基) $> \mathrm{C_6H_5}$ (苯基) $> -\mathrm{X}$ ($\mathrm{F, Cl, Br, I}$) 等。  
+* 间位定位基：$-\mathrm{N^+(CH_3)_3}$ (三甲铵基) $> -\mathrm{NO_2}$ (硝基) $> -\mathrm{CN}$ (氰基) $> -\mathrm{SO_3H}$ (磺酸基) $> -\mathrm{CHO}$ (醛基) $> -\mathrm{COCH_3}$ (乙酰基) $> -\mathrm{COOH}$ (羧基) $> -\mathrm{COOCH_3}$ (甲氧酰基) $> -\mathrm{CONH_2}$ (氨基甲酰基) 等。  
 * 苯环上反应一定要考虑空间位阻！![image.webp](https://imgbed.haokun.me/file/化/1778569288347_image.webp)  
 * 别忘了苯环还有磺化反应  
 * 溴代烷基苯一般都是夺取α位的H，氯代就不一定了（所以都不用氯，虽然主要也是α位取代
