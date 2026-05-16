@@ -3,8 +3,8 @@ title: 马上考有机，开始预习
 published: 2026-05-12
 pinned: false
 description: 这是我的笔记
-tags: [chemical]
-category: Study
+tags: [note]
+category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun
 draft: false
