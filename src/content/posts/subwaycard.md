@@ -27,6 +27,7 @@ image: "https://imgbed.haokun.me/file/1769255286180_5bc4c3414fb6d38305413930cb10
 </iframe>  
 
 # 再联想一下你平时坐地铁的情景  
+
 到闸机口才把二维码掏出来的  
 掏二维码被广告卡住的  
 二维码扫不上的  
@@ -34,6 +35,16 @@ image: "https://imgbed.haokun.me/file/1769255286180_5bc4c3414fb6d38305413930cb10
 带小孩被闸机卡住的  
 把单程票当公交卡不插进去硬刷的  
 ...
+
+<iframe 
+    src="//player.bilibili.com/player.html?bvid=BV1sAGY6YEyn&page=1&high_quality=1&danmaku=0" 
+    allowfullscreen="allowfullscreen" 
+    width="100%" 
+    height="500" 
+    scrolling="no" 
+    frameborder="0" 
+    sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+</iframe>  
 
 # 我们抛开共性问题，为什么国内地铁入站还是没有日本高效  
 国内交通卡普遍采用`Type A`，而日本普遍采用`FeliCa`，前者比后者会满上个零点几秒，但其实人流不到极限的情况下这点差距并不大    
