@@ -20,4 +20,7 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 * 惠特克五界系统：（记得区分原生生物界和原核生物界  
 ）原核生物界、原生生物界、真菌界、植物界、动物界  
 * 利什曼原虫：![image.webp](https://imgbed.4848488.xyz/file/1779844967630_image.webp)  
-* 
+
+## 每个门新出现的东西  
+
+## 每个门的代表动物  
