@@ -14,6 +14,8 @@ permalink: "dongwuxue"
 image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 ---
 
+> 考这玩意可能要看书大法了，一堆图和概念的很像高中生物  
+
 ## 题型  
 
 填空、单选、判断题、名词解释、简答题，论述题。其中前三种题型属于客观题
@@ -29,7 +31,14 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 * 生物发生律：个体重演系统发育  
 * 原生动物(单细胞动物)、后生动物(绝大多数多细胞动物)、中生动物(中间一小类)  
 * 卵黄多的是植物极，另一半是动物极  
-* 
+* 卵裂，高中学过的  
+  ![{657A3CDD-AF0A-49CA-9ACC-80E80BAF166E}.webp](https://imgbed.haokun.me/file/植物学/1780033674317__657A3CDD-AF0A-49CA-9ACC-80E80BAF166E_.webp)
+* 原肠胚形成方式多样  
+  ![{297F6575-29FA-44AA-B5C8-02B381FB61F4}.webp](https://imgbed.haokun.me/file/植物学/1780033759253__297F6575-29FA-44AA-B5C8-02B381FB61F4_.webp)
+* 三胚层，不同胚层可能发展为同一组织
+  ![{3DF68D39-AE3D-4419-AC4D-3941F4460A07}.webp](https://imgbed.haokun.me/file/植物学/1780033855056__3DF68D39-AE3D-4419-AC4D-3941F4460A07_.webp)
+
+---
 
 ## 门
 
@@ -51,10 +60,27 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 ![image.webp](https://imgbed.haokun.me/file/动物学/1780024128951_image.webp)
 ![image.webp](https://imgbed.haokun.me/file/动物学/1780024182481_image.webp)
 
+### 多孔动物门  
+
+> 多孔动物是最原始、最低等的多细胞动物，只有细胞分化，没有组织分化；只有细胞内消化；没有神经系统；细胞分化程度低，再生能力强。
+
+* 水中固着生活、体形多不规则  
+* 细胞水平的多细胞动物：
+  ![{40240686-0A1E-4D48-9A1E-7DEC0F1B0AE2}.webp](https://imgbed.haokun.me/file/植物学/1780034272389__40240686-0A1E-4D48-9A1E-7DEC0F1B0AE2_.webp)  
+  ![{1926AA0B-7518-4C69-B457-93A25C11BEA6}.webp](https://imgbed.haokun.me/file/植物学/1780034740096__1926AA0B-7518-4C69-B457-93A25C11BEA6_.webp)  
+  ![{6389363E-0EAC-4D1A-BCA6-460724979D40}.webp](https://imgbed.haokun.me/file/动物学/1780034786969__6389363E-0EAC-4D1A-BCA6-460724979D40_.webp)
+* 独特的水沟系：单沟系、双沟系、复沟系(像肺)  
+  ![{7DFEF6A9-5C53-4A3F-A629-76496568E981}.webp](https://imgbed.haokun.me/file/动物学/1780035030251__7DFEF6A9-5C53-4A3F-A629-76496568E981_.webp)
+* 生殖和发育：无性生殖(出芽和形成芽球(不良条件下))、有性生殖(异体受精。原细胞$\to$卵子，原细胞/领细胞$\to$精子)，胚层逆转  
+  ![{4587FD5A-A9A8-48AB-8D3D-42FD1550A90A}.webp](https://imgbed.haokun.me/file/动物学/1780035060849__4587FD5A-A9A8-48AB-8D3D-42FD1550A90A_.webp)
+
 ## 每个门新东西  
 
 * 原生动物门：是个动物了  
+* 多孔动物门：是个多细胞动物了，出现原始内骨骼支撑  
 * 
+
+---
 
 ## AI总结代表动物  
 
