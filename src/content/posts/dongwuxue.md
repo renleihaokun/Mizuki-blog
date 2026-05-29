@@ -37,6 +37,8 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
   ![{297F6575-29FA-44AA-B5C8-02B381FB61F4}.webp](https://imgbed.haokun.me/file/植物学/1780033759253__297F6575-29FA-44AA-B5C8-02B381FB61F4_.webp)
 * 三胚层，不同胚层可能发展为同一组织
   ![{3DF68D39-AE3D-4419-AC4D-3941F4460A07}.webp](https://imgbed.haokun.me/file/植物学/1780033855056__3DF68D39-AE3D-4419-AC4D-3941F4460A07_.webp)
+* 辐射对称 != N辐对称
+* 桃花鱼不是鱼是水母
 
 ---
 
@@ -78,7 +80,7 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 
 * 原生动物门：是个动物了  
 * 多孔动物门：是个多细胞动物了，出现原始内骨骼支撑  
-* 
+* 刺胞动物门：是真正的两胚层的动物了
 
 ---
 
