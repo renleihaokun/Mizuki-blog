@@ -74,7 +74,14 @@ image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
 * 独特的水沟系：单沟系、双沟系、复沟系(像肺)  
   ![{7DFEF6A9-5C53-4A3F-A629-76496568E981}.webp](https://imgbed.haokun.me/file/动物学/1780035030251__7DFEF6A9-5C53-4A3F-A629-76496568E981_.webp)
 * 生殖和发育：无性生殖(出芽和形成芽球(不良条件下))、有性生殖(异体受精。原细胞$\to$卵子，原细胞/领细胞$\to$精子)，胚层逆转  
-  ![{4587FD5A-A9A8-48AB-8D3D-42FD1550A90A}.webp](https://imgbed.haokun.me/file/动物学/1780035060849__4587FD5A-A9A8-48AB-8D3D-42FD1550A90A_.webp)
+  ![{4587FD5A-A9A8-48AB-8D3D-42FD1550A90A}.webp](https://imgbed.haokun.me/file/动物学/1780035060849__4587FD5A-A9A8-48AB-8D3D-42FD1550A90A_.webp)  
+
+### 刺胞动物门  
+
+> 又名腔肠动物
+
+* 辐射对称：上下差异大，水平差异小，是一种适应  
+* 水螅型和水母型  
 
 ## 每个门新东西  
 
