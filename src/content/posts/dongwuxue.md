@@ -7,7 +7,7 @@ tags: [note]
 category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun
-draft: true
+draft: false
 date: 2026-05-27
 pubDate: 2026-05-27
 permalink: "dongwuxue"
