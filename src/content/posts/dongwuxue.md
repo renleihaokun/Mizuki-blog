@@ -11,7 +11,7 @@ draft: false
 date: 2026-05-27
 pubDate: 2026-05-27
 permalink: "dongwuxue"
-image: "https://imgbed.haokun.me/file/1778830050748_image.webp"
+image: "https://imgbed.haokun.me/file/1768116256419_DSC02818-%E5%B7%B2%E5%A2%9E%E5%BC%BA-NR-1.webp"
 ---
 
 > 考这玩意可能要看书大法了，一堆图和概念的很像高中生物  
