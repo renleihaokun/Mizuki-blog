@@ -1,0 +1,30 @@
+{
+	"mode": "external",
+	"title": "风光·湖州",
+	"description": "原来我去过湖州，所以湖州你太湖呢",
+	"cover": "https://imgbed.haokun.me/file/动物学/1780151228481_IMG_2920_1.webp",
+	"location": "浙江·湖州",
+	"tags": ["风光"],
+	"layout": "masonry",
+	"columns": 3,
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151208504_IMG_2892_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151219752_IMG_2883_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151223394_IMG_2922_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151225796_IMG_2874_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151227887_IMG_2900_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/动物学/1780151228481_IMG_2920_1.webp"
+		}
+	]
+}
