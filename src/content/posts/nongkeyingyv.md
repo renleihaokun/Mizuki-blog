@@ -14,4 +14,8 @@ permalink: "nongkeyingyv"
 image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 ---
 
+## 试卷结构  
+
+> 听力(20)、农科术语(10)、阅读理解(40)、汉英翻译(5*2分)、作文(20)
+
 ## 农科术语  
