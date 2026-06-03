@@ -1,4 +1,4 @@
-# This is renleihaokun's Humble Blog  
+# This is renleihaokun's Humble Blog
 
  > The documentation for [Mizuki][mizuki] is already extremely easy to follow. Please DO NOT clone this repository for direct deployment—this is NOT a template!!! **It is strictly forbidden to deploy this with my personal information (ICP filing number, avatar, blog posts, copyrighted real-life photos) retained!**
 
