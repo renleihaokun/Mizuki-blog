@@ -18,4 +18,4 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 
 ### 充要条件
 
-- Sn存在<==>级数收敛
+- Sn存在<==>级数收敛  
