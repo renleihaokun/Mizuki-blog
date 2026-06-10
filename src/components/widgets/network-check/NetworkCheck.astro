@@ -117,7 +117,8 @@ const { class: className, style } = Astro.props;
 					<div class="flex justify-between items-center mb-1">
 						<span
 							class="text-xs text-neutral-500 dark:text-neutral-400"
-							>握手延迟 (RTT)</span>
+							>握手延迟 (RTT)</span
+						>
 						<span
 							class="net-rtt-val font-mono text-xs font-bold text-[var(--primary)]"
 						></span>
@@ -157,12 +158,12 @@ const { class: className, style } = Astro.props;
 		getApiUrl() {
 			const host = window.location.hostname;
 			if (host === "blog.4848488.xyz") {
-				return "https://ip.4848488.xyz/?act=get_ip_info";
+				return "https://ipv4.4848488.xyz/api/ip";
 			}
 			if (host === "6.blog.haokun.me") {
-				return "https://ipv6.4848488.xyz/?act=get_ip_info";
+				return "https://ipv6.4848488.xyz/api/ip";
 			}
-			return "https://ipv4.4848488.xyz/?act=get_ip_info";
+			return "https://ipv4.4848488.xyz/api/ip";
 		}
 
 		connectedCallback() {
