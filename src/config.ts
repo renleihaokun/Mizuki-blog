@@ -62,7 +62,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
 		icon: "assets/home/home.webp",
 		// 网站Logo图片路径
-		logo: "assets/home/home.webp",
+		logo: "assets/home/logo.webp",
 	},
 
 	// 页面自动缩放配置
@@ -205,6 +205,11 @@ export const siteConfig: SiteConfig = {
 		{
 			src: "/favicon/favicon.ico",
 			theme: "light",
+			sizes: "32x32",
+		},
+		{
+			src: "/favicon/favicon.ico",
+			theme: "dark",
 			sizes: "32x32",
 		},
 	],
@@ -387,8 +392,7 @@ export const shareConfig: ShareConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "这是一个公告", // 公告标题
-	content:
-		"记得去相册看看", // 公告内容
+	content: "记得去相册看看", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
