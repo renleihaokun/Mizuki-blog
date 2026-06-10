@@ -1,6 +1,6 @@
 ---
 title: 本科是什么东西
-published: 2026-06-07
+published: 2026-06-10
 pinned: false
 description: 俺的经验
 tags: [education, college]
@@ -9,7 +9,7 @@ licenseName: "CC BY 4.0"
 author: renleihaokun
 draft: false
 date: 2026-06-07
-pubDate: 2026-06-07
+pubDate: 2026-06-10
 permalink: "collegefreshman"
 image: "https://imgbed.haokun.me/file/1774622314287_DSC06448-已增强-NR.webp"
 ---
