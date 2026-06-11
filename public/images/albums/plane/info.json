@@ -7,6 +7,7 @@
 	"tags": ["飞机"],
 	"layout": "Grid",
 	"columns": 4,
+	"date": "2025-12-26",
 	"photos": [
 		{
 			"src": "https://imgbed.haokun.me/file/1771499885536_DSC05000_1.webp"

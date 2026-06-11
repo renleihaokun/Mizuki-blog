@@ -7,6 +7,7 @@
 	"tags": ["花", "草", "树", "菜"],
 	"layout": "Grid",
 	"columns": 4,
+	"date": "2025-12-26",
 	"photos": [
 		{
 			"src": "https://imgbed.haokun.me/file/1775469806335_DSC07402_1.webp"
