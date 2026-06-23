@@ -18,4 +18,8 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 
 > 听力(20)、农科术语(10)、阅读理解(40)、汉英翻译(5*2分)、作文(20)
 
+## 眼瞎单词  
+
+temper**a**ture
+
 ## 农科术语  
