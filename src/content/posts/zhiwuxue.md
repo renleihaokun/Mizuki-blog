@@ -1,5 +1,5 @@
 ---
-title: 哎我擦植物学咋这么坏
+title: 植物学怎么这么坏
 published: 2026-05-16
 pinned: false
 description: 这是我的笔记

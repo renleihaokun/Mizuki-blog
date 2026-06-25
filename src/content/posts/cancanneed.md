@@ -1,8 +1,8 @@
 ---
-title: 看看你的
+title: 看看你的网
 published: 2026-01-22
 pinned: false
-description: 网啊，那不然还能是什么
+description: 一个小工具
 tags: [Network]
 category: Network
 licenseName: "CC BY 4.0"

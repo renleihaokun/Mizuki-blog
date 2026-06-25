@@ -2,7 +2,7 @@
 title: 本科是什么东西
 published: 2026-06-10
 pinned: false
-description: 俺的经验
+description: 目前的经验
 tags: [education, college]
 category: college
 licenseName: "CC BY 4.0"
@@ -174,3 +174,7 @@ $\text{GPA} = \frac{\sum_{i=1}^{n} \left( \text{学分}_i \times \text{课程绩
 其实这一篇文章都算是碎碎念了。去年我高考完出分之后，完全沉浸在悲伤之中。本来一模二模是年级前几十，高考出分变成班级后十几。以前比我考得低的，甚至低几十分的，都考得比我高几十分。现在再去后悔当初已无意义，我高考的遗憾也由苦心研究志愿弥补。我不后悔选了华中农业大学的生物科学类专业，我现在的大学生活和考得比我高的同学并无二致，前景也并没有因为高考产生差异。所以，我写下给你的建议，希望能够帮到你。  
 
 本文在后期本人经历更多经验后会进行更新。
+
+## 附：HZAU招生信息  
+
+<https://blog.haokun.me/whyHZAU/>

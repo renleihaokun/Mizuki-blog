@@ -2,7 +2,7 @@
 title: 还在用二维码乘地铁？快来试试NFC！
 published: 2026-01-24
 pinned: false
-description: 不会有人2026了还不知道NFC刷地铁不用每个城市都开新卡吧
+description: NFC刷地铁不用每个城市都开新卡
 tags: [transport]
 category: transport
 licenseName: "CC BY 4.0"
