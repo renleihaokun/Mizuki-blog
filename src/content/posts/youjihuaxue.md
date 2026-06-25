@@ -56,7 +56,8 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 苦味酸是2,4,6-三硝基苯酚  
 * NBS是这个东西![image.webp](https://imgbed.haokun.me/file/化/1778569201702_image.webp)  
 * 烯烃和冷稀的$\mathrm{KMnO_4}$反应生成邻二醇(双键断开，俩碳离子各连一个羟基)
-* $\mathrm{O_3}$氧化烯烃后经$\mathrm{Zn/H_2O}$换元可以将双键变为C=O，不变酸  
+* $\mathrm{O_3}$氧化烯烃后经$\mathrm{Zn/H_2O}$还原可以将双键变为C=O，不变酸  
+* 乙烯可以被$\mathrm{CuCl_2+PdCl_2+O_2}$催化氧化成醛(其他稀生成$\mathrm{R-COCH_3}$)
 * 烯烃在500°C时发生$\mathrm{α-H}$卤代反应，并非加成  
 ![image.webp](https://imgbed.haokun.me/file/化/1778568918666_image.webp)
 * 记得$\mathrm{HBr}$能开环，$\mathrm{Br_2}$和$\mathrm{H_2也可以}$  
@@ -66,6 +67,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 间位定位基：$-\mathrm{N^+(CH_3)_3}$ (三甲铵基) $> -\mathrm{NO_2}$ (硝基) $> -\mathrm{CN}$ (氰基) $> -\mathrm{SO_3H}$ (磺酸基) $> -\mathrm{CHO}$ (醛基) $> -\mathrm{COCH_3}$ (乙酰基) $> -\mathrm{COOH}$ (羧基) $> -\mathrm{COOCH_3}$ (甲氧酰基) $> -\mathrm{CONH_2}$ (氨基甲酰基) 等。  
 * 苯环上反应一定要考虑空间位阻！![image.webp](https://imgbed.haokun.me/file/化/1778569288347_image.webp)  
 * 别忘了苯环还有磺化反应  
+* 休克尔规则判断芳香性，这规则名字别忘了 
 * 溴代烷基苯一般都是夺取α位的H，氯代就不一定了（所以都不用氯，虽然主要也是α位取代
 * $\mathrm{NaOEt}$+$\Delta$ 也是消去反应的条件
 * $\mathrm{KCN}$ \ $\mathrm{EtOH}$ 取代卤原子遵循卤原子活性规律（图示为检验卤原子活性反应
@@ -77,9 +79,21 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 鉴别题似乎没办法在中途返回原始物质来鉴别，只能是前一步的产物  
 * 反应速率不止和键容易断有关，生成产物更稳定也会促进反应（C正离子稳定性那里的  
 * 氰根可以在酸性条件下水解成羧酸  
-* 碳碳双键催化氧化成醛
-* 休克尔规则判断芳香性，这规则名字别忘了  
+
+> 期中分割线  
+
+* 醇反应活性：甲醇>伯醇>仲醇>叔醇  
+* 醇羟基可被$\mathrm{HX(+浓硫酸，有重排)/PX_3(0^oC)/PX_5/SOCl_2+吡啶}$取代成对应卤代烃  
 * 重金属(Ni等)催化还原不能还原羧酸，要用强还原性氢化铝锂之类的  
+* 卢卡斯试剂($\mathrm{HCl+ZnCl_2 25^oC}$)可鉴别不同的醇($\mathrm{C_6}$以下)：伯醇(透亮)、仲醇(5min后浑浊)、叔醇/苄基醇/$\mathrm{CH_2=CH-CH_2-OH}$(立即浑浊，后俩有共轭)  
+* 扎伊采夫规则：醇脱水倾向于双键C上多连烷基(如果有共轭优先共轭)  
+* 威廉姆孙反应：醇钠+卤代烃=醚+卤化钠  
+* $\mathrm{CrO_3·吡啶}$氧化醇只氧化成羰基，**不影响$\mathrm{C=C}$**  
+* 邻二醇可被$\mathrm{KIO_4}$氧化，相当于在$\mathrm{C-C}$之间断开换成俩$\mathrm{-OH}$  
+* 分子内氢键形成5/6元环降低沸点  
+* 烯醇和苯酚都能与$\mathrm{FeCl_3}$发生显色反应  
+* 酚可和酸(巨困难)、酰氯、酸酐反应生成酯  
+* 苯酚和$\mathrm{Br_2}$反应不管浓度多少，都是上三个$\mathrm{Br}$
 
 | 还原方法 | 醛、酮 | 烯、炔 | 羧酸 |
 | -- | -- | -- | -- |
@@ -106,7 +120,10 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 环烯烃：优先双键位次小，再考虑取代基位次  
 * 芳香烃：苄基==苯甲基，记得母体官能团优先级：$-\mathrm{COOH}$、$-\mathrm{SO_3H}$、$-\mathrm{CN}$、$-\mathrm{CHO}$、$\mathrm{C=O}$、$-\mathrm{OH}$、$-\mathrm{NH_2}$、$-\mathrm{R}$、$-\mathrm{X}$、$-\mathrm{NO_2}$  
 * 卤代烃：部分情况强制要求主碳链含有卤原子，即使不含卤原子有更长的（与标准命名不符，但是考试嘛，，，），记得卤素原子比烷基更优势  
-* 醇：含羟基最长链为主链，
+
+> 期中分割线  
+
+* 醇：含羟基最长链为主链，即使不含羟基有更长的(和卤代烃命名一个毛病)
 * 环内酯：警惕取代基，羧基与链中羟基酯化成环时，你看到的取代基不是取代基！（5-己内酯的甲基取代基）
 
 ### 附
