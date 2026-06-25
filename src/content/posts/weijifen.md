@@ -14,6 +14,10 @@ permalink: "nongkeyingyv"
 image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 ---
 
+## 坑  
+
+* 泰勒展开式一定是$a_nx^n$形式，不能只算相乘的一部分把另一部分乘进去，**除非另一部分乘进去也符合格式！**  
+
 ## 充分性必要性
 
 ### 充要条件
