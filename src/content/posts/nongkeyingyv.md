@@ -1,5 +1,5 @@
 ---
-title: 马上考有机，开始预习
+title: 《通用学术英语》但是全是农科术语  
 published: 2026-06-28
 pinned: false
 description: 这是我的笔记
@@ -11,7 +11,7 @@ draft: false
 date: 2026-05-12
 pubDate: 2026-06-28
 permalink: "nongkeyingyv"
-image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
+image: "https://imgbed.haokun.me/file/化/1782638334797_image.webp"
 ---
 
 ## 试卷结构  
