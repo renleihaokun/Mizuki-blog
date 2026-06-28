@@ -56,3 +56,6 @@ src/data/bilibili-data.json
 
 # continue
 .continue/
+
+# 闲的
+.temp/
