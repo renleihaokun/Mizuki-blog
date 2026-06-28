@@ -18,6 +18,33 @@ image: "https://imgbed.haokun.me/file/化/1782638334797_image.webp"
 
 > 听力(20)、农科术语(10)、阅读理解(40)、汉英翻译(5*2分)、作文(20)
 
+### 详细题型
+
+#### Part I. Multiple Choices (20%)
+
+- Section A News：2篇新闻，4道题，每题1分。
+- Section B Long Conversation：1篇长对话，4道题，每题1分。
+- Section C Passages：2篇短文，6道题，每题2分。
+
+#### Part II. Agricultural terms (10%)
+
+- 选词填空，考察对关键农业术语的理解，10道题，每题1分。
+- 课内：新农科大学英语Unit 1, 2, 3, 4, 8
+
+#### Part III. Reading Comprehension (40%)
+
+- 1篇快速阅读长文（课外，1000字左右），形式为段落匹配题，10道题，每题1分。
+- 3篇短文理解（1篇来自课内Unit 1, 2, 3, 4, 8，每篇均300-350字），每篇5题，每题2分。
+
+#### Part IV. Chinese to English Translation (10%)
+
+- 中翻英，句子翻译，5道题，每题2分。
+- 课内：新农科大学英语Unit 1, 2, 3, 4, 8
+
+#### Part V. Writing (20%)
+
+- 话题从本学期所学5个单元中筛选，考生表达对话题的个人观点，字数150-180字。
+
 ## 眼瞎单词  
 
 temper**a**ture
