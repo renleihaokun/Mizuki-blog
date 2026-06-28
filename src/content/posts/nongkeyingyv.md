@@ -51,83 +51,83 @@ temper**a**ture
 
 ## 要记得农科术语
 
-| 英文 | 音标 | 词性 | 中文 | 关联记忆 |
-| --- | --- | --- | --- | --- |
-| milpa | /ˈmɪlpə/ | n. | 休耕还田法 | 西班牙语"milpa"，中美洲传统轮作体系，与fallow同族概念 |
-| intercrop | /ˌɪntəˈkrɒp/ | vt. | 间作 | inter(之间) + crop(作物) → 作物之间种 → 间作 |
-| slash-and-burn | /ˌslæʃ ən ˈbɜːn/ | a. | 刀耕火种的 | slash(砍) + burn(烧) → 砍了再烧 → 刀耕火种 |
-| polyculture | /ˈpɒlɪˌkʌltʃə/ | n. | 混合栽培 | poly(多) + culture(栽培) → 多种混种，与monoculture相反 |
-| gourd | /ɡʊəd/ | n. | 葫芦 | 谐音"古的"，葫芦是古老的作物 |
-| monoculture | /ˈmɒnəˌkʌltʃə/ | n. | 单种栽培 | mono(单) + culture(栽培) → 只种一种，与polyculture相反 |
-| agrochemical | /ˌæɡrəʊˈkemɪkl/ | n. | 农用化学品 | agro(农业) + chemical(化学品) → 农药化肥等 |
-| plantation | /plɑːnˈteɪʃn/ | n. | （热带）种植园（场） | plant(种植) + -ation → 种植的地方 → 种植园 |
-| henequen | /ˈhenɪkɪn/ | n. | 灰叶剑麻 | 音译"黑内肯"，原产墨西哥的纤维植物 |
-| agave | /əˈɡeɪvɪ/ | n. | 龙舌兰 | 音译"阿嘎维"，与龙舌兰酒(tequila)同源 |
-| pitaya | /pɪˈtaɪə/ | n. | 火龙果 | 音译"皮塔亚"，来自西班牙语，外形象火 |
-| cactus | /ˈkæktəs/ | n. | 仙人掌 | 仙人掌科植物，多肉多刺 |
-| fallow | /ˈfæləʊ/ | a. | （土地）休耕的 | fall(落下) → 让土地"躺平"休息 → 休耕 |
-| secondary vegetation | /ˌsedʒəˈveɪʃn/ | n. | 次生植被 | secondary(次生的) + vegetation(植被) → 原生植被被破坏后自然恢复的 |
-| domesticated | /dəˈmestɪkeɪtɪd/ | a. | 驯化的 | domestic(家养的) + -ate → 从野生变家养 → 驯化的 |
-| germplasm | /ˈdʒɜːmplæzm/ | n. | 种质 | germ(胚) + plasm(形成) → 胚胎形成的东西 → 种质/遗传物质 |
-| viable | /ˈvaɪəbl/ | a. | 能生长发育的 | via(路) + -able(能) → 有路可走 → 可行的/能活的 |
-| orchard | /ˈɔːtʃəd/ | n. | 果园 | orch(古英语"花园") + -ard → 果树成片的园子 |
-| marginal | /ˈmɑːdʒɪn(ə)l/ | a. | （土地）贫瘠的 | margin(边缘) + -al → 边缘地带的 → 贫瘠的 |
-| agroforestry | /ˌæɡrəʊˈfɒrɪstri/ | n. | 农林间作 | agro(农业) + forestry(林业) → 农业+林业混合经营 |
-| co-op | /ˈkəʊ ˌɒp/ | n. | 合作社 | cooperative的缩写，co(共同) + op(操作) → 共同经营 |
-| ecological | /ˌiːkəˈlɒdʒɪkl/ | a. | 生态的 | eco(生态) + logical(学科的) → 生态学的 |
-| livestock | /ˈlaɪvstɒk/ | n. | 家畜 | live(活的) + stock(库存) → 活的库存 → 家畜 |
-| overgrazing | /ˌəʊvəˈɡreɪzɪŋ/ | n. | 过度放牧 | over(过度) + grazing(放牧) → 牲畜吃草过多 |
-| compaction | /kəmˈpækʃn/ | n. | 压实 | com(加强) + pact(压紧) + -ion → 压紧压实 |
-| erosion | /ɪˈrəʊʒn/ | n. | 侵蚀 | e(出) + ros(咬) + -ion → 被咬掉 → 侵蚀 |
-| subsistence | /səbˈsɪstəns/ | n. | 自给自足的农业 | sub(下) + sist(站) + -ence → 站在下面勉强维持 → 自给自足 |
-| cooperative | /kəʊˈɒp(ə)rətɪv/ | n. | 合作社 | co(共同) + oper(操作) + -ative → 共同合作的组织 |
-| hog | /hɒɡ/ | n. | 大猪 | 与pig同义，hog更口语化，强调体型大 |
-| silvopasture | /ˈsɪlvəˌpɑːstʃə/ | n. | 林牧复合 | silvo(森林) + pasture(牧场) → 林地+放牧结合 |
-| collectivize | /kəˈlektɪvaɪz/ | vt. | 使集体化 | collective(集体的) + -ize(使…化) → 变成集体所有 |
-| food sovereignty | /ˈsɒvrənti/ | n. | 食物主权 | food(食物) + sovereignty(主权) → 国家对食物的自主权 |
-| cultivar | /ˈkʌltɪvɑː/ | n. | 栽培品种 | cultiv(栽培) + -ar → 栽培出的品种 |
-| spawn | /spɔːn/ | n. | （尤指伞菌的）菌种体 | 与"产卵"同词，菌类繁殖→菌种体 |
-| maize | /meɪz/ | n. | 玉米 | 西班牙语maíz，美洲原产作物 |
-| homogeneity | /ˌhəʊməʊdʒəˈniːəti/ | n. | 同质 | homo(相同) + gene(种类) + -ity → 相同种类 → 同质 |
-| indigenous | /ɪnˈdɪdʒənəs/ | a. | 土生土长的 | in(在内) + dig(生) + -enous → 在本地生的 → 土著的 |
-| underutilized | /ˌʌndəˈjuːtɪlaɪzd/ | a. | 未充分利用的 | under(不足) + utilized(利用的) → 没被充分使用的 |
-| domestication | /dəˌmestrɪˈkeɪʃn/ | n. | 驯化 | domestic(家养的) + -ation → 野生变家养的过程 |
-| niche | /nɪtʃ/ | n. | 生态位 | 原义"壁龛"，引申为生态中占据的特定位置 |
-| natural selection | — | n. | 自然选择 | Darwin核心概念：适者生存，不适者被淘汰 |
-| green revolution | — | n. | 绿色革命 | 20世纪中期高产作物品种推广引发的农业变革 |
-| agronomic | /ˌæɡrəˈnɒmɪk/ | a. | 农业经济学的 | agro(农业) + nomic(经济的) → 农业经济的 |
-| teff | /tef/ | n. | 埃塞俄比亚画眉草 | 音译"特夫"，埃塞俄比亚主粮，做injera饼 |
-| fonio | /ˈfəʊnɪəʊ/ | n. | 福尼奥米 | 音译"佛尼奥"，西非古老谷物 |
-| moringa | /məˈrɪŋɡə/ | n. | 辣木 | 音译"莫琳嘎"，营养丰富的热带树种 |
-| amaranth | /ˈæmərænθ/ | n. | 苋属植物 | a(不) + maranth(凋谢) → 不凋谢的花 → 苋菜 |
-| micronutrient | /ˌmaɪkrəʊˈnjuːtrɪənt/ | n. | 微量营养元素 | micro(微小) + nutrient(营养素) → 量少但必需的元素 |
-| pick-your-own | /ˌpɪk jə ˈrəʊn/ | a. | 自行采摘的 | pick(采摘) + your own(自己的) → 顾客自己摘水果 |
-| grocery | /ˈɡrəʊsəri/ | a. | 食品杂货的 | grocer(杂货商) + -y → 食品杂货店的 |
-| plum | /plʌm/ | n. | 李子 | 与plumb(铅锤)同源，果实圆如铅锤 |
-| ripen | /ˈraɪpən/ | v. | （使）成熟 | ripe(成熟) + -en(使…) → 使变熟 → 成熟 |
-| cannery | /ˈkænəri/ | n. | 罐头食品厂 | can(罐头) + -ery(场所) → 制作罐头的地方 |
-| horticulturalist | /ˌhɔːtɪˈkʌltʃərəlɪst/ | n. | 园艺（学）家 | horti(花园) + cultural(培育) + -ist(人) → 园艺专家 |
-| entomologist | /ˌentəˈmɒlədʒɪst/ | n. | 昆虫学家 | entomo(昆虫) + log(学科) + -ist → 研究昆虫的人 |
-| farmhouse | /ˈfɑːmhaʊs/ | n. | 农场住宅 | farm(农场) + house(房子) → 农场主住的房子 |
-| calcium | /ˈkælsiəm/ | n. | 钙 | 拉丁语calx(石灰)，骨骼和植物细胞壁必需 |
-| phosphorus | /ˈfɒsfərəs/ | n. | 磷 | phosphor(光携带者) + -us → 能发光的元素 |
-| riboflavin | /ˌraɪbəʊˈfleɪvɪn/ | n. | 维生素B2 | ribo(核糖) + flavin(黄色) → 黄色核糖维生素 |
-| asparagus | /əˈspærəɡəs/ | n. | 芦笋 | 拉丁语asparagus，谐音"阿斯帕拉够斯" |
-| metabolism | /məˈtæbəlɪz(ə)m/ | n. | 新陈代谢 | meta(变化) + bol(投掷) + -ism → 物质不断变化转换 |
-| manganese | /ˈmæŋɡəˌniːz/ | n. | 锰 | 来自拉丁语magnes(磁石)，与magnet同源 |
-| zinc | /zɪŋk/ | n. | 锌 | 德语Zinke(尖齿)，因结晶形状得名 |
-| magnesium | /mæɡˈniːziəm/ | n. | 镁 | 来自希腊地名Magnesia，叶绿素核心元素 |
-| yam | /jæm/ | n. | 山药 | 西非语言原词"nyami"(吃)，甘薯类作物 |
-| photosynthetic | /ˌfəʊtəʊsɪnˈθetɪk/ | a. | 光合作用的 | photo(光) + synthetic(合成) → 用光合成有机物 |
-| legume | /ˈleɡjuːm/ | n. | 豆科植物 | 拉丁语legumen，豆荚类植物总称 |
-| carbon-based compound | — | n. | 碳基化合物 | carbon(碳) + based(基于) → 以碳为骨架的有机物 |
-| stoma | /ˈstəʊmə/ | n. | 气孔 | 希腊语"口"，叶片上的小孔，pl. stomata |
-| transpirational | /ˌtrænspɪˈreɪʃn(ə)l/ | a. | 与蒸腾作用有关的 | trans(穿过) + pir(呼吸) + -ation → 水分从叶片散失 |
-| soil organic matter | — | n. | 土壤有机质 | soil(土壤) + organic(有机的) + matter(物质) → 腐殖质等 |
-| phytochemical | /ˌfaɪtəʊˈkemɪkl/ | n. | 植物化学物质 | phyto(植物) + chemical(化学物质) → 植物产生的次生代谢物 |
-| clover | /ˈkləʊvə/ | n. | 三叶草 | 三叶草是豆科固氮植物，牧草常见品种 |
-| rye grass | — | n. | 黑麦草 | rye(黑麦) + grass(草) → 像黑麦的牧草 |
-| vetch | /vetʃ/ | n. | 野豌豆 | 与fetch同音，豆科绿肥植物 |
+| 英文 | 音标/词性 | 中文 | 关联记忆 |
+| --- | --- | --- | --- |
+| milpa | /ˈmɪlpə/ n. | 休耕还田法 | 西班牙语"milpa"，中美洲传统轮作体系，与fallow同族概念 |
+| intercrop | /ˌɪntəˈkrɒp/ vt. | 间作 | inter(之间) + crop(作物) → 作物之间种 → 间作 |
+| slash-and-burn | /ˌslæʃ ən ˈbɜːn/ a. | 刀耕火种的 | slash(砍) + burn(烧) → 砍了再烧 → 刀耕火种 |
+| polyculture | /ˈpɒlɪˌkʌltʃə/ n. | 混合栽培 | poly(多) + culture(栽培) → 多种混种，与monoculture相反 |
+| gourd | /ɡʊəd/ n. | 葫芦 | 谐音"古的"，葫芦是古老的作物 |
+| monoculture | /ˈmɒnəˌkʌltʃə/ n. | 单种栽培 | mono(单) + culture(栽培) → 只种一种，与polyculture相反 |
+| agrochemical | /ˌæɡrəʊˈkemɪkl/ n. | 农用化学品 | agro(农业) + chemical(化学品) → 农药化肥等 |
+| plantation | /plɑːnˈteɪʃn/ n. | （热带）种植园（场） | plant(种植) + -ation → 种植的地方 → 种植园 |
+| henequen | /ˈhenɪkɪn/ n. | 灰叶剑麻 | 音译"黑内肯"，原产墨西哥的纤维植物 |
+| agave | /əˈɡeɪvɪ/ n. | 龙舌兰 | 音译"阿嘎维"，与龙舌兰酒(tequila)同源 |
+| pitaya | /pɪˈtaɪə/ n. | 火龙果 | 音译"皮塔亚"，来自西班牙语，外形象火 |
+| cactus | /ˈkæktəs/ n. | 仙人掌 | 仙人掌科植物，多肉多刺 |
+| fallow | /ˈfæləʊ/ a. | （土地）休耕的 | fall(落下) → 让土地"躺平"休息 → 休耕 |
+| secondary vegetation | /ˌsedʒəˈveɪʃn/ n. | 次生植被 | secondary(次生的) + vegetation(植被) → 原生植被被破坏后自然恢复的 |
+| domesticated | /dəˈmestɪkeɪtɪd/ a. | 驯化的 | domestic(家养的) + -ate → 从野生变家养 → 驯化的 |
+| germplasm | /ˈdʒɜːmplæzm/ n. | 种质 | germ(胚) + plasm(形成) → 胚胎形成的东西 → 种质/遗传物质 |
+| viable | /ˈvaɪəbl/ a. | 能生长发育的 | via(路) + -able(能) → 有路可走 → 可行的/能活的 |
+| orchard | /ˈɔːtʃəd/ n. | 果园 | orch(古英语"花园") + -ard → 果树成片的园子 |
+| marginal | /ˈmɑːdʒɪn(ə)l/ a. | （土地）贫瘠的 | margin(边缘) + -al → 边缘地带的 → 贫瘠的 |
+| agroforestry | /ˌæɡrəʊˈfɒrɪstri/ n. | 农林间作 | agro(农业) + forestry(林业) → 农业+林业混合经营 |
+| co-op | /ˈkəʊ ˌɒp/ n. | 合作社 | cooperative的缩写，co(共同) + op(操作) → 共同经营 |
+| ecological | /ˌiːkəˈlɒdʒɪkl/ a. | 生态的 | eco(生态) + logical(学科的) → 生态学的 |
+| livestock | /ˈlaɪvstɒk/ n. | 家畜 | live(活的) + stock(库存) → 活的库存 → 家畜 |
+| overgrazing | /ˌəʊvəˈɡreɪzɪŋ/ n. | 过度放牧 | over(过度) + grazing(放牧) → 牲畜吃草过多 |
+| compaction | /kəmˈpækʃn/ n. | 压实 | com(加强) + pact(压紧) + -ion → 压紧压实 |
+| erosion | /ɪˈrəʊʒn/ n. | 侵蚀 | e(出) + ros(咬) + -ion → 被咬掉 → 侵蚀 |
+| subsistence | /səbˈsɪstəns/ n. | 自给自足的农业 | sub(下) + sist(站) + -ence → 站在下面勉强维持 → 自给自足 |
+| cooperative | /kəʊˈɒp(ə)rətɪv/ n. | 合作社 | co(共同) + oper(操作) + -ative → 共同合作的组织 |
+| hog | /hɒɡ/ n. | 大猪 | 与pig同义，hog更口语化，强调体型大 |
+| silvopasture | /ˈsɪlvəˌpɑːstʃə/ n. | 林牧复合 | silvo(森林) + pasture(牧场) → 林地+放牧结合 |
+| collectivize | /kəˈlektɪvaɪz/ vt. | 使集体化 | collective(集体的) + -ize(使…化) → 变成集体所有 |
+| food sovereignty | /ˈsɒvrənti/ n. | 食物主权 | food(食物) + sovereignty(主权) → 国家对食物的自主权 |
+| cultivar | /ˈkʌltɪvɑː/ n. | 栽培品种 | cultiv(栽培) + -ar → 栽培出的品种 |
+| spawn | /spɔːn/ n. | （尤指伞菌的）菌种体 | 与"产卵"同词，菌类繁殖→菌种体 |
+| maize | /meɪz/ n. | 玉米 | 西班牙语maíz，美洲原产作物 |
+| homogeneity | /ˌhəʊməʊdʒəˈniːəti/ n. | 同质 | homo(相同) + gene(种类) + -ity → 相同种类 → 同质 |
+| indigenous | /ɪnˈdɪdʒənəs/ a. | 土生土长的 | in(在内) + dig(生) + -enous → 在本地生的 → 土著的 |
+| underutilized | /ˌʌndəˈjuːtɪlaɪzd/ a. | 未充分利用的 | under(不足) + utilized(利用的) → 没被充分使用的 |
+| domestication | /dəˌmestrɪˈkeɪʃn/ n. | 驯化 | domestic(家养的) + -ation → 野生变家养的过程 |
+| niche | /nɪtʃ/ n. | 生态位 | 原义"壁龛"，引申为生态中占据的特定位置 |
+| natural selection | — n. | 自然选择 | Darwin核心概念：适者生存，不适者被淘汰 |
+| green revolution | — n. | 绿色革命 | 20世纪中期高产作物品种推广引发的农业变革 |
+| agronomic | /ˌæɡrəˈnɒmɪk/ a. | 农业经济学的 | agro(农业) + nomic(经济的) → 农业经济的 |
+| teff | /tef/ n. | 埃塞俄比亚画眉草 | 音译"特夫"，埃塞俄比亚主粮，做injera饼 |
+| fonio | /ˈfəʊnɪəʊ/ n. | 福尼奥米 | 音译"佛尼奥"，西非古老谷物 |
+| moringa | /məˈrɪŋɡə/ n. | 辣木 | 音译"莫琳嘎"，营养丰富的热带树种 |
+| amaranth | /ˈæmərænθ/ n. | 苋属植物 | a(不) + maranth(凋谢) → 不凋谢的花 → 苋菜 |
+| micronutrient | /ˌmaɪkrəʊˈnjuːtrɪənt/ n. | 微量营养元素 | micro(微小) + nutrient(营养素) → 量少但必需的元素 |
+| pick-your-own | /ˌpɪk jə ˈrəʊn/ a. | 自行采摘的 | pick(采摘) + your own(自己的) → 顾客自己摘水果 |
+| grocery | /ˈɡrəʊsəri/ a. | 食品杂货的 | grocer(杂货商) + -y → 食品杂货店的 |
+| plum | /plʌm/ n. | 李子 | 与plumb(铅锤)同源，果实圆如铅锤 |
+| ripen | /ˈraɪpən/ v. | （使）成熟 | ripe(成熟) + -en(使…) → 使变熟 → 成熟 |
+| cannery | /ˈkænəri/ n. | 罐头食品厂 | can(罐头) + -ery(场所) → 制作罐头的地方 |
+| horticulturalist | /ˌhɔːtɪˈkʌltʃərəlɪst/ n. | 园艺（学）家 | horti(花园) + cultural(培育) + -ist(人) → 园艺专家 |
+| entomologist | /ˌentəˈmɒlədʒɪst/ n. | 昆虫学家 | entomo(昆虫) + log(学科) + -ist → 研究昆虫的人 |
+| farmhouse | /ˈfɑːmhaʊs/ n. | 农场住宅 | farm(农场) + house(房子) → 农场主住的房子 |
+| calcium | /ˈkælsiəm/ n. | 钙 | 拉丁语calx(石灰)，骨骼和植物细胞壁必需 |
+| phosphorus | /ˈfɒsfərəs/ n. | 磷 | phosphor(光携带者) + -us → 能发光的元素 |
+| riboflavin | /ˌraɪbəʊˈfleɪvɪn/ n. | 维生素B2 | ribo(核糖) + flavin(黄色) → 黄色核糖维生素 |
+| asparagus | /əˈspærəɡəs/ n. | 芦笋 | 拉丁语asparagus，谐音"阿斯帕拉够斯" |
+| metabolism | /məˈtæbəlɪz(ə)m/ n. | 新陈代谢 | meta(变化) + bol(投掷) + -ism → 物质不断变化转换 |
+| manganese | /ˈmæŋɡəˌniːz/ n. | 锰 | 来自拉丁语magnes(磁石)，与magnet同源 |
+| zinc | /zɪŋk/ n. | 锌 | 德语Zinke(尖齿)，因结晶形状得名 |
+| magnesium | /mæɡˈniːziəm/ n. | 镁 | 来自希腊地名Magnesia，叶绿素核心元素 |
+| yam | /jæm/ n. | 山药 | 西非语言原词"nyami"(吃)，甘薯类作物 |
+| photosynthetic | /ˌfəʊtəʊsɪnˈθetɪk/ a. | 光合作用的 | photo(光) + synthetic(合成) → 用光合成有机物 |
+| legume | /ˈleɡjuːm/ n. | 豆科植物 | 拉丁语legumen，豆荚类植物总称 |
+| carbon-based compound | — n. | 碳基化合物 | carbon(碳) + based(基于) → 以碳为骨架的有机物 |
+| stoma | /ˈstəʊmə/ n. | 气孔 | 希腊语"口"，叶片上的小孔，pl. stomata |
+| transpirational | /ˌtrænspɪˈreɪʃn(ə)l/ a. | 与蒸腾作用有关的 | trans(穿过) + pir(呼吸) + -ation → 水分从叶片散失 |
+| soil organic matter | — n. | 土壤有机质 | soil(土壤) + organic(有机的) + matter(物质) → 腐殖质等 |
+| phytochemical | /ˌfaɪtəʊˈkemɪkl/ n. | 植物化学物质 | phyto(植物) + chemical(化学物质) → 植物产生的次生代谢物 |
+| clover | /ˈkləʊvə/ n. | 三叶草 | 三叶草是豆科固氮植物，牧草常见品种 |
+| rye grass | — n. | 黑麦草 | rye(黑麦) + grass(草) → 像黑麦的牧草 |
+| vetch | /vetʃ/ n. | 野豌豆 | 与fetch同音，豆科绿肥植物 |
 
 ## 书后单词表
 
