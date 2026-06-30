@@ -1,6 +1,6 @@
 ---
 title: 马上考有机，开始预习
-published: 2026-05-12
+published: 2026-06-30
 pinned: false
 description: 这是我的笔记
 tags: [note]
@@ -9,7 +9,7 @@ licenseName: "CC BY 4.0"
 author: renleihaokun
 draft: false
 date: 2026-05-12
-pubDate: 2026-05-12
+pubDate: 2026-06-30
 permalink: "youjihuaxue"
 image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 ---
@@ -44,6 +44,11 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 带2B铅笔涂答题卡
 * 字不要太大
 * **不要空题**
+
+## 机理题其中选二  
+
+![7f21dad28569e478e495149a5ac7f9bb.webp](https://imgbed.haokun.me/file/化/1782809093767_7f21dad28569e478e495149a5ac7f9bb.webp)
+![14d8104c201c9ce749fc2f96328c6e0c.webp](https://imgbed.haokun.me/file/化/1782809134266_14d8104c201c9ce749fc2f96328c6e0c.webp)
 
 ## 容易遗忘或不知道  
 
@@ -151,7 +156,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   ![image.webp](https://imgbed.haokun.me/file/化/1782800923031_image.webp)![image.webp](https://imgbed.haokun.me/file/化/1782800996047_image.webp)  
 * 呋喃和吡咯有明显有共二烯烃的性质：
   ![image.webp](https://imgbed.haokun.me/file/化/1782801595049_image.webp)  
-* 稳定性$\neq$芳香性，苯环的芳香性最强(单环中)   
+* 稳定性$\neq$芳香性，苯环的芳香性最强(单环中)
 * 标准的费歇尔投影式交点一定是手性碳原子  
 * 羟基/氨基在右D，在左L，记得氧化程度高的基团放上面  
 * 所有手性碳原子的R/S都相反才能成为手性异构体，只有一个C不一样叫差向异构体  
@@ -189,16 +194,100 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 杂环：$\mathrm{NH_2}$和$\mathrm{OH}$不做母体  
   ![image.webp](https://imgbed.haokun.me/file/化/1782473337925_image.webp)
 
-### 附
+## 作业中
+
+### 命名题
 
 ![image.webp](https://imgbed.haokun.me/file/1778567781035_image.webp)  
 ![image.webp](https://imgbed.haokun.me/file/1778567945338_image.webp)  
 ![image.webp](https://imgbed.haokun.me/file/化/1778569117386_image.webp)  
 ![image.webp](https://imgbed.haokun.me/file/化/1778570092453_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782822966779_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782823789712_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782823950328_image.webp)
+
+### 反应题
+
+![image.webp](https://imgbed.haokun.me/file/1778568029767_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/1778568198252_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1778569139010_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1778570157568_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782822687748_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782822726971_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782823023963_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782823831211_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782823974728_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782824080794_image.webp)
+
+### 合成题
+
+![image.webp](https://imgbed.haokun.me/file/化/1778569630723_image.webp)  
+![image.webp](https://imgbed.haokun.me/file/化/1782823181550_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782824056958_image.webp)
+
+### 鉴别题
+
+![image.webp](https://imgbed.haokun.me/file/化/1782823258456_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782823681439_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782824039902_image.webp)
+![image.webp](https://imgbed.haokun.me/file/化/1782824101388_image.webp)
 
 ## 中英文对照
 
 > 捏麻的不是化学课吗怎么还要学英语  
+
+### 作业中的中英互译
+
+| English | 中文 |
+| --- | --- |
+| aldehyde | 醛 |
+| carbonyl group | 羰基 |
+| ketone | 酮 |
+| hydroxyl group | 羟基 |
+| nucleophilic addition | 亲核加成 |
+| imine | 亚胺 |
+| Aldol condensation | 羟醛缩合 |
+| cyano group | 氰基 |
+| ethanol | 乙醇 |
+| ether | 醚 |
+| oxidate | 氧化（动词形式） |
+| bromide | 溴代物 |
+| primary alcohol | 伯醇 |
+| catalyst | 催化剂 |
+| phenol | 苯酚 |
+| solvent | 溶剂 |
+| nucleophile | 亲核试剂 |
+| Grignard reagent | 格利雅试剂 |
+| electrophile | 亲电试剂 |
+| Walden inversion | 瓦尔登翻转 |
+| halohydrocarbon | 卤代烃 |
+| elimination reaction | 消除反应 |
+| benzyl chloride | 苄氯 |
+| chiral | 手性的 |
+| heterocycle | 杂环 |
+| pyridine | 吡啶 |
+| glucose | 葡萄糖 |
+| furan | 呋喃 |
+| nicotine | 烟碱 |
+| carbohydrate | 碳水化合物 |
+| pyrrole | 吡咯 |
+| quinone | 醌 |
+| periodic acid | 高碘酸 |
+| thiophene | 噻吩 |
+| indole | 吲哚 |
+| enantiomer | 对映异构体 |
+| covalent bond | 共价键 |
+| electron pair | 电子对 |
+| carbon dioxide | 二氧化碳 |
+| organic compounds | 有机物 |
+| dipole moment | 偶极矩 |
+| Lewis base | 路易斯碱 |
+| alkane | 烷烃 |
+| methane | 甲烷 |
+| ethane | 乙烷 |
+| cyclohexane | 环己烷 |
+| tertiary carbon | 叔碳 |
+| isomer | 异构体 |
 
 ### 高频短语中英对照
 
@@ -220,7 +309,6 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | cis isomer | 顺式异构体 |
 | trans isomer | 反式异构体 |
 | substitution reaction | 取代反应 |
-| elimination reaction | 消除反应 |
 | addition reaction | 加成反应 |
 | rearrangement reaction | 重排反应 |
 | proton donor | 质子供体 |
@@ -239,12 +327,39 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | benzene ring | 苯环 |
 | chiral carbon | 手性碳 |
 | functional group | 官能团 |
-| nucleophilic addition | 亲核加成 |
-| Aldol condensation | 羟醛缩合 |
-| carbonyl group | 羰基 |
-| hydroxyl group | 羟基 |
-| cyano group | 氰基 |
-| primary alcohol | 伯醇 |
+| hydrogen bond | 氢键 |
+| Lewis acid | 路易斯酸 |
+| esterification | 酯化反应 |
+| carbocation | 碳正离子 |
+| Zaitsev rule | 札依采夫规则 |
+| Lucas reagent | 卢卡斯试剂 |
+| Tollens' reagent | 土伦试剂 |
+| Fehling's reagent | 费林试剂 |
+| Benedict's reagent | 本尼迪特试剂 |
+| Seliwanoff reaction | 西列瓦诺夫反应 |
+| Molisch reaction | 莫利许反应 |
+| nitration | 硝化反应 |
+| sulfonation | 磺化反应 |
+| alkylation | 烷基化反应 |
+| acylation | 酰基化反应 |
+| electron-withdrawing group | 吸电子基 |
+| electron-donating group | 给电子基 |
+| conjugated system | 共轭体系 |
+| nitro-compound | 硝基化合物 |
+| diazonium | 重氮盐 |
+| azo-compound | 偶氮化合物 |
+| cyclic ether | 环醚 |
+| nucleic acid | 核酸 |
+| nucleoside | 核苷 |
+| nucleotide | 核苷酸 |
+| peptide linkage | 肽键 |
+| Haworth projection | 哈沃斯透视式 |
+| disaccharide | 二糖 |
+| polysaccharide | 多糖 |
+| monosaccharide | 单糖 |
+| reducing sugar | 还原糖 |
+| diazotization | 重氮化反应 |
+| coupling reaction | 偶联反应 |
 
 ---
 
@@ -261,13 +376,11 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | bond | 键 |
 | carbon | 碳 |
 | hydrogen | 氢 |
-| alkane | 烷烃 |
 | alkene | 烯烃 |
 | alkyne | 炔烃 |
 | ring | 环 |
 | structure | 结构 |
 | molecule | 分子 |
-| isomer | 异构体 |
 | stable | 稳定的 |
 | reaction | 反应 |
 | substitution | 取代 |
@@ -284,36 +397,71 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | electron cloud | 电子云 |
 | planar | 平面的 |
 | cyclic | 环状的 |
-| chiral | 手性的 |
-| nucleophile | 亲核试剂 |
-| electrophile | 亲电试剂 |
 | radical | 自由基 |
 | reagent | 试剂 |
 | compound | 化合物 |
 | valence | 化合价 |
 | orbital | 轨道 |
-| ethanol | 乙醇 |
-| ether | 醚 |
-| oxidate | 氧化（动词形式） |
-| bromide | 溴代物 |
-| catalyst | 催化剂 |
-| phenol | 苯酚 |
-| solvent | 溶剂 |
-| aldehyde | 醛 |
-| ketone | 酮 |
-| imine | 亚胺 |
-| heterocycle | 杂环 |
-| pyridine | 吡啶 |
-| glucose | 葡萄糖 |
-| furan | 呋喃 |
-| nicotine | 烟碱 |
-| carbohydrate | 碳水化合物 |
-| pyrrole | 吡咯 |
-| quinone | 醌 |
-| periodic acid | 高碘酸 |
-| thiophene | 噻吩 |
-| indole | 吲哚 |
-| enantiomer | 对映异构体 |
+| alcohol | 醇 |
+| carboxylic acid | 羧酸 |
+| ester | 酯 |
+| amide | 酰胺 |
+| amine | 胺 |
+| anhydride | 酸酐 |
+| acyl halide | 酰卤 |
+| thiol | 硫醇 |
+| sulfonic acid | 磺酸 |
+| heteroatom | 杂原子 |
+| imidazole | 咪唑 |
+| pyrimidine | 嘧啶 |
+| purine | 嘌呤 |
+| quinoline | 喹啉 |
+| furfural | 糠醛 |
+| nicotinic acid | 烟酸 |
+| protein | 蛋白质 |
+| amino acid | 氨基酸 |
+| peptide | 肽 |
+| zwitterion | 两性离子 |
+| isoelectric point | 等电点 |
+| starch | 淀粉 |
+| cellulose | 纤维素 |
+| maltose | 麦芽糖 |
+| lactose | 乳糖 |
+| uracil | 尿嘧啶 |
+| cytosine | 胞嘧啶 |
+| thymine | 胸腺嘧啶 |
+| adenine | 腺嘌呤 |
+| guanine | 鸟嘌呤 |
+| tautomerism | 互变异构 |
+| acetoacetic ester synthesis | 乙酰乙酸乙酯合成法 |
+| malonic ester synthesis | 丙二酸酯合成法 |
+| fructose | 果糖 |
+| sucrose | 蔗糖 |
+| aldose | 醛糖 |
+| ketose | 酮糖 |
+| meso | 内消旋 |
+
+---
+
+### 命名人名反应与试剂
+
+| English | 中文 |
+| --- | --- |
+| Friedel-Crafts reaction | 傅-克反应 |
+| Williamson reaction | 威廉姆孙反应 |
+| Clemmensen reduction | 克莱门森还原 |
+| Cannizzaro reaction | 康尼查罗反应 |
+| Diels-Alder reaction | 双烯合成（第尔斯-阿尔德反应） |
+| Hofmann degradation | 霍夫曼降解反应 |
+| Hinsberg reaction | 兴斯堡反应 |
+| Zaitsev rule | 札依采夫规则 |
+| Lucas reagent | 卢卡斯试剂 |
+| Tollens' reagent | 土伦试剂 |
+| Fehling's reagent | 费林试剂 |
+| Benedict's reagent | 本尼迪特试剂 |
+| Seliwanoff reaction | 西列瓦诺夫反应 |
+| Molisch reaction | 莫利许反应 |
+| Claisen condensation | 酯缩合反应（克莱森缩合） |
 
 ---
 
@@ -333,18 +481,6 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 12. resonance（共振）
 13. chiral（手性的）
 14. reagent（试剂）
-15. covalent bond（共价键）
-
-## 作业中的反应  
-
-![image.webp](https://imgbed.haokun.me/file/1778568029767_image.webp)  
-![image.webp](https://imgbed.haokun.me/file/1778568198252_image.webp)  
-![image.webp](https://imgbed.haokun.me/file/化/1778569139010_image.webp)  
-![image.webp](https://imgbed.haokun.me/file/化/1778570157568_image.webp)  
-
-## 作业中的合成题  
-
-![image.webp](https://imgbed.haokun.me/file/化/1778569630723_image.webp)  
 
 ## 关于旋光异构  
 
@@ -370,6 +506,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   * 括号内数字：**从大到小**。
 
 ##### 1.2 构象分析
+
 * **乙烷/丁烷**：纽曼投影式，交叉式稳定，重叠式不稳定。
 * **环己烷**：
   * **椅式构象**最稳定。
@@ -380,6 +517,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
     3. 多元取代时，$e$ 键取代基越多越稳定。
 
 ##### 1.3 化学性质
+
 * **自由基取代**：
   * 核心：自由基中间体。
   * 稳定性：叔自由基 > 仲自由基 > 伯自由基。
@@ -390,6 +528,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 #### 2. 烯烃与炔烃
 
 ##### 2.1 命名与异构
+
 * **烯炔命名**：含双键/叁键最长链，编号最低原则（若编号相同，烯优先于炔）。
 * **几何异构**：
   * **顺/反标记法**：相同基团在同侧为顺。
@@ -397,6 +536,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   * 优先级规则：原子序数大优先 ($I>Br>Cl>S>F>O>C>H$)。
 
 ##### 2.2 亲电加成反应 (重点)
+
 * **机理**：
   * 加溴：环正离子机理（溴鎓离子）。
   * 加 HX：碳正离子机理。
@@ -409,6 +549,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * **碳正离子重排**：反应过程中可能发生氢迁移或烷基迁移，生成更稳定的碳正离子。
 
 ##### 2.3 氧化反应
+
 | 试剂/条件 | 产物/现象 | 用途 |
 | :--- | :--- | :--- |
 | **冷稀碱性 KMnO₄** | 邻二醇 | 鉴别烯烃 |
@@ -416,6 +557,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | **臭氧氧化 (O₃/Zn)** | 醛或酮 | 推测烯烃结构 |
 
 ##### 2.4 炔烃特性
+
 * **末端炔酸性**：
   * 可与 $NaNH_2$ 反应。
   * **鉴别反应**：
@@ -423,6 +565,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
     * 亚铜氨溶液 $\to$ 红棕色沉淀 (炔铜)。
 
 #### 3. 共轭二烯烃
+
 * **加成反应**：1,2-加成 与 1,4-加成 (通常高温下 1,4-为主)。
 * **Diels-Alder 反应 (D-A 反应)**：
   * 顺式丁二烯 + 单烯 $\xrightarrow{光或热}$ 六元环。
@@ -435,6 +578,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 #### 1. 芳香烃
 
 ##### 1.1 苯环亲电取代 (SEAr)
+
 * **主要反应**：
   * 卤代 (需 Lewis 酸催化，如 $FeBr_3$)。
   * 硝化 (混酸：浓 $HNO_3$ + 浓 $H_2SO_4$)。
@@ -448,6 +592,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   * **卤代**：光照或高温下发生自由基取代 (侧链 $\alpha-H$)。
 
 ##### 1.2 定位规则 (考点)
+
 | 定位基类型 | 性质 | 常见基团 | 节点碳特征 |
 | :--- | :--- | :--- | :--- |
 | **邻对位定位基** | 活化 (卤素除外) | $-OH, -NH_2, -R, -X$ | 饱和或有孤对电子 |
@@ -459,6 +604,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   * 考虑空间效应。
 
 ##### 1.3 其他芳烃
+
 * **萘**：芳香性弱于苯，亲电取代主要发生在 $\alpha$ 位 (1 位)。
 * **休克尔规则 (Hückel Rule)**：
   * 平面单环共轭多烯。
@@ -467,6 +613,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 #### 2. 旋光异构
 
 ##### 2.1 基本概念
+
 * **手性**：分子与其镜像不能重叠。
 * **判据**：有对称面或对称中心的分子**无**旋光性。
 * **手性碳**：连接四个不同基团的碳原子 (用 * 标记)。
@@ -475,12 +622,14 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
   * 无手性碳也可能有手性 (如丙二烯型、联苯型)。
 
 ##### 2.2 异构体关系
+
 * **对映体**：镜像关系，物理性质相同，旋光方向相反。
 * **非对映体**：非镜像关系的立体异构体。
 * **外消旋体**：等量对映体混合，无旋光性，**混合物**。
 * **内消旋体**：分子内部有对称面，无旋光性，**纯净物**。
 
 ##### 2.3 表示与标记
+
 * **费歇尔投影式 (Fischer)**：
   * **横前竖后**规则。
   * 纸面旋转 180° 构型不变；旋转 90° 构型改变。
@@ -496,6 +645,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 #### 1. 卤代烃
 
 ##### 1.1 亲核取代反应 (SN)
+
 | 特征 | $S_N1$ (单分子) | $S_N2$ (双分子) |
 | :--- | :--- | :--- |
 | **机理** | 分步，生成碳正离子 | 一步，背面进攻 |
@@ -504,6 +654,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | **影响因素** | 极性溶剂利于 $S_N1$ | 强亲核试剂利于 $S_N2$ |
 
 ##### 1.2 消除反应 (E)
+
 * **规则**：**札依采夫规则 (Zaitsev)**，主要产物是双键碳上连有较多烃基的烯烃。
 * **影响因素**：
   * 升温利于消除 (活化能大)。
@@ -512,9 +663,11 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * **竞争**：叔卤代烷易消除，伯卤代烷易取代。
 
 ##### 1.3 与金属反应
+
 * **格利雅试剂 (Grignard)**：$RX + Mg \xrightarrow{无水乙醚} RMgX$。
 
 ##### 1.4 不饱和卤代烃活性 (鉴别考点)
+
 * **烯丙基型/苄基型**：活性最高 (生成稳定碳正离子)，易与 $AgNO_3$ 反应产生沉淀。
 * **乙烯型**：活性最低 (p-π 共轭稳定，C-X 键难断)，难发生取代。
 * **隔离型**：类似普通卤代烷。
@@ -522,9 +675,11 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 #### 2. 醇 (Alcohols)
 
 ##### 2.1 物理性质
+
 * 氢键导致沸点高、水溶性好。
 
 ##### 2.2 化学性质
+
 * **酸性/碱性**：弱酸性 (可与 Na 反应)，弱碱性 (生成𨦡盐)。
 * **羟基取代反应**：
   * **HX 取代**：活性 烯丙醇/苄醇 > 叔 > 仲 > 伯。叔醇易重排 ($S_N1$)。
@@ -538,12 +693,14 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * **成醚**：Williamson 合成法 (烷氧基负离子 + 卤代烃)。
 
 #### 3. 酚 (Phenols)
+
 * **结构**：p-π 共轭，C-O 键加强，O-H 键减弱。
 * **酸性**：苯酚 > 水 > 乙醇；吸电子基增强酸性，推电子基减弱酸性。**苦味酸酸性极强**。
 * **鉴别**：与 **$FeCl_3$ 显色** (苯酚呈蓝紫色)，鉴别酚羟基或烯醇结构。
 * **反应**：苯环易亲电取代 (邻对位)；易被氧化为醌。
 
 #### 4. 醚 (Ethers)
+
 * **性质**：化学性质稳定，路易斯碱 (可形成𨦡盐，格氏试剂优良溶剂)。
 * **反应**：
   * **醚键断裂**：加热下与浓 $HI$ 或 $HBr$ 反应。
@@ -555,6 +712,7 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 ### 核心考点速记 (Exam Tips)
 
 #### 1. 鉴别题汇总
+
 * **端炔**：银氨溶液/亚铜氨溶液 (沉淀)。
 * **烯烃/炔烃 vs 烷烃/芳烃**：溴水或 $KMnO_4$ (褪色)。
 * **醇的分类**：卢卡斯试剂 (浑浊速度)。
@@ -563,21 +721,28 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * **环丙烷 vs 环丙烯**：高锰酸钾溶液或溴的四氯化碳溶液 (环丙烯褪色，环丙烷不褪色)。
 
 #### 2. 反应机理判断
+
 * 看到 **过氧化物 + HBr** $\to$ 反马加成。
 * 看到 **叔卤代烷/叔醇** $\to$ 优先 $S_N1$/消除，注意碳正离子重排。
 * 看到 **伯卤代烷 + 强亲核试剂** $\to$ 优先 $S_N2$ (构型翻转)。
 * 看到 **傅 - 克烷基化** $\to$ 警惕碳正离子重排；**酰基化** $\to$ 无重排。
 
 #### 3. 命名与构型
+
 * 熟练运用 **Z/E** 标记烯烃。
 * 熟练运用 **R/S** 标记手性碳 (注意 Fischer 投影式的操作规则)。
 * 掌握 **螺环/桥环** 的编号规则。
 
 #### 4. 合成与转化
+
 * 增长碳链：卤代烃 + $CN^-$。
 * 制备醚：Williamson 合成法。
 * 制备格氏试剂：卤代烃 + Mg (无水乙醚)。
 * 烯烃结构推测：臭氧氧化产物反推。
+
+---
+---
+---
 
 ## 附：实验考试
 
