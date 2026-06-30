@@ -10,13 +10,33 @@ author: renleihaokun
 draft: false
 date: 2026-06-29
 pubDate: 2026-06-29
-permalink: "nongkeyingyv"
-image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
+permalink: "weijifen"
+image: "https://imgbed.haokun.me/file/化/1782799673221_image.webp"
 ---
 
 ## 坑  
 
 * 泰勒展开式一定是$a_nx^n$形式，不能只算相乘的一部分把另一部分乘进去，**除非另一部分乘进去也符合格式！**  
+
+## 记
+
+* **一阶线性微分方程** $y'+P(x)y=Q(x)$ 的通解：
+
+$$y = e^{-\int P(x)dx}\left[\int Q(x)e^{\int P(x)dx}dx + C\right]$$
+
+* **二阶常系数齐次方程** $y''+by'+c=0$，特征方程 $r^2+br+c=0$：
+
+$$r_1 \neq r_2: \quad y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$$
+
+$$r_1 = r_2: \quad y = (C_1 + C_2 x)e^{r_1 x}$$
+
+$$r = \alpha \pm \beta i: \quad y = e^{\alpha x}(C_1 \cos\beta x + C_2 \sin\beta x)$$
+
+* **极坐标↔直角坐标转换**：$x = r\cos\theta,\; y = r\sin\theta,\; r^2 = x^2+y^2$
+
+* **二重积分极坐标转换**：
+
+$$\iint_D f(x,y)\,dxdy = \iint_D f(r\cos\theta,\, r\sin\theta)\,\boldsymbol{r}\,dr\,d\theta$$  
 
 ## 充分性必要性
 

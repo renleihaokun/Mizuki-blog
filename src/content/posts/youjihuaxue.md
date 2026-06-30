@@ -146,11 +146,17 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 硫醇沸点比醇低，但他酸性强，还可以配位解重金属毒
 * 磺酸：强酸性且易溶于水，核心考点为阳离子交换树脂（水处理）和磺胺类药物（抗菌）。  
 * 含磷化合物：核心考点为ATP高能键（断裂放能），以及乙烯利（pH>4时水解释放乙烯用于催熟）。  
+* 杂环上的N是否有孤电子对环的电子云密度影响很大，电子越平均越不容易开环  
+* 杂环是这样共轭的，吡咯类似于苯胺；吡啶类似于硝基苯
+  ![image.webp](https://imgbed.haokun.me/file/化/1782800923031_image.webp)![image.webp](https://imgbed.haokun.me/file/化/1782800996047_image.webp)  
+* 呋喃和吡咯有明显有共二烯烃的性质：
+  ![image.webp](https://imgbed.haokun.me/file/化/1782801595049_image.webp)  
+* 稳定性$\neq$芳香性，苯环的芳香性最强(单环中)   
 * 标准的费歇尔投影式交点一定是手性碳原子  
 * 羟基/氨基在右D，在左L，记得氧化程度高的基团放上面  
 * 所有手性碳原子的R/S都相反才能成为手性异构体，只有一个C不一样叫差向异构体  
-* 稳定性$\neq$芳香性，苯环的芳香性最强(单环中)  
-* 杂环上的N是否有孤电子对环的电子云密度影响很大  
+* 天然糖苷都是左旋  
+* 天然氨基酸和蛋白质水解后氨基酸都是$\mathrm{α-}$氨基酸
 
 ## 命名  
 
@@ -166,8 +172,6 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 环烯烃：优先双键位次小，再考虑取代基位次  
 * 芳香烃：苄基==苯甲基，记得母体官能团优先级：$-\mathrm{COOH}$、$-\mathrm{SO_3H}$、$-\mathrm{CN}$、$-\mathrm{CHO}$、$\mathrm{C=O}$、$-\mathrm{OH}$、$-\mathrm{NH_2}$、$-\mathrm{R}$、$-\mathrm{X}$、$-\mathrm{NO_2}$  
 * 卤代烃：部分情况强制要求主碳链含有卤原子，即使不含卤原子有更长的（与标准命名不符，但是考试嘛，，，），记得卤素原子比烷基更优势  
-* 杂环：
-  ![image.webp](https://imgbed.haokun.me/file/化/1782473337925_image.webp)
 
 > 期中分割线  
 
@@ -181,8 +185,9 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 * 酯：某酸某(醇/酚)酯  
 * 酰胺：同酯，$\mathrm{N}$上有取代基时标出，如$\mathrm{N,N}$二甲基~
 * 环内酯：警惕取代基，羧基与链中羟基酯化成环时，你看到的取代基不是取代基！（5-己内酯的甲基取代基）  
-* 胺：$\mathrm{N}$所属的部分依旧是官能团，$\mathrm{N}$上有取代基时标出，如$\mathrm{N,N}$二甲基~  ‘
-
+* 胺：$\mathrm{N}$所属的部分依旧是官能团，$\mathrm{N}$上有取代基时标出，如$\mathrm{N,N}$二甲基~  
+* 杂环：$\mathrm{NH_2}$和$\mathrm{OH}$不做母体  
+  ![image.webp](https://imgbed.haokun.me/file/化/1782473337925_image.webp)
 
 ### 附
 
@@ -234,6 +239,12 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | benzene ring | 苯环 |
 | chiral carbon | 手性碳 |
 | functional group | 官能团 |
+| nucleophilic addition | 亲核加成 |
+| Aldol condensation | 羟醛缩合 |
+| carbonyl group | 羰基 |
+| hydroxyl group | 羟基 |
+| cyano group | 氰基 |
+| primary alcohol | 伯醇 |
 
 ---
 
@@ -281,6 +292,28 @@ image: "https://imgbed.haokun.me/file/1778557908153_image.webp"
 | compound | 化合物 |
 | valence | 化合价 |
 | orbital | 轨道 |
+| ethanol | 乙醇 |
+| ether | 醚 |
+| oxidate | 氧化（动词形式） |
+| bromide | 溴代物 |
+| catalyst | 催化剂 |
+| phenol | 苯酚 |
+| solvent | 溶剂 |
+| aldehyde | 醛 |
+| ketone | 酮 |
+| imine | 亚胺 |
+| heterocycle | 杂环 |
+| pyridine | 吡啶 |
+| glucose | 葡萄糖 |
+| furan | 呋喃 |
+| nicotine | 烟碱 |
+| carbohydrate | 碳水化合物 |
+| pyrrole | 吡咯 |
+| quinone | 醌 |
+| periodic acid | 高碘酸 |
+| thiophene | 噻吩 |
+| indole | 吲哚 |
+| enantiomer | 对映异构体 |
 
 ---
 
