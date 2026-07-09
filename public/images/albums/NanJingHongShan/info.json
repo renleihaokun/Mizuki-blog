@@ -1,0 +1,37 @@
+{
+	"mode": "external",
+	"title": "南京红山动物园",
+	"description": "我还会再来的",
+	"cover": "https://imgbed.haokun.me/file/blog/1783564547165_DSC09149_1.webp",
+	"location": "江苏·南京",
+	"tags": ["动物"],
+	"layout": "masonry",
+	"columns": 3,
+	"date": "2026-07-04",
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564544817_DSC09087_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564545782_DSC09358_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564547165_DSC09149_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564541731_DSC09242_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564543421_DSC09118_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564546381_DSC09321_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564550113_DSC09290_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/blog/1783564548493_DSC09386_1.webp"
+		}
+	]
+}
