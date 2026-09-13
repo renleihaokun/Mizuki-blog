@@ -1,0 +1,16 @@
+{
+	"mode": "external",
+	"title": "风光·杭州",
+	"description": "感觉不如苏州，上海后花园",
+	"cover": "https://imgbed.haokun.me/file/album/1789307576766_DSC09577_2.webp",
+	"location": "浙江·杭州",
+	"tags": ["风光"],
+	"layout": "masonry",
+	"columns": 3,
+	"date": "2026-08-14",
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/album/1789307576766_DSC09577_2.webp"
+		}
+	]
+}

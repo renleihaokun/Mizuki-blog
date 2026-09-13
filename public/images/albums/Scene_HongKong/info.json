@@ -1,0 +1,19 @@
+{
+	"mode": "external",
+	"title": "风光·香港",
+	"description": "金融中心快成金融废墟了",
+	"cover": "https://imgbed.haokun.me/file/album/1789307091573_DSC09854_1.webp",
+	"location": "中国·香港",
+	"tags": ["风光"],
+	"layout": "masonry",
+	"columns": 3,
+	"date": "2026-08-24",
+	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/album/1789307085363_DSC09760_1.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/album/1789307091573_DSC09854_1.webp"
+		}
+	]
+}
