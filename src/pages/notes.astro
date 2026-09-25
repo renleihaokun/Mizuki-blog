@@ -1,0 +1,152 @@
+---
+import { PostCard } from "@components/features/posts";
+import { PageHeader } from "@components/features/page-header";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { Icon } from "astro-icon/components";
+
+import { siteConfig } from "../config";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import { getSortedNotes } from "../utils/content-utils";
+import { url } from "../utils/url-utils";
+
+if (!siteConfig.featurePages.notes) {
+	return Astro.redirect("/404/");
+}
+
+// 笔记的判定依据是 frontmatter 的 category: Note（见 utils/content-utils.ts）
+// 这些文章不会出现在首页、归档、RSS/Atom、侧栏统计与站内搜索里，只在这里聚合
+const notes = await getSortedNotes();
+
+const title = i18n(I18nKey.notes);
+const subtitle = i18n(I18nKey.notesSubtitle);
+const notesLinkBase = url("/notes/");
+---
+
+<MainGridLayout title={title} description={subtitle}>
+	<script>
+		import("../scripts/right-sidebar-layout.js");
+	</script>
+
+	<div
+		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative"
+	>
+		<div class="card-base z-10 relative w-full px-6 sm:px-9 py-6">
+			<div class="flex items-start justify-between gap-4">
+				<PageHeader title={title} subtitle={subtitle} class="mb-0" />
+				<div class="shrink-0 text-center pt-2">
+					<span
+						class="block text-2xl sm:text-3xl font-bold text-[var(--primary)]"
+					>
+						{notes.length}
+					</span>
+					<span class="block text-xs text-black/50 dark:text-white/50">
+						{i18n(I18nKey.notesCount)}
+					</span>
+				</div>
+			</div>
+
+			<div class="mt-8">
+				<div id="notes-list" class="flex flex-col gap-4">
+					{
+						notes.map((entry) => (
+							<div
+								data-note-item
+								data-tags={(entry.data.tags || []).join(",")}
+								data-category={entry.data.category || ""}
+								class="onload-animation"
+							>
+								<PostCard entry={entry} linkBase={notesLinkBase} />
+							</div>
+						))
+					}
+				</div>
+
+				<div id="no-results" class="hidden text-center py-16">
+					<Icon
+						name="material-symbols:sticky-note-2"
+						class="text-6xl text-black/15 dark:text-white/15 mb-4"
+					/>
+					<p class="text-black/40 dark:text-white/40 text-lg">
+						{i18n(I18nKey.notesNoResults)}
+					</p>
+				</div>
+
+				{
+					notes.length === 0 && (
+						<div class="text-center py-16">
+							<Icon
+								name="material-symbols:sticky-note-2"
+								class="text-6xl text-black/15 dark:text-white/15 mb-4"
+							/>
+							<h3 class="text-lg font-medium text-black/90 dark:text-white/90 mb-2">
+								{i18n(I18nKey.notesEmpty)}
+							</h3>
+							<p class="text-black/60 dark:text-white/60">
+								{i18n(I18nKey.notesEmptyDesc)}
+							</p>
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// 笔记详情页的标签/分类链接会带 ?tag= / ?category= 跳到这里，
+		// 这里做一次轻量筛选，避免落到一个「全量列表」上让人摸不着头脑。
+		function applyNotesFilter() {
+			const params = new URLSearchParams(window.location.search);
+			const tag = (params.get("tag") || "").trim().toLowerCase();
+			const category = (params.get("category") || "")
+				.trim()
+				.toLowerCase();
+			if (!tag && !category) {
+				return;
+			}
+
+			const items = document.querySelectorAll("[data-note-item]");
+			let visibleCount = 0;
+
+			items.forEach((item) => {
+				const tags = (item.getAttribute("data-tags") || "")
+					.toLowerCase()
+					.split(",")
+					.map((t) => t.trim());
+				const itemCategory = (
+					item.getAttribute("data-category") || ""
+				)
+					.trim()
+					.toLowerCase();
+
+				const match = tag
+					? tags.includes(tag)
+					: itemCategory === category;
+
+				item.classList.toggle("filtered-out", !match);
+				if (match) {
+					visibleCount++;
+				}
+			});
+
+			const noResults = document.getElementById("no-results");
+			if (noResults) {
+				noResults.classList.toggle("hidden", visibleCount > 0);
+			}
+		}
+
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", applyNotesFilter);
+		} else {
+			applyNotesFilter();
+		}
+
+		document.addEventListener("astro:page-load", applyNotesFilter);
+	</script>
+</MainGridLayout>
+
+<style>
+	#notes-list > [data-note-item].filtered-out {
+		display: none;
+	}
+</style>

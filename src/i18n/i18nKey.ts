@@ -131,6 +131,14 @@ enum I18nKey {
 	albumsFilterAll = "albumsFilterAll",
 	albumsNoResults = "albumsNoResults",
 
+	// 笔记页面
+	notes = "notes",
+	notesSubtitle = "notesSubtitle",
+	notesCount = "notesCount",
+	notesEmpty = "notesEmpty",
+	notesEmptyDesc = "notesEmptyDesc",
+	notesNoResults = "notesNoResults",
+
 	// 设备页面
 	devices = "devices",
 	devicesSubtitle = "devicesSubtitle",

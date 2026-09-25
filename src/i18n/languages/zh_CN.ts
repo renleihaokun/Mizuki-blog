@@ -135,6 +135,14 @@ export const zh_CN: Translation = {
 	[Key.albumsFilterAll]: "全部",
 	[Key.albumsNoResults]: "没有匹配的相册",
 
+	// 笔记页面
+	[Key.notes]: "笔记",
+	[Key.notesSubtitle]: "课堂与课本的备忘，养料都在这儿",
+	[Key.notesCount]: "篇笔记",
+	[Key.notesEmpty]: "暂无笔记",
+	[Key.notesEmptyDesc]: "还没有写任何笔记，慢慢积累吧！",
+	[Key.notesNoResults]: "没有匹配的笔记",
+
 	// 设备页面
 	[Key.devices]: "我的设备",
 	[Key.devicesSubtitle]: "这里展示了我日常使用的各类设备",

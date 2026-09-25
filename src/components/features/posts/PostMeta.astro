@@ -27,6 +27,12 @@ interface Props {
 	showWordCount?: boolean;
 	showReadingTime?: boolean;
 	showEncrypted?: boolean;
+	/**
+	 * 标签/分类链接的目标前缀。
+	 * 不传时默认跳转到 /archive/ 做筛选；笔记页传入 "/notes/"，
+	 * 避免笔记的标签点进去落到已经排除笔记的归档里出现空白。
+	 */
+	linkBase?: string;
 }
 
 const {
@@ -45,7 +51,13 @@ const {
 	showWordCount = false,
 	showReadingTime = false,
 	showEncrypted = false,
+	linkBase,
 } = Astro.props;
+
+const resolveTagUrl = (tag: string) =>
+	linkBase
+		? `${linkBase}?tag=${encodeURIComponent(tag.trim())}`
+		: getTagUrl(tag);
 ---
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
@@ -60,7 +72,7 @@ const {
         </div>
     )}
 
-    <Category category={category} />
+    <Category category={category} linkBase={linkBase} />
 
     {showWordCount && words && (
         <WordCount words={words} />
@@ -79,7 +91,7 @@ const {
                 {(tags && tags.length > 0) && tags.map((tag, i) => (
                     <>
                         <div class:list={[{"hidden": i == 0}, "mx-1.5 text-[var(--meta-divider)] text-sm"]}>/</div>
-                        <a href={getTagUrl(tag)} aria-label={`View all posts with the ${tag.trim()} tag`}
+                        <a href={resolveTagUrl(tag)} aria-label={`View all posts with the ${tag.trim()} tag`}
                            class="link-lg transition text-50 text-sm font-medium
                                         hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
                             {tag.trim()}

@@ -7,16 +7,19 @@ import type { GetStaticPaths } from "astro";
 
 import { siteConfig } from "../config";
 import { PAGE_SIZE } from "../constants/constants";
-import { getSortedPosts } from "../utils/content-utils";
+import { getSortedPosts, getSortedPostsExcludingNotes } from "../utils/content-utils";
 import { initPostIdMap } from "../utils/permalink-utils";
 
 const showCategoryBar = siteConfig.postListLayout.categoryBar?.enable ?? false;
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const allBlogPosts = await getSortedPosts();
-	// 初始化文章 ID 映射（用于 permalink 功能）
-	initPostIdMap(allBlogPosts);
-	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+	// 全量列表（含笔记）仅用于初始化 permalink 的文章序号映射，
+	// 保证 %post_id% 占位符的编号不受过滤影响
+	initPostIdMap(await getSortedPosts());
+
+	// 首页只展示非笔记文章：笔记统一收进 /notes/，避免刷屏
+	const postsForHome = await getSortedPostsExcludingNotes();
+	return paginate(postsForHome, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 

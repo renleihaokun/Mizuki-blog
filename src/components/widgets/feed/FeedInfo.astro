@@ -2,7 +2,7 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts } from "@utils/content-utils";
+import { getSortedPostsExcludingNotes } from "@utils/content-utils";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
 import { Icon } from "astro-icon/components";
 
@@ -11,7 +11,10 @@ interface Props {
 }
 
 const { type } = Astro.props;
-const posts = (await getSortedPosts()).filter((post) => !post.data.encrypted);
+// 订阅页的「最新文章」排除笔记，与订阅源内容保持一致
+const posts = (await getSortedPostsExcludingNotes()).filter(
+	(post) => !post.data.encrypted,
+);
 const recentPosts = posts.slice(0, 6);
 
 const feedUrl = type === "rss" ? "rss.xml" : "atom.xml";

@@ -4,6 +4,22 @@ import { initPostIdMap } from "@utils/permalink-utils";
 import { getCategoryUrl, getPostUrl } from "@utils/url-utils";
 import { type CollectionEntry, getCollection } from "astro:content";
 
+/**
+ * 判断一篇文章是否为「笔记」
+ *
+ * 判定依据：frontmatter 的 category 为 "Note"（忽略大小写与首尾空格）。
+ * 笔记不参与首页、归档、RSS/Atom、侧栏最新文章与站内搜索等聚合入口，
+ * 只在 /notes/ 页面聚合展示；其详情页路由与 URL 保持原样不变。
+ *
+ * 注意：详情页路由（posts/[...slug].astro、[...permalink].astro）必须使用
+ * 未过滤的列表，否则笔记详情页会 404。
+ */
+export function isNotePost(post: {
+	data: { category?: string | null };
+}): boolean {
+	return (post.data.category ?? "").trim().toLowerCase() === "note";
+}
+
 // // Retrieve posts and sort them by publication date
 async function getRawSortedPosts() {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {
@@ -56,6 +72,30 @@ export async function getSortedPosts() {
 
 	return sorted;
 }
+
+/**
+ * 获取「非笔记」文章（首页、归档、RSS、侧栏最新文章等聚合入口使用）
+ *
+ * 刻意不写入 prevTitle/prevSlug/nextTitle/nextSlug —— 这些字段只由
+ * getSortedPosts() 基于全量列表统一写入，避免两条调用路径互相覆盖。
+ */
+export async function getSortedPostsExcludingNotes(): Promise<
+	CollectionEntry<"posts">[]
+> {
+	const sorted = await getRawSortedPosts();
+	return sorted.filter((post) => !isNotePost(post));
+}
+
+/**
+ * 获取「笔记」文章（/notes/ 页面使用），同样不写入 prev/next 字段
+ */
+export async function getSortedNotes(): Promise<
+	CollectionEntry<"posts">[]
+> {
+	const sorted = await getRawSortedPosts();
+	return sorted.filter((post) => isNotePost(post));
+}
+
 export interface PostForList {
 	id: string;
 	data: CollectionEntry<"posts">["data"];
@@ -64,15 +104,18 @@ export interface PostForList {
 export async function getSortedPostsList(): Promise<PostForList[]> {
 	const sortedFullPosts = await getRawSortedPosts();
 
-	// 初始化文章 ID 映射（用于 permalink 功能）
+	// 初始化文章 ID 映射（用于 permalink 功能）—— 必须基于全量文章，笔记也参与序号计算
 	initPostIdMap(sortedFullPosts);
 
 	// delete post.body，并预计算 URL
-	const sortedPostsList = sortedFullPosts.map((post) => ({
-		id: post.id,
-		data: post.data,
-		url: getPostUrl(post),
-	}));
+	// 聚合列表统一排除笔记（归档、分类条、随机文章等入口都不应出现笔记）
+	const sortedPostsList = sortedFullPosts
+		.filter((post) => !isNotePost(post))
+		.map((post) => ({
+			id: post.id,
+			data: post.data,
+			url: getPostUrl(post),
+		}));
 
 	return sortedPostsList;
 }
@@ -86,15 +129,18 @@ export async function getTagList(): Promise<Tag[]> {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
+	// 排除笔记：笔记的标签（如 note 及学科标签）不应出现在博客侧栏标签云里
 	const countMap: Record<string, number> = {};
-	allBlogPosts.forEach((post: { data: { tags: string[] } }) => {
-		post.data.tags.forEach((tag: string) => {
-			if (!countMap[tag]) {
-				countMap[tag] = 0;
-			}
-			countMap[tag]++;
+	allBlogPosts
+		.filter((post) => !isNotePost(post))
+		.forEach((post: { data: { tags: string[] } }) => {
+			post.data.tags.forEach((tag: string) => {
+				if (!countMap[tag]) {
+					countMap[tag] = 0;
+				}
+				countMap[tag]++;
+			});
 		});
-	});
 
 	// sort tags
 	const keys: string[] = Object.keys(countMap).sort((a, b) => {
@@ -115,20 +161,25 @@ export async function getCategoryList(): Promise<Category[]> {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 	const count: Record<string, number> = {};
-	allBlogPosts.forEach((post: { data: { category: string | null } }) => {
-		if (!post.data.category) {
-			const ucKey = i18n(I18nKey.uncategorized);
-			count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1;
-			return;
-		}
+	// 排除笔记：侧栏分类组件与首页分类条都不应出现 Note 分类
+	allBlogPosts
+		.filter((post) => !isNotePost(post))
+		.forEach((post: { data: { category: string | null } }) => {
+			if (!post.data.category) {
+				const ucKey = i18n(I18nKey.uncategorized);
+				count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1;
+				return;
+			}
 
-		const categoryName =
-			typeof post.data.category === "string"
-				? post.data.category.trim()
-				: String(post.data.category).trim();
+			const categoryName =
+				typeof post.data.category === "string"
+					? post.data.category.trim()
+					: String(post.data.category).trim();
 
-		count[categoryName] = count[categoryName] ? count[categoryName] + 1 : 1;
-	});
+			count[categoryName] = count[categoryName]
+				? count[categoryName] + 1
+				: 1;
+		});
 
 	const lst = Object.keys(count).sort((a, b) => {
 		return a.toLowerCase().localeCompare(b.toLowerCase());
@@ -221,9 +272,14 @@ export async function getRelatedPosts(
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
-	// 排除自身和加密文章
+	// 排除自身和加密文章；并保证「笔记只推荐笔记、正文只推荐正文」，
+	// 避免博客正文的相关阅读把笔记又带回阅读流里
+	const currentIsNote = isNotePost(currentPost);
 	const candidates = allPosts.filter(
-		(p) => p.id !== currentPost.id && !p.data.password,
+		(p) =>
+			p.id !== currentPost.id &&
+			!p.data.password &&
+			isNotePost(p) === currentIsNote,
 	);
 
 	const currentTags = new Set(currentPost.data.tags || []);

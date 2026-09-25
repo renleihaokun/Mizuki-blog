@@ -144,6 +144,14 @@ export const en: Translation = {
 	[Key.albumsFilterAll]: "All",
 	[Key.albumsNoResults]: "No matching albums",
 
+	// Notes page
+	[Key.notes]: "Notes",
+	[Key.notesSubtitle]: "Class notes and study memos, all kept here",
+	[Key.notesCount]: "notes",
+	[Key.notesEmpty]: "No notes yet",
+	[Key.notesEmptyDesc]: "Nothing written down yet — it will fill up over time!",
+	[Key.notesNoResults]: "No matching notes",
+
 	// Projects Page
 	[Key.projects]: "Projects",
 	[Key.projectsSubtitle]: "My development project portfolio",

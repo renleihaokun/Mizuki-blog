@@ -6,7 +6,10 @@ import { parse as htmlParser } from "node-html-parser";
 import sanitizeHtml from "sanitize-html";
 
 import { profileConfig, siteConfig } from "@/config";
-import { getSortedPosts } from "@/utils/content-utils";
+import {
+	getSortedPosts,
+	getSortedPostsExcludingNotes,
+} from "@/utils/content-utils";
 import { initPostIdMap } from "@/utils/permalink-utils";
 import { getPostUrl } from "@/utils/url-utils";
 
@@ -22,14 +25,14 @@ export async function GET(context: APIContext) {
 		throw Error("site not set");
 	}
 
+	// 初始化文章 ID 映射（用于 permalink 功能）—— 基于全量文章，避免按路由执行顺序产生不同编号
+	initPostIdMap(await getSortedPosts());
+
 	// Use the same ordering as site listing (pinned first, then by published desc)
-	// 过滤掉加密文章和草稿文章
-	const posts = (await getSortedPosts()).filter(
+	// 过滤掉加密文章和草稿文章；订阅源排除笔记，笔记只在站内的 /notes/ 页面聚合
+	const posts = (await getSortedPostsExcludingNotes()).filter(
 		(post) => !post.data.encrypted && post.data.draft !== true,
 	);
-
-	// 初始化文章 ID 映射（用于 permalink 功能）
-	initPostIdMap(posts);
 
 	// 创建Atom feed头部
 	let atomFeed = `<?xml version="1.0" encoding="utf-8"?>

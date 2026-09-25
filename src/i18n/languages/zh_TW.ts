@@ -139,6 +139,14 @@ export const zh_TW: Translation = {
 	[Key.albumsFilterAll]: "全部",
 	[Key.albumsNoResults]: "沒有匹配的相冊",
 
+	// 筆記頁面
+	[Key.notes]: "筆記",
+	[Key.notesSubtitle]: "課堂與課本的備忘，養料都在這兒",
+	[Key.notesCount]: "篇筆記",
+	[Key.notesEmpty]: "暫無筆記",
+	[Key.notesEmptyDesc]: "還沒有寫任何筆記，慢慢累積吧！",
+	[Key.notesNoResults]: "沒有匹配的筆記",
+
 	// 專案展示頁面
 	[Key.projects]: "專案展示",
 	[Key.projectsSubtitle]: "我的開發專案作品集",

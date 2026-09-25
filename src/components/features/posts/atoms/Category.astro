@@ -8,9 +8,15 @@ import { getCategoryUrl } from "@/utils/url-utils";
 interface Props {
 	category?: string;
 	class?: string;
+	/** 分类链接的目标前缀，不传时默认跳转 /archive/ 做筛选 */
+	linkBase?: string;
 }
 
-const { category, class: className } = Astro.props;
+const { category, class: className, linkBase } = Astro.props;
+
+const categoryUrl = linkBase
+	? `${linkBase}?category=${encodeURIComponent((category || "").trim())}`
+	: getCategoryUrl(category || "");
 ---
 
 <div class:list={["flex items-center", className]}>
@@ -19,7 +25,7 @@ const { category, class: className } = Astro.props;
 	</div>
 	<div class="flex flex-row flex-nowrap items-center">
 		<a
-			href={getCategoryUrl(category || "")}
+			href={categoryUrl}
 			aria-label={`View all posts in the ${category} category`}
 			class="link-lg transition text-50 text-sm font-medium hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"
 		>

@@ -4,12 +4,18 @@ import "@fontsource-variable/jetbrains-mono";
 
 interface Props {
 	class: string;
+	/**
+	 * 是否把正文排除出 Pagefind 站内搜索索引
+	 * 笔记等独立板块使用 true：正文仍正常渲染，但不进入搜索索引
+	 */
+	pagefindIgnore?: boolean;
 }
-const className = Astro.props.class;
+const { class: className, pagefindIgnore = false } = Astro.props;
 ---
 
 <div
-	data-pagefind-body
+	{...(pagefindIgnore ? {} : { "data-pagefind-body": true })}
+	{...(pagefindIgnore ? { "data-pagefind-ignore": true } : {})}
 	class={`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`}
 >
 	<!--<div class="prose dark:prose-invert max-w-none custom-md">-->

@@ -145,6 +145,14 @@ export const ja: Translation = {
 	[Key.albumsFilterAll]: "すべて",
 	[Key.albumsNoResults]: "一致するアルバムはありません",
 
+	// ノートページ
+	[Key.notes]: "ノート",
+	[Key.notesSubtitle]: "授業と教科書のメモをここにまとめています",
+	[Key.notesCount]: "件のノート",
+	[Key.notesEmpty]: "ノートはまだありません",
+	[Key.notesEmptyDesc]: "まだ何も書かれていません。少しずつ貯めていきましょう！",
+	[Key.notesNoResults]: "一致するノートはありません",
+
 	// プロジェクトページ
 	[Key.projects]: "プロジェクト",
 	[Key.projectsSubtitle]: "開発プロジェクトのポートフォリオ",

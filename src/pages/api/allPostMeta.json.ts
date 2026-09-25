@@ -1,7 +1,8 @@
-import { getSortedPosts } from "@/utils/content-utils";
+import { getSortedPostsExcludingNotes } from "@/utils/content-utils";
 
 export async function GET() {
-	const posts = await getSortedPosts();
+	// 排除笔记：笔记不参与站内搜索与首页数据源
+	const posts = await getSortedPostsExcludingNotes();
 
 	const allPostsData = posts
 		.map((post) => ({

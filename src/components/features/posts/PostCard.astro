@@ -11,8 +11,15 @@ import Image from "../../atoms/Image/Image.astro";
 import PostMetadata from "./PostMeta.astro";
 import type { PostCardProps } from "./types";
 
-const { entry, style }: PostCardProps = Astro.props as PostCardProps;
+const { entry, style, linkBase }: PostCardProps =
+	Astro.props as PostCardProps;
 const className = Astro.props.class;
+
+// 标签链接前缀：笔记页传 "/notes/"，其余场景保持原有的 /archive/ 筛选
+const resolveTagUrl = (tag: string) =>
+	linkBase
+		? `${linkBase}?tag=${encodeURIComponent(tag.trim())}`
+		: getTagUrl(tag);
 
 const {
 	title,
@@ -98,6 +105,7 @@ const { remarkPluginFrontmatter } = await render(entry);
 			showOnlyBasicMeta={true}
 			words={remarkPluginFrontmatter.words}
 			showWordCount={true}
+			linkBase={linkBase}
 		/>
 
 		<div
@@ -114,7 +122,7 @@ const { remarkPluginFrontmatter } = await render(entry);
 				tags && tags.length > 0 ? (
 					tags.map((tag) => (
 						<a
-							href={getTagUrl(tag)}
+							href={resolveTagUrl(tag)}
 							class:list={[
 								siteConfig.tagStyle?.useNewStyle
 									? "link-lg transition text-50 text-xs font-medium px-2 py-1 rounded-lg hover:text-[var(--primary)] dark:hover:text-[var(--primary)] active:text-[var(--primary)] dark:active:text-[var(--primary)] group/tag whitespace-nowrap"

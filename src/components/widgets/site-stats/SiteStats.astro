@@ -6,7 +6,7 @@ import I18nKey from "../../../i18n/i18nKey";
 import { i18n } from "../../../i18n/translation";
 import {
 	getCategoryList,
-	getSortedPosts,
+	getSortedPostsExcludingNotes,
 	getTagList,
 } from "../../../utils/content-utils";
 import WidgetLayout from "../common/WidgetLayout.astro";
@@ -21,8 +21,8 @@ const { class: className, style } = Astro.props;
 // 从配置中获取站点开始日期
 const siteStartDate = siteConfig.siteStartDate || "2025-01-01";
 
-// 获取所有文章
-const posts = await getSortedPosts();
+// 获取所有文章（排除笔记，与分类/标签统计保持一致）
+const posts = await getSortedPostsExcludingNotes();
 const categories = await getCategoryList();
 const tags = await getTagList();
 

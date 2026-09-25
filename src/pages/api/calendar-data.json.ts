@@ -1,7 +1,8 @@
-import { getSortedPosts } from "../../utils/content-utils";
+import { getSortedPostsExcludingNotes } from "../../utils/content-utils";
 
 export async function GET() {
-	const posts = await getSortedPosts();
+	// 排除笔记：日历只标记博客正文章节
+	const posts = await getSortedPostsExcludingNotes();
 
 	const allPostsData = posts.map((post) => {
 		const date = new Date(post.data.published);

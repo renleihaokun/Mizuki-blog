@@ -19,13 +19,13 @@ import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts } from "@utils/content-utils";
+import { getSortedPosts, isNotePost } from "@utils/content-utils";
 import {
 	generatePermalinkSlug,
 	hasCustomPermalink,
 	initPostIdMap,
 } from "@utils/permalink-utils";
-import { getFileDirFromPath } from "@utils/url-utils";
+import { getFileDirFromPath, url } from "@utils/url-utils";
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { Icon } from "astro-icon/components";
@@ -82,6 +82,10 @@ const { remarkPluginFrontmatter } = await render(entry);
 // 处理加密逻辑
 let encryptedContent = "";
 const isEncrypted = entry.data.encrypted && entry.data.password;
+
+// 是否为笔记：笔记排除出站内搜索索引，且标签/分类链接指向 /notes/ 而不是已排除笔记的归档
+const isNote = isNotePost(entry);
+const noteLinkBase = isNote ? url("/notes/") : undefined;
 
 if (isEncrypted) {
 	const contentToEncrypt = "MIZUKI-VERIFY:" + entry.body;
@@ -177,9 +181,10 @@ const jsonLd = {
 			<!-- title -->
 			<div class="relative onload-animation">
 				<div
-					data-pagefind-body
-					data-pagefind-weight="10"
-					data-pagefind-meta="title"
+					data-pagefind-body={isNote ? undefined : true}
+					data-pagefind-weight={isNote ? undefined : "10"}
+					data-pagefind-meta={isNote ? undefined : "title"}
+					data-pagefind-ignore={isNote ? true : undefined}
 					class="transition w-full block font-bold mb-3
                     text-3xl md:text-[2.25rem]/[2.75rem]
                     text-black/90 dark:text-white/90
@@ -199,6 +204,7 @@ const jsonLd = {
 					tags={entry.data.tags}
 					category={entry.data.category || undefined}
 					id={entry.id}
+					linkBase={noteLinkBase}
 				/>
 				{
 					(!entry.data.image ||
@@ -233,7 +239,10 @@ const jsonLd = {
 					/>
 				) : (
 					<>
-						<Markdown class="mb-6 markdown-content onload-animation">
+						<Markdown
+							class="mb-6 markdown-content onload-animation"
+							pagefindIgnore={isNote}
+						>
 							<Content />
 						</Markdown>
 						{licenseConfig.enable && (

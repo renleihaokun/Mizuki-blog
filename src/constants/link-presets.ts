@@ -59,4 +59,9 @@ export const LinkPresets: Record<LinkPreset, NavBarLink> = {
 		url: "/favorites/",
 		icon: "material-symbols:loyalty",
 	},
+	[LinkPreset.Notes]: {
+		name: i18n(I18nKey.notes),
+		url: "/notes/",
+		icon: "material-symbols:sticky-note-2",
+	},
 };
