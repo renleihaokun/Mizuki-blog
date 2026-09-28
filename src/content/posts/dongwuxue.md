@@ -3,7 +3,7 @@ title: 动物学是啥
 published: 2026-05-30
 pinned: false
 description: 这是我的笔记
-tags: [note]
+tags: [生物]
 category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun

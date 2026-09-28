@@ -3,7 +3,7 @@ title: 微积分，学不会
 published: 2026-05-12
 pinned: false
 description: 这是我的笔记
-tags: [note]
+tags: [数学]
 category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun

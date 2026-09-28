@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+import I18nKey from "../../../i18n/i18nKey";
+import { i18n } from "../../../i18n/translation";
+import { formatDateToYYYYMMDD } from "../../../utils/date-utils";
+import { getFileDirFromPath, getPostUrl } from "../../../utils/url-utils";
+import Image from "../../atoms/Image/Image.astro";
+import { NOTE_SUBJECT_FALLBACK, resolveNoteSubject } from "./subject-config";
+
+interface Props {
+	entry: CollectionEntry<"posts">;
+}
+
+const { entry } = Astro.props;
+const { title, published, tags, image } = entry.data;
+
+const url = getPostUrl(entry);
+const hasCover = image !== undefined && image !== null && image !== "";
+const subject = resolveNoteSubject(tags) ?? NOTE_SUBJECT_FALLBACK;
+
+const { remarkPluginFrontmatter } = await render(entry);
+const words = remarkPluginFrontmatter.words as number | undefined;
+---
+
+<a
+	href={url}
+	class="card-base group flex h-full flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+>
+	<div
+		class="relative aspect-[16/9] overflow-hidden bg-black/5 dark:bg-white/5"
+	>
+		{
+			hasCover ? (
+				<Image
+					src={image}
+					basePath={getFileDirFromPath(entry.filePath || "")}
+					alt={title}
+					class="h-full w-full transition-transform duration-500 group-hover:scale-105"
+					widths={[400, 800, 1200]}
+					sizes="(max-width: 768px) 100vw, 380px"
+				/>
+			) : (
+				<div
+					class:list={[
+						"flex h-full w-full items-center justify-center",
+						subject.tintClass,
+					]}
+				>
+					<Icon
+						name={subject.icon}
+						class:list={["text-6xl", subject.placeholderIconClass]}
+					/>
+				</div>
+			)
+		}
+		{
+			subject.label && (
+				<span
+					class:list={[
+						"absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/85 px-2.5 py-0.5 text-xs font-semibold shadow-sm backdrop-blur-md dark:bg-black/60",
+						subject.accentClass,
+					]}
+				>
+					<Icon name={subject.icon} class="h-3.5 w-3.5" />
+					{subject.label}
+				</span>
+			)
+		}
+	</div>
+
+	<div class="flex flex-1 flex-col gap-3 p-4 sm:p-5">
+		<h3
+			class="line-clamp-2 text-lg font-bold leading-snug transition group-hover:text-[var(--primary)]"
+		>
+			{title}
+		</h3>
+
+		<div
+			class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium text-50"
+		>
+			<span class="inline-flex items-center gap-1">
+				<Icon
+					name="material-symbols:calendar-today-outline-rounded"
+					class="text-base"
+				/>
+				{formatDateToYYYYMMDD(published)}
+			</span>
+			{
+				words && (
+					<span class="inline-flex items-center gap-1">
+						<Icon
+							name="material-symbols:article-outline-rounded"
+							class="text-base"
+						/>
+						{words} {i18n(I18nKey.wordsCount)}
+					</span>
+				)
+			}
+		</div>
+	</div>
+</a>

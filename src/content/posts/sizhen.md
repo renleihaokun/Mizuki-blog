@@ -3,7 +3,7 @@ title: 德法还要考试
 published: 2026-07-02
 pinned: false
 description: 我学的不是理科吗
-tags: [note]
+tags: [思政]
 category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun, Mimo

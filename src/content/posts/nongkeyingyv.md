@@ -3,7 +3,7 @@ title: 《通用学术英语》但是全是农科术语
 published: 2026-06-28
 pinned: false
 description: 这是我的笔记
-tags: [note]
+tags: [英语]
 category: Note
 licenseName: "CC BY 4.0"
 author: renleihaokun

@@ -1,6 +1,8 @@
 ---
+import { FilterTabs } from "@components/atoms/filter-tabs";
+import { NoteCard } from "@components/features/notes";
+import { NOTE_SUBJECTS } from "@components/features/notes/subject-config";
 import { PageHeader } from "@components/features/page-header";
-import { PostCard } from "@components/features/posts";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { Icon } from "astro-icon/components";
 
@@ -8,7 +10,6 @@ import { siteConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getSortedNotes } from "../utils/content-utils";
-import { url } from "../utils/url-utils";
 
 if (!siteConfig.featurePages.notes) {
 	return Astro.redirect("/404/");
@@ -20,7 +21,26 @@ const notes = await getSortedNotes();
 
 const title = i18n(I18nKey.notes);
 const subtitle = i18n(I18nKey.notesSubtitle);
-const notesLinkBase = url("/notes/");
+
+// 学科筛选条：只保留实际用到的学科，展示顺序以 NOTE_SUBJECTS 为准
+const subjectTabs = NOTE_SUBJECTS.map((subject) => ({
+	value: subject.label,
+	label: subject.label,
+	icon: subject.icon,
+	count: notes.filter((note) =>
+		(note.data.tags || []).includes(subject.label),
+	).length,
+})).filter((tab) => tab.count > 0);
+
+const filterTabs = [
+	{
+		value: "all",
+		label: i18n(I18nKey.albumsFilterAll),
+		icon: "material-symbols:apps",
+		count: notes.length,
+	},
+	...subjectTabs,
+];
 ---
 
 <MainGridLayout title={title} description={subtitle}>
@@ -28,125 +48,103 @@ const notesLinkBase = url("/notes/");
 		import("../scripts/right-sidebar-layout.js");
 	</script>
 
+	<script is:inline src="/js/filter-tabs-handler.js"></script>
+
 	<div
-		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative"
+		class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
 	>
 		<div class="card-base z-10 relative w-full px-6 sm:px-9 py-6">
-			<div class="flex items-start justify-between gap-4">
-				<PageHeader title={title} subtitle={subtitle} class="mb-0" />
-				<div class="shrink-0 text-center pt-2">
-					<span
-						class="block text-2xl sm:text-3xl font-bold text-[var(--primary)]"
-					>
-						{notes.length}
-					</span>
-					<span class="block text-xs text-black/50 dark:text-white/50">
-						{i18n(I18nKey.notesCount)}
-					</span>
-				</div>
-			</div>
+			<PageHeader title={title} subtitle={subtitle} />
 
-			<div class="mt-8">
-				<div id="notes-list" class="flex flex-col gap-4">
-					{
-						notes.map((entry) => (
-							<div
-								data-note-item
-								data-tags={(entry.data.tags || []).join(",")}
-								data-category={entry.data.category || ""}
-								class="onload-animation"
-							>
-								<PostCard entry={entry} linkBase={notesLinkBase} />
-							</div>
-						))
-					}
-				</div>
+			{
+				notes.length > 0 && subjectTabs.length > 0 && (
+					<div id="notes-filter" class="mb-7">
+						<FilterTabs tabs={filterTabs} dataAttr="tags" />
+					</div>
+				)
+			}
 
-				<div id="no-results" class="hidden text-center py-16">
-					<Icon
-						name="material-symbols:sticky-note-2"
-						class="text-6xl text-black/15 dark:text-white/15 mb-4"
-					/>
-					<p class="text-black/40 dark:text-white/40 text-lg">
-						{i18n(I18nKey.notesNoResults)}
-					</p>
-				</div>
-
+			<div
+				id="notes-grid"
+				class="grid gap-4 sm:gap-5 md:auto-rows-fr md:grid-cols-2"
+			>
 				{
-					notes.length === 0 && (
-						<div class="text-center py-16">
-							<Icon
-								name="material-symbols:sticky-note-2"
-								class="text-6xl text-black/15 dark:text-white/15 mb-4"
-							/>
-							<h3 class="text-lg font-medium text-black/90 dark:text-white/90 mb-2">
-								{i18n(I18nKey.notesEmpty)}
-							</h3>
-							<p class="text-black/60 dark:text-white/60">
-								{i18n(I18nKey.notesEmptyDesc)}
-							</p>
+					notes.map((entry, index) => (
+						<div
+							data-note-item
+							data-tags={(entry.data.tags || []).join(",")}
+							class="onload-animation h-full"
+							style={`animation-delay: ${Math.min(index * 60, 360)}ms`}
+						>
+							<NoteCard entry={entry} />
 						</div>
-					)
+					))
 				}
 			</div>
+
+			<div id="no-results" class="hidden text-center py-16">
+				<Icon
+					name="material-symbols:sticky-note-2"
+					class="text-6xl text-black/15 dark:text-white/15 mb-4"
+				/>
+				<p class="text-black/40 dark:text-white/40 text-lg">
+					{i18n(I18nKey.notesNoResults)}
+				</p>
+			</div>
+
+			{
+				notes.length === 0 && (
+					<div class="text-center py-16">
+						<Icon
+							name="material-symbols:sticky-note-2"
+							class="text-6xl text-black/15 dark:text-white/15 mb-4"
+						/>
+						<h3 class="text-lg font-medium text-black/90 dark:text-white/90 mb-2">
+							{i18n(I18nKey.notesEmpty)}
+						</h3>
+						<p class="text-black/60 dark:text-white/60">
+							{i18n(I18nKey.notesEmptyDesc)}
+						</p>
+					</div>
+				)
+			}
 		</div>
 	</div>
 
 	<script>
-		// 笔记详情页的标签/分类链接会带 ?tag= / ?category= 跳到这里，
-		// 这里做一次轻量筛选，避免落到一个「全量列表」上让人摸不着头脑。
-		function applyNotesFilter() {
-			const params = new URLSearchParams(window.location.search);
-			const tag = (params.get("tag") || "").trim().toLowerCase();
-			const category = (params.get("category") || "")
-				.trim()
-				.toLowerCase();
-			if (!tag && !category) {
+		// 笔记详情页的标签链接会带 ?tag=学科 跳到这里：找到对应筛选按钮并触发，
+		// 复用共享的 filter-tabs-handler 逻辑，保证与手动点击的行为一致。
+		function applyNotesUrlFilter() {
+			const tag = (
+				new URLSearchParams(window.location.search).get("tag") || ""
+			).trim();
+			if (!tag) {
 				return;
 			}
 
-			const items = document.querySelectorAll("[data-note-item]");
-			let visibleCount = 0;
+			const tabs = document.querySelectorAll(
+				"#notes-filter .filter-tabs-item",
+			);
+			const target = Array.from(tabs).find(
+				(tab) => tab.getAttribute("data-filter-value") === tag,
+			);
 
-			items.forEach((item) => {
-				const tags = (item.getAttribute("data-tags") || "")
-					.toLowerCase()
-					.split(",")
-					.map((t) => t.trim());
-				const itemCategory = (
-					item.getAttribute("data-category") || ""
-				)
-					.trim()
-					.toLowerCase();
-
-				const match = tag
-					? tags.includes(tag)
-					: itemCategory === category;
-
-				item.classList.toggle("filtered-out", !match);
-				if (match) {
-					visibleCount++;
-				}
-			});
-
-			const noResults = document.getElementById("no-results");
-			if (noResults) {
-				noResults.classList.toggle("hidden", visibleCount > 0);
-			}
+			// 触发一次点击事件，让共享的 filter-tabs-handler 统一处理筛选逻辑
+			target?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 		}
 
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", applyNotesFilter);
+		// 共享脚本在 DOMContentLoaded 里完成初始化，这里必须晚于它执行
+		if (document.readyState === "complete") {
+			applyNotesUrlFilter();
 		} else {
-			applyNotesFilter();
+			document.addEventListener("DOMContentLoaded", applyNotesUrlFilter);
 		}
-
-		document.addEventListener("astro:page-load", applyNotesFilter);
+		document.addEventListener("astro:page-load", applyNotesUrlFilter);
 	</script>
-</MainGridLayout>
 
-<style>
-	#notes-list > [data-note-item].filtered-out {
-		display: none;
-	}
-</style>
+	<style>
+		#notes-grid > [data-note-item].filtered-out {
+			display: none;
+		}
+	</style>
+</MainGridLayout>
