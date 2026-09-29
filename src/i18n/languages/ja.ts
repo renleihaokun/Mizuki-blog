@@ -150,8 +150,11 @@ export const ja: Translation = {
 	[Key.notesSubtitle]: "授業と教科書のメモをここにまとめています",
 	[Key.notesCount]: "件のノート",
 	[Key.notesEmpty]: "ノートはまだありません",
-	[Key.notesEmptyDesc]: "まだ何も書かれていません。少しずつ貯めていきましょう！",
+	[Key.notesEmptyDesc]:
+		"まだ何も書かれていません。少しずつ貯めていきましょう！",
 	[Key.notesNoResults]: "一致するノートはありません",
+	[Key.notesIndex]: "ノート索引",
+	[Key.notesSubjects]: "科目",
 
 	// プロジェクトページ
 	[Key.projects]: "プロジェクト",

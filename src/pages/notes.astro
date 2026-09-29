@@ -1,6 +1,6 @@
 ---
 import { FilterTabs } from "@components/atoms/filter-tabs";
-import { NoteCard } from "@components/features/notes";
+import { NoteCard, NoteIndex } from "@components/features/notes";
 import { NOTE_SUBJECTS } from "@components/features/notes/subject-config";
 import { PageHeader } from "@components/features/page-header";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
@@ -27,6 +27,7 @@ const subjectTabs = NOTE_SUBJECTS.map((subject) => ({
 	value: subject.label,
 	label: subject.label,
 	icon: subject.icon,
+	barClass: subject.barClass,
 	count: notes.filter((note) =>
 		(note.data.tags || []).includes(subject.label),
 	).length,
@@ -40,6 +41,45 @@ const filterTabs = [
 		count: notes.length,
 	},
 	...subjectTabs,
+];
+
+const hasCover = (entry: (typeof notes)[number]) =>
+	entry.data.image !== undefined &&
+	entry.data.image !== null &&
+	entry.data.image !== "";
+
+const coverNotes = notes.filter(hasCover);
+const compactNotes = notes.filter((entry) => !hasCover(entry));
+
+// 将无封面笔记收拢到首次出现的位置，并两两分组。
+// 有封面笔记保持原顺序；紧凑笔记之间也保持原相对顺序。
+const compactBlocks: Array<Array<(typeof notes)[number]>> = [];
+for (let index = 0; index < compactNotes.length; index += 2) {
+	compactBlocks.push(compactNotes.slice(index, index + 2));
+}
+
+const firstCompactIndex = notes.findIndex((entry) => !hasCover(entry));
+const coverNotesBeforeCompact =
+	firstCompactIndex === -1
+		? coverNotes.length
+		: notes.slice(0, firstCompactIndex).filter(hasCover).length;
+
+const noteBlocks = [
+	...coverNotes.slice(0, coverNotesBeforeCompact).map((entry) => ({
+		type: "cover" as const,
+		entries: [entry],
+		showIndex: false,
+	})),
+	...compactBlocks.map((entries, index) => ({
+		type: "compact" as const,
+		entries,
+		showIndex: index === compactBlocks.length - 1 && entries.length === 1,
+	})),
+	...coverNotes.slice(coverNotesBeforeCompact).map((entry) => ({
+		type: "cover" as const,
+		entries: [entry],
+		showIndex: false,
+	})),
 ];
 ---
 
@@ -69,16 +109,46 @@ const filterTabs = [
 				class="grid gap-4 sm:gap-5 md:auto-rows-fr md:grid-cols-2"
 			>
 				{
-					notes.map((entry, index) => (
-						<div
-							data-note-item
-							data-tags={(entry.data.tags || []).join(",")}
-							class="onload-animation h-full"
-							style={`animation-delay: ${Math.min(index * 60, 360)}ms`}
-						>
-							<NoteCard entry={entry} />
-						</div>
-					))
+					noteBlocks.map((block, index) =>
+						block.type === "compact" ? (
+							<div
+								class="note-compact-group onload-animation flex flex-col gap-4 md:grid md:h-full md:grid-rows-2 md:gap-3"
+								style={`animation-delay: ${Math.min(index * 60, 360)}ms`}
+							>
+								{block.entries.map((entry) => (
+									<div
+										data-note-item
+										data-tags={(entry.data.tags || []).join(
+											",",
+										)}
+										class="min-h-0 md:h-full"
+									>
+										<NoteCard
+											entry={entry}
+											variant="compact"
+										/>
+									</div>
+								))}
+								{block.showIndex && (
+									<NoteIndex
+										total={notes.length}
+										subjects={subjectTabs}
+									/>
+								)}
+							</div>
+						) : (
+							<div
+								data-note-item
+								data-tags={(
+									block.entries[0].data.tags || []
+								).join(",")}
+								class="onload-animation h-full"
+								style={`animation-delay: ${Math.min(index * 60, 360)}ms`}
+							>
+								<NoteCard entry={block.entries[0]} />
+							</div>
+						),
+					)
 				}
 			</div>
 
@@ -143,7 +213,21 @@ const filterTabs = [
 	</script>
 
 	<style>
-		#notes-grid > [data-note-item].filtered-out {
+		#notes-grid [data-note-item].filtered-out {
+			display: none;
+		}
+
+		#notes-grid
+			> .note-compact-group:not(
+				:has([data-note-item]:not(.filtered-out))
+			) {
+			display: none;
+		}
+
+		#notes-grid
+			.note-compact-group
+			> [data-note-item].filtered-out
+			+ .note-index-tile {
 			display: none;
 		}
 	</style>

@@ -1,6 +1,8 @@
+import { EventEmitter } from "node:events";
+
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import mdx from '@astrojs/mdx';
-import svelte, { vitePreprocess } from "@astrojs/svelte";
+import svelte from "@astrojs/svelte";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
@@ -30,6 +32,9 @@ import { remarkContent } from "./src/plugins/remark-content.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
+
+// 开发服务器会注册较多文件监听器；这是有限数量的监听器，不应触发 Node 的疑似泄漏提示。
+EventEmitter.defaultMaxListeners = 30;
 
 // https://astro.build/config
 export default defineConfig({
@@ -116,9 +121,7 @@ export default defineConfig({
 				showCopyToClipboardButton: false,
 			},
 		}),
-		svelte({
-			preprocess: vitePreprocess(),
-		}),
+		svelte(),
 		sitemap(),
 		mdx(),
 	],
@@ -133,7 +136,13 @@ export default defineConfig({
 			remarkMermaid,
 		],
 		rehypePlugins: [
-			rehypeKatex,
+			[
+				rehypeKatex,
+				{
+					// 笔记中的公式会混用中文注释，按内容渲染而不是持续报 strict 警告。
+					strict: false,
+				},
+			],
 			[
 				rehypeExternalLinks,
 				{
@@ -184,7 +193,6 @@ export default defineConfig({
 		// 开发环境预打包优化：将常用依赖提前编译，避免首次页面加载时 on-demand 编译导致 8s+ 的等待
 		optimizeDeps: {
 			include: [
-				"@iconify/svelte",
 				"svelte",
 				"svelte/transition",
 				"svelte/easing",
@@ -228,6 +236,16 @@ export default defineConfig({
 						warning.message.includes(
 							"but also statically imported by",
 						)
+					) {
+						return;
+					}
+
+					// Svelte 的 transition 指令由编译器消费，Rollup 会把
+					// svelte/transition、svelte/easing 的导入误报为未使用。
+					if (
+						warning.code === "UNUSED_EXTERNAL_IMPORT" &&
+						(warning.message.includes("svelte/transition") ||
+							warning.message.includes("svelte/easing"))
 					) {
 						return;
 					}

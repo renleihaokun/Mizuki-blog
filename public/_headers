@@ -28,3 +28,12 @@
 
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
+
+/favicon.ico
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: *
+  Access-Control-Max-Age: 86400
+  Timing-Allow-Origin: *
+  Cross-Origin-Resource-Policy: cross-origin
+  Cache-Control: no-store, max-age=0

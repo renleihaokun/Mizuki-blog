@@ -138,6 +138,8 @@ enum I18nKey {
 	notesEmpty = "notesEmpty",
 	notesEmptyDesc = "notesEmptyDesc",
 	notesNoResults = "notesNoResults",
+	notesIndex = "notesIndex",
+	notesSubjects = "notesSubjects",
 
 	// 设备页面
 	devices = "devices",

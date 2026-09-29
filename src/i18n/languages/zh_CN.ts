@@ -142,6 +142,8 @@ export const zh_CN: Translation = {
 	[Key.notesEmpty]: "暂无笔记",
 	[Key.notesEmptyDesc]: "还没有写任何笔记，慢慢积累吧！",
 	[Key.notesNoResults]: "没有匹配的笔记",
+	[Key.notesIndex]: "笔记索引",
+	[Key.notesSubjects]: "个学科",
 
 	// 设备页面
 	[Key.devices]: "我的设备",

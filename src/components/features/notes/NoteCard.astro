@@ -12,28 +12,97 @@ import { NOTE_SUBJECT_FALLBACK, resolveNoteSubject } from "./subject-config";
 
 interface Props {
 	entry: CollectionEntry<"posts">;
+	variant?: "cover" | "compact";
 }
 
-const { entry } = Astro.props;
+const { entry, variant = "cover" } = Astro.props;
 const { title, published, tags, image } = entry.data;
 
 const url = getPostUrl(entry);
 const hasCover = image !== undefined && image !== null && image !== "";
+const isCompact = variant === "compact" || !hasCover;
 const subject = resolveNoteSubject(tags) ?? NOTE_SUBJECT_FALLBACK;
 
 const { remarkPluginFrontmatter } = await render(entry);
 const words = remarkPluginFrontmatter.words as number | undefined;
+
+const cardBorderClass = "border border-black/[0.04] dark:border-white/[0.08]";
+const badgeClass =
+	"inline-flex items-center gap-1 rounded-full border border-black/5 bg-white/90 px-2.5 py-0.5 text-xs font-semibold shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-black/70";
 ---
 
-<a
-	href={url}
-	class="card-base group flex h-full flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-xl"
->
-	<div
-		class="relative aspect-[16/9] overflow-hidden bg-black/5 dark:bg-white/5"
-	>
-		{
-			hasCover ? (
+{
+	isCompact ? (
+		<a
+			href={url}
+			class:list={[
+				"card-base group relative flex min-h-[8.5rem] h-full flex-col overflow-hidden p-4 transition duration-300 hover:border-[var(--primary)]/30 hover:shadow-lg sm:p-5 dark:hover:border-[var(--primary)]/35 dark:hover:shadow-black/30",
+				cardBorderClass,
+			]}
+		>
+			<div
+				class:list={[
+					"pointer-events-none absolute inset-0",
+					subject.tintClass,
+				]}
+			/>
+			<span
+				class:list={[
+					"pointer-events-none absolute inset-y-0 left-0 w-1",
+					subject.barClass,
+				]}
+			/>
+			<Icon
+				name={subject.icon}
+				class:list={[
+					"pointer-events-none absolute -bottom-6 -right-4 text-[6.5rem] transition duration-500 group-hover:scale-105",
+					subject.watermarkClass,
+				]}
+			/>
+
+			<div class="relative z-10 flex h-full w-full flex-col">
+				<div class="flex items-center justify-between gap-3">
+					{subject.label && (
+						<span class:list={[badgeClass, subject.accentClass]}>
+							<Icon name={subject.icon} class="h-3.5 w-3.5" />
+							{subject.label}
+						</span>
+					)}
+					<span class="ml-auto shrink-0 text-xs font-medium text-black/45 dark:text-white/55">
+						{formatDateToYYYYMMDD(published)}
+					</span>
+				</div>
+
+				<h3 class="mt-auto line-clamp-2 pt-3 text-base font-bold leading-snug text-black/90 transition group-hover:text-[var(--primary)] sm:text-lg dark:text-white/90">
+					{title}
+				</h3>
+
+				{words && (
+					<div class="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-black/45 dark:text-white/60">
+						<Icon
+							name="material-symbols:article-outline-rounded"
+							class="text-sm"
+						/>
+						<span>
+							{words} {i18n(I18nKey.wordsCount)}
+						</span>
+						<Icon
+							name="material-symbols:arrow-forward-rounded"
+							class="ml-auto text-base transition-transform duration-300 group-hover:translate-x-0.5"
+						/>
+					</div>
+				)}
+			</div>
+		</a>
+	) : (
+		<a
+			href={url}
+			class:list={[
+				"card-base group flex h-full flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-black/30",
+				cardBorderClass,
+			]}
+		>
+			<div class="relative aspect-[16/9] overflow-hidden bg-black/5 dark:bg-white/5">
 				<Image
 					src={image}
 					basePath={getFileDirFromPath(entry.filePath || "")}
@@ -42,63 +111,44 @@ const words = remarkPluginFrontmatter.words as number | undefined;
 					widths={[400, 800, 1200]}
 					sizes="(max-width: 768px) 100vw, 380px"
 				/>
-			) : (
-				<div
-					class:list={[
-						"flex h-full w-full items-center justify-center",
-						subject.tintClass,
-					]}
-				>
-					<Icon
-						name={subject.icon}
-						class:list={["text-6xl", subject.placeholderIconClass]}
-					/>
-				</div>
-			)
-		}
-		{
-			subject.label && (
-				<span
-					class:list={[
-						"absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/85 px-2.5 py-0.5 text-xs font-semibold shadow-sm backdrop-blur-md dark:bg-black/60",
-						subject.accentClass,
-					]}
-				>
-					<Icon name={subject.icon} class="h-3.5 w-3.5" />
-					{subject.label}
-				</span>
-			)
-		}
-	</div>
+				{subject.label && (
+					<span
+						class:list={[
+							"absolute left-3 top-3",
+							badgeClass,
+							subject.accentClass,
+						]}
+					>
+						<Icon name={subject.icon} class="h-3.5 w-3.5" />
+						{subject.label}
+					</span>
+				)}
+			</div>
 
-	<div class="flex flex-1 flex-col gap-3 p-4 sm:p-5">
-		<h3
-			class="line-clamp-2 text-lg font-bold leading-snug transition group-hover:text-[var(--primary)]"
-		>
-			{title}
-		</h3>
+			<div class="flex flex-1 flex-col gap-3 p-4 sm:p-5">
+				<h3 class="line-clamp-2 text-lg font-bold leading-snug text-black/90 transition group-hover:text-[var(--primary)] dark:text-white/90">
+					{title}
+				</h3>
 
-		<div
-			class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium text-50"
-		>
-			<span class="inline-flex items-center gap-1">
-				<Icon
-					name="material-symbols:calendar-today-outline-rounded"
-					class="text-base"
-				/>
-				{formatDateToYYYYMMDD(published)}
-			</span>
-			{
-				words && (
+				<div class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium text-black/50 dark:text-white/60">
 					<span class="inline-flex items-center gap-1">
 						<Icon
-							name="material-symbols:article-outline-rounded"
+							name="material-symbols:calendar-today-outline-rounded"
 							class="text-base"
 						/>
-						{words} {i18n(I18nKey.wordsCount)}
+						{formatDateToYYYYMMDD(published)}
 					</span>
-				)
-			}
-		</div>
-	</div>
-</a>
+					{words && (
+						<span class="inline-flex items-center gap-1">
+							<Icon
+								name="material-symbols:article-outline-rounded"
+								class="text-base"
+							/>
+							{words} {i18n(I18nKey.wordsCount)}
+						</span>
+					)}
+				</div>
+			</div>
+		</a>
+	)
+}

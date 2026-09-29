@@ -146,6 +146,8 @@ export const zh_TW: Translation = {
 	[Key.notesEmpty]: "暫無筆記",
 	[Key.notesEmptyDesc]: "還沒有寫任何筆記，慢慢累積吧！",
 	[Key.notesNoResults]: "沒有匹配的筆記",
+	[Key.notesIndex]: "筆記索引",
+	[Key.notesSubjects]: "個學科",
 
 	// 專案展示頁面
 	[Key.projects]: "專案展示",

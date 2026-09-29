@@ -26,6 +26,39 @@
 			]
 		},
 		{
+			"source": "/favicon.ico",
+			"headers": [
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "*"
+				},
+				{
+					"key": "Access-Control-Allow-Methods",
+					"value": "GET, HEAD, OPTIONS"
+				},
+				{
+					"key": "Access-Control-Allow-Headers",
+					"value": "*"
+				},
+				{
+					"key": "Access-Control-Max-Age",
+					"value": "86400"
+				},
+				{
+					"key": "Timing-Allow-Origin",
+					"value": "*"
+				},
+				{
+					"key": "Cross-Origin-Resource-Policy",
+					"value": "cross-origin"
+				},
+				{
+					"key": "Cache-Control",
+					"value": "no-store, max-age=0"
+				}
+			]
+		},
+		{
 			"source": "/_astro/(.*)",
 			"headers": [
 				{

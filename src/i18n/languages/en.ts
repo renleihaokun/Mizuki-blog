@@ -149,8 +149,11 @@ export const en: Translation = {
 	[Key.notesSubtitle]: "Class notes and study memos, all kept here",
 	[Key.notesCount]: "notes",
 	[Key.notesEmpty]: "No notes yet",
-	[Key.notesEmptyDesc]: "Nothing written down yet — it will fill up over time!",
+	[Key.notesEmptyDesc]:
+		"Nothing written down yet — it will fill up over time!",
 	[Key.notesNoResults]: "No matching notes",
+	[Key.notesIndex]: "Note index",
+	[Key.notesSubjects]: "subjects",
 
 	// Projects Page
 	[Key.projects]: "Projects",

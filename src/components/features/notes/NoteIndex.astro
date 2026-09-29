@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+
+import I18nKey from "../../../i18n/i18nKey";
+import { i18n } from "../../../i18n/translation";
+import type { NoteSubjectStyle } from "./subject-config";
+
+interface Props {
+	total: number;
+	subjects: Array<
+		Pick<NoteSubjectStyle, "label" | "icon" | "barClass"> & {
+			count: number;
+		}
+	>;
+}
+
+const { total, subjects } = Astro.props;
+---
+
+<div
+	class="note-index-tile card-base relative hidden min-h-0 overflow-hidden border border-black/[0.05] bg-(--card-bg) md:flex md:h-full dark:border-white/[0.08]"
+	role="img"
+	aria-label={`${i18n(I18nKey.notesIndex)}: ${total} ${i18n(I18nKey.notesCount)}, ${subjects.length} ${i18n(I18nKey.notesSubjects)}`}
+>
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,color-mix(in_oklab,var(--primary)_14%,transparent),transparent_38%)]"
+	>
+	</div>
+	<Icon
+		name="material-symbols:bookmarks"
+		class="pointer-events-none absolute -bottom-5 -right-3 text-[5.5rem] text-black/[0.035] dark:text-white/[0.045]"
+	/>
+
+	<div class="relative z-10 flex h-full w-full flex-col p-4">
+		<div class="flex items-center justify-between gap-3">
+			<span
+				class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--primary)]"
+			>
+				{i18n(I18nKey.notesIndex)}
+			</span>
+			<div
+				class="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--btn-regular-bg)] text-[var(--btn-content)]"
+			>
+				<Icon
+					name="material-symbols:list-alt-rounded"
+					class="text-base"
+				/>
+			</div>
+		</div>
+
+		<div class="mt-auto">
+			<div class="flex items-baseline gap-1.5">
+				<span
+					class="text-2xl font-bold leading-none text-black/90 dark:text-white/90"
+				>
+					{total}
+				</span>
+				<span
+					class="text-xs font-medium text-black/50 dark:text-white/60"
+				>
+					{i18n(I18nKey.notesCount)}
+				</span>
+			</div>
+			<div
+				class="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-black/45 dark:text-white/55"
+			>
+				<span>{subjects.length}</span>
+				<span>{i18n(I18nKey.notesSubjects)}</span>
+			</div>
+
+			{
+				subjects.length > 0 && (
+					<div class="mt-3 flex h-1.5 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
+						{subjects.map((subject) => (
+							<span
+								class:list={[subject.barClass, "h-full"]}
+								style={`width: ${(subject.count / total) * 100}%`}
+								title={`${subject.label} ${subject.count}`}
+							/>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</div>
+</div>

@@ -19,7 +19,7 @@ permalink: "randomseat"
 
 （开头就能看出问题了吧，引这么多库何意味呢）
 
-```Python
+```python
 import pandas as pd
 import random as rn
 import pyautogui
