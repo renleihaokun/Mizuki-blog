@@ -1,5 +1,6 @@
 import { EventEmitter } from "node:events";
 
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
@@ -126,67 +127,71 @@ export default defineConfig({
 		mdx(),
 	],
 	markdown: {
-		remarkPlugins: [
-			remarkMath,
-			remarkContent,
-			remarkFixGithubAdmonitions,
-			remarkDirective,
-			remarkSectionize,
-			parseDirectiveNode,
-			remarkMermaid,
-		],
-		rehypePlugins: [
-			[
-				rehypeKatex,
-				{
-					// 笔记中的公式会混用中文注释，按内容渲染而不是持续报 strict 警告。
-					strict: false,
-				},
+		processor: unified({
+			remarkPlugins: [
+				remarkMath,
+				remarkContent,
+				remarkFixGithubAdmonitions,
+				remarkDirective,
+				remarkSectionize,
+				parseDirectiveNode,
+				remarkMermaid,
 			],
-			[
-				rehypeExternalLinks,
-				{
-					target: "_blank",
-					rel: ["nofollow", "noopener", "noreferrer"],
-				},
-			],
-			rehypeSlug,
-			rehypeWrapTable,
-			rehypeMermaid,
-			[
-				rehypeComponents,
-				{
-					components: {
-						github: GithubCardComponent,
-						note: (x, y) => AdmonitionComponent(x, y, "note"),
-						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
-						important: (x, y) =>
-							AdmonitionComponent(x, y, "important"),
-						caution: (x, y) => AdmonitionComponent(x, y, "caution"),
-						warning: (x, y) => AdmonitionComponent(x, y, "warning"),
+			rehypePlugins: [
+				[
+					rehypeKatex,
+					{
+						// 笔记中的公式会混用中文注释，按内容渲染而不是持续报 strict 警告。
+						strict: false,
 					},
-				},
-			],
-			[
-				rehypeAutolinkHeadings,
-				{
-					behavior: "append",
-					properties: {
-						className: ["anchor"],
+				],
+				[
+					rehypeExternalLinks,
+					{
+						target: "_blank",
+						rel: ["nofollow", "noopener", "noreferrer"],
 					},
-					content: {
-						type: "element",
-						tagName: "span",
-						properties: {
-							className: ["anchor-icon"],
-							"data-pagefind-ignore": true,
+				],
+				rehypeSlug,
+				rehypeWrapTable,
+				rehypeMermaid,
+				[
+					rehypeComponents,
+					{
+						components: {
+							github: GithubCardComponent,
+							note: (x, y) => AdmonitionComponent(x, y, "note"),
+							tip: (x, y) => AdmonitionComponent(x, y, "tip"),
+							important: (x, y) =>
+								AdmonitionComponent(x, y, "important"),
+							caution: (x, y) =>
+								AdmonitionComponent(x, y, "caution"),
+							warning: (x, y) =>
+								AdmonitionComponent(x, y, "warning"),
 						},
-						children: [{ type: "text", value: "#" }],
 					},
-				},
+				],
+				[
+					rehypeAutolinkHeadings,
+					{
+						behavior: "append",
+						properties: {
+							className: ["anchor"],
+						},
+						content: {
+							type: "element",
+							tagName: "span",
+							properties: {
+								className: ["anchor-icon"],
+								"data-pagefind-ignore": true,
+							},
+							children: [{ type: "text", value: "#" }],
+						},
+					},
+				],
+				rehypeImageWidth,
 			],
-			rehypeImageWidth,
-		],
+		}),
 	},
 	vite: {
 		plugins: [tailwindcss()],
