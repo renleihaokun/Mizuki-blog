@@ -10,7 +10,7 @@ author: renleihaokun
 draft: true
 date: 2026-06-05
 pubDate: 2026-06-05
-permalink: "openclaw_shit"
+permalink: "mihome"
 # image: "https://imgbed.haokun.me/file/1773883375512_image.webp"
 ---
 

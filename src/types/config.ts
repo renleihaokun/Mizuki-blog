@@ -197,6 +197,7 @@ export interface SiteConfig {
 	showLastModified: boolean; // 控制"上次编辑"卡片显示的开关
 	pageProgressBar?: PageProgressBarConfig; // 页面顶部进度条配置
 	thirdPartyAnalytics?: ThirdPartyAnalyticsConfig; // 第三方统计配置
+	googleTagManager?: GoogleTagManagerConfig; // Google Tag Manager 配置（独立开关）
 }
 
 export interface Favicon {
@@ -533,6 +534,18 @@ export interface ThirdPartyAnalyticsConfig {
 	clarityId?: string; // Clarity 项目 ID
 }
 
+/**
+ * Google Tag Manager 配置。
+ *
+ * 之前 GTM 的容器 ID 是硬编码在 `AnalyticsScripts.astro` 与 `Layout.astro` 里的，
+ * 与 `thirdPartyAnalytics.enable` 无关，等于关不掉。现在改为显式配置，
+ * 这是一个独立开关，行为与改动前保持一致（默认仍然启用原容器）。
+ */
+export interface GoogleTagManagerConfig {
+	enable: boolean; // 是否注入 GTM
+	containerId?: string; // GTM 容器 ID，例如 "GTM-XXXXXXX"
+}
+
 export type LineConfig = {
 	nameEn: string;
 	nameZh: string;
@@ -541,6 +554,11 @@ export type LineConfig = {
 	icon: string;
 	isLocal: boolean;
 	size: number;
+	/**
+	 * 该线路只有 IPv6（AAAA）记录，没有 IPv4（A）记录。
+	 * 用于在纯 IPv4 网络下把它显示成「需 IPv6」而不是红色的 ERR。
+	 */
+	ipv6Only?: boolean;
 };
 
 export type LineSwitchConfig = LineConfig[];

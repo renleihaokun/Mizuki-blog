@@ -246,6 +246,14 @@ export const siteConfig: SiteConfig = {
 		enable: false, // 是否启用第三方统计（Microsoft Clarity），默认关闭，启用可能影响 Lighthouse 评分
 		clarityId: "", // Clarity 项目 ID
 	},
+
+	// Google Tag Manager
+	// 说明：这个容器 ID 以前硬编码在 components/layout 里，配置项关不掉它。
+	// 现在它由下面的开关控制：enable=false 就完全不注入。
+	googleTagManager: {
+		enable: true, // 保持与改动前一致的线上行为；不需要统计时把它改成 false
+		containerId: "GTM-KRX3XGVH",
+	},
 };
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
@@ -655,13 +663,16 @@ export const lineSwitchConfig: LineSwitchConfig = [
 		size: 27,
 	},
 	{
-		nameEn: "Cloudflare",
-		nameZh: "IPv6",
+		nameEn: "IPv6", // 线路名称（英文）
+		nameZh: "IPv6", // 线路名称（中文）
 		url: "https://6.blog.haokun.me",
 		id: "cf-ipv6",
 		icon: "logos:cloudflare-icon",
 		isLocal: false,
 		size: 27,
+		// 该线路只有 AAAA 记录（实测 42 条 AAAA / 0 条 A）。
+		// 纯 IPv4 网络的访客永远连不上，界面应显示「需 IPv6」而不是 ERR。
+		ipv6Only: true,
 	},
 	{
 		nameEn: "EdgeOne",

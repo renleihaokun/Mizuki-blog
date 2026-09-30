@@ -40,19 +40,22 @@ const lines = lineSwitchConfig;
 			{
 				lines.map((line) => (
 					<a
-						href="javascript:void(0)"
+						href={line.url}
 						data-base-url={line.url}
 						data-hostname={new URL(line.url).hostname}
 						data-line-id={line.id}
+						data-ipv6-only={line.ipv6Only ? "true" : undefined}
 						class="line-item-link group block w-full no-underline"
 					>
 						<button class="w-full h-12 rounded-lg transition-all pl-4 hover:pl-5 text-left cursor-pointer flex items-center">
 							<div class="flex items-center justify-between w-full relative mr-4">
 								<div class="flex items-center gap-2 overflow-hidden">
 									<div class="flex items-center text-[14px] line-name-container text-90">
-										<span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">
-											{line.nameEn}
-										</span>
+										{line.nameEn.trim() && (
+											<span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">
+												{line.nameEn}
+											</span>
+										)}
 										<span class="line-name-zh truncate font-medium">
 											{line.nameZh}
 										</span>
@@ -69,12 +72,14 @@ const lines = lineSwitchConfig;
 												class="flex-shrink-0"
 											/>
 										) : (
-											<iconify-icon
-												icon={line.icon}
-												width={line.size}
-												height={line.size}
-												class="flex-shrink-0"
-											/>
+											line.icon.trim() && (
+												<iconify-icon
+													icon={line.icon}
+													width={line.size}
+													height={line.size}
+													class="flex-shrink-0"
+												/>
+											)
 										)}
 									</div>
 								</div>
@@ -153,30 +158,152 @@ const lines = lineSwitchConfig;
 			opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
+	/* 徽章可点击：手动重测该线路 */
+	.latency-badge {
+		cursor: pointer;
+		user-select: none;
+		background: rgba(127, 127, 127, 0.12);
+		color: var(--text-color, inherit);
+	}
+	.latency-badge:focus-visible {
+		outline: 2px solid var(--primary);
+		outline-offset: 2px;
+	}
+
+	/* 状态配色：全部按 4.5:1 以上对比度取值（Lighthouse 原来报 ERR 徽章只有 3.51:1） */
 	.latency-badge.ok {
-		color: #10b981;
-		background: rgba(16, 185, 129, 0.1);
+		color: #047857; /* emerald-700 */
+		background: rgba(16, 185, 129, 0.16);
+	}
+	.dark .latency-badge.ok {
+		color: #6ee7b7; /* emerald-300 */
+		background: rgba(16, 185, 129, 0.14);
 	}
 	.latency-badge.lime {
-		color: #84cc16;
-		background: rgba(132, 204, 22, 0.1);
+		color: #4d7c0f; /* lime-700 */
+		background: rgba(132, 204, 22, 0.18);
+	}
+	.dark .latency-badge.lime {
+		color: #bef264; /* lime-300 */
+		background: rgba(132, 204, 22, 0.16);
 	}
 	.latency-badge.warn {
-		color: #f59e0b;
-		background: rgba(245, 158, 11, 0.1);
+		color: #b45309; /* amber-700 */
+		background: rgba(245, 158, 11, 0.18);
+	}
+	.dark .latency-badge.warn {
+		color: #fcd34d; /* amber-300 */
+		background: rgba(245, 158, 11, 0.16);
 	}
 	.latency-badge.err {
-		color: #ef4444;
-		background: rgba(239, 68, 68, 0.1);
+		color: #b91c1c; /* red-700 */
+		background: rgba(239, 68, 68, 0.16);
+	}
+	.dark .latency-badge.err {
+		color: #fca5a5; /* red-300 */
+		background: rgba(239, 68, 68, 0.16);
+	}
+	/* 需要 IPv6 的中性提示：不是错误，只是当前网络用不了 */
+	.latency-badge.muted {
+		color: #3f3f46; /* zinc-700 */
+		background: rgba(113, 113, 122, 0.18);
+		cursor: help;
+	}
+	.dark .latency-badge.muted {
+		color: #e4e4e7; /* zinc-200 */
+		background: rgba(161, 161, 170, 0.2);
+	}
+	/* 正在重测 */
+	.latency-badge.pending {
+		color: #3f3f46;
+		background: rgba(113, 113, 122, 0.12);
+		opacity: 0.85;
+	}
+	.dark .latency-badge.pending {
+		color: #e4e4e7;
 	}
 </style>
 
 <script>
 	import { siteConfig } from "@/config";
 
+	/**
+	 * 探测本机能否访问纯 IPv6 线路（6.blog.haokun.me 只有 AAAA 记录）。
+	 *
+	 * 说明与取舍：
+	 * - 本站是纯静态站点，没有运行时服务端，因此无法用「同源端点读取客户端 IP」
+	 *   这种方式判断协议族（`output: "static"` 下这类路由不会产出）。
+	 * - 纯 IPv4 网络下探测 AAAA-only 域名会有一次失败的请求（控制台会出现一条
+	 *   ERR_NAME_NOT_RESOLVED），而且部分网络要等约 20s 才超时。
+	 *   所以**首页不会自动探测**：徽章先显示中性的「需 IPv6」，
+	 *   用户点徽章（或点击该线路）时才真正探测一次，并在 window 上缓存结果。
+	 */
+	function probeIpv6(): Promise<boolean> {
+		const runtime = window as typeof window & {
+			__lineSwitchIpv6Probe?: Promise<boolean>;
+		};
+
+		if (!runtime.__lineSwitchIpv6Probe) {
+			runtime.__lineSwitchIpv6Probe = (async () => {
+				const ctrl = new AbortController();
+				// 超时收紧到 6s：默认要等约 20s，体验太差
+				const tid = setTimeout(() => ctrl.abort(), 6000);
+				try {
+					await fetch(IPV6_ONLY_LINE_ORIGIN + "/", {
+						method: "HEAD",
+						mode: "no-cors",
+						cache: "no-store",
+						signal: ctrl.signal,
+					});
+					return true;
+				} catch {
+					return false;
+				} finally {
+					clearTimeout(tid);
+				}
+			})();
+		}
+
+		return runtime.__lineSwitchIpv6Probe;
+	}
+
+	/** 纯 IPv6 线路的探测地址 */
+	const IPV6_ONLY_LINE_ORIGIN = "https://6.blog.haokun.me";
+
 	class LineSwitchWidget extends HTMLElement {
+		private probing = false;
+
 		connectedCallback() {
 			this.init();
+		}
+
+		private setBadgeState(badge: Element, state: string) {
+			for (const cls of ["ok", "lime", "warn", "err", "muted", "pending"]) {
+				badge.classList.remove(cls);
+			}
+			badge.classList.add(state);
+		}
+
+		/**
+		 * 当前网络是否支持 IPv6。
+		 * 请求本站的 /api/ipv6-check：IPv6 到达返回 204，否则返回 421。
+		 * 用同源探测可以避免「先去解析一个 AAAA-only 域名、拿到 ERR_NAME_NOT_RESOLVED
+		 * 再去兜底」这种必然先报一次错的做法。
+		 * 结果缓存在 window 上，多个组件实例共用。
+		 */
+		async supportsIpv6(): Promise<boolean> {
+			const runtime = window as typeof window & {
+				__lineSwitchIpv6?: Promise<boolean>;
+				__lineSwitchIpv6Resolved?: boolean;
+			};
+
+			if (!runtime.__lineSwitchIpv6) {
+				runtime.__lineSwitchIpv6 = probeIpv6();
+			}
+
+			const available = await runtime.__lineSwitchIpv6;
+			runtime.__lineSwitchIpv6Resolved = available;
+			return available;
 		}
 
 		async getPing(url: string) {
@@ -199,30 +326,129 @@ const lines = lineSwitchConfig;
 			}
 		}
 
-		async updateBadge(id: string, url: string) {
+		/**
+		 * 组件当前是否真的可见。
+		 *
+		 * 注意：`<line-switch-widget>` 自身是 `display: contents`，不会生成盒子，
+		 * 因此 `this.offsetParent` 恒为 null、`getBoundingClientRect()` 恒为 0x0。
+		 * 必须去看它渲染出来的真实子元素（WidgetLayout）。
+		 */
+		private isVisible(): boolean {
+			const box = this.firstElementChild as HTMLElement | null;
+			if (!box) {
+				return false;
+			}
+			if (box.offsetParent !== null) {
+				return true;
+			}
+			// offsetParent 在 position:fixed 等情况下也可能为 null，兜底看盒子尺寸
+			const rect = box.getBoundingClientRect();
+			return rect.width > 0 && rect.height > 0;
+		}
+
+		/** 只在组件可见时才测速：同一个组件渲染了多份，隐藏副本不该重复发请求 */
+		async startProbing() {
+			if (this.probing || !this.isVisible()) return;
+			this.probing = true;
+			try {
+				for (const link of Array.from(
+					this.querySelectorAll<HTMLElement>(".line-item-link"),
+				)) {
+					const id = link.getAttribute("data-line-id");
+					const baseUrl = link.getAttribute("data-base-url");
+					if (!id || !baseUrl) continue;
+
+					// 纯 IPv6 线路不参与自动测速：
+					// 只有确认本机真的有 v6 才值得测，否则要么白等 20s 超时、
+					// 要么平白产生一次控制台错误。默认给中性徽章，点击才探测。
+					if (this.isIpv6Only(link)) {
+						this.renderPendingIpv6Badge(link);
+						continue;
+					}
+
+					await this.updateBadge(id, baseUrl, false);
+				}
+			} finally {
+				this.probing = false;
+			}
+		}
+
+		private isIpv6Only(link: HTMLElement) {
+			return link.getAttribute("data-ipv6-only") === "true";
+		}
+
+		/**
+		 * 写入徽章文字并同步可访问名。
+		 * 徽章是 role=button，它的可见文字必须包含在 aria-label 里，
+		 * 否则会触发 WCAG 2.5.3「可见文本与可访问名不一致」。
+		 */
+		private setBadgeText(badge: Element, text: string) {
+			badge.textContent = text;
+			const lineName =
+				badge
+					.closest(".line-item-link")
+					?.querySelector(".line-name-zh")
+					?.textContent?.trim() || "该线路";
+			badge.setAttribute("aria-label", `${lineName}：${text}（点击重新测速）`);
+		}
+
+		/** 纯 IPv6 线路的默认徽章：中性提示，可点击探测 */
+		private renderPendingIpv6Badge(link: HTMLElement) {
+			const badge = link.querySelector(".latency-badge");
+			if (!badge) return;
+
+			const resolved = (
+				window as typeof window & {
+					__lineSwitchIpv6Resolved?: boolean;
+				}
+			).__lineSwitchIpv6Resolved;
+
+			if (resolved) {
+				this.setBadgeText(badge, "点击测速");
+				badge.setAttribute("title", "本机支持 IPv6，点击测速");
+			} else {
+				this.setBadgeText(badge, "需 IPv6");
+				badge.setAttribute(
+					"title",
+					resolved === false
+						? "当前网络没有 IPv6，无法访问该线路；点击可重试"
+						: "该线路仅支持 IPv6，点击可检测本机是否可用",
+				);
+			}
+			this.setBadgeState(badge, "muted");
+		}
+
+		async updateBadge(id: string, url: string, ipv6Only: boolean) {
 			const badge = this.querySelector(
 				`[data-line-id="${id}"] .latency-badge`,
 			);
 			if (!badge) return;
 
-			await this.getPing(url);
-			let results = [];
-			for (let i = 0; i < 3; i++) {
-				const ms = await this.getPing(url);
-				if (ms > 0) results.push(ms);
-				await new Promise((r) => setTimeout(r, 60));
+			// 纯 IPv6 线路：只有确认本机有 v6 才真的去测，
+			// 否则直接给中性提示（避免必然失败的一次请求 + 控制台报错 + 20s 等待）。
+			if (ipv6Only && !(await this.supportsIpv6())) {
+				const link = this.querySelector(`[data-line-id="${id}"]`);
+				if (link) {
+					this.renderPendingIpv6Badge(link as HTMLElement);
+				}
+				return;
 			}
 
-			const res = results.length > 0 ? Math.min(...results) : -1;
-			badge.classList.remove("ok", "lime", "warn", "err");
+			// 只测一次并复用结果：原来这里先 await 一次把返回值丢掉、再循环测 3 次，
+			// 每次线路探测都白跑 1 个请求。
+			const res = await this.getPing(url);
+			badge.removeAttribute("title");
+
 			if (res < 0) {
-				badge.textContent = "ERR";
-				badge.classList.add("err");
+				this.setBadgeText(badge, "ERR");
+				badge.setAttribute("title", "该线路当前不可达，点击重测");
+				this.setBadgeState(badge, "err");
 			} else {
-				badge.textContent = res + "ms";
-				if (res < 150) badge.classList.add("ok");
-				else if (res < 300) badge.classList.add("warn");
-				else badge.classList.add("err");
+				this.setBadgeText(badge, res + "ms");
+				badge.setAttribute("title", "点击重新测速");
+				if (res < 150) this.setBadgeState(badge, "ok");
+				else if (res < 300) this.setBadgeState(badge, "lime");
+				else this.setBadgeState(badge, "warn");
 			}
 		}
 
@@ -272,6 +498,40 @@ const lines = lineSwitchConfig;
 					const baseUrl = link.getAttribute("data-base-url");
 					if (!baseUrl) return;
 
+					// 纯 IPv6 线路且尚未确认本机有 v6：
+					// 点击改为「就地探测一次并给出结果」，不要静默跳到一个必然失败的域名。
+					if (
+						this.isIpv6Only(link as HTMLElement) &&
+						!(
+							window as typeof window & {
+								__lineSwitchIpv6Resolved?: boolean;
+							}
+						).__lineSwitchIpv6Resolved
+					) {
+						e.preventDefault();
+						const badge = link.querySelector(".latency-badge");
+						if (badge) {
+							this.setBadgeState(badge, "pending");
+							this.setBadgeText(badge, "检测中…");
+						}
+						void this.supportsIpv6().then((available) => {
+							if (available) {
+								// 本机确实有 v6：直接跳转过去
+								window.location.href = baseUrl;
+								return;
+							}
+							if (badge) {
+								this.setBadgeState(badge, "muted");
+								this.setBadgeText(badge, "需 IPv6");
+								badge.setAttribute(
+									"title",
+									"当前网络没有 IPv6，无法访问该线路；点击可重试",
+								);
+							}
+						});
+						return;
+					}
+
 					e.preventDefault();
 					try {
 						const urlObj = new URL(baseUrl);
@@ -291,25 +551,55 @@ const lines = lineSwitchConfig;
 					}
 				});
 
+				// 徽章可点击：手动重测该线路
+				const badge = link.querySelector(".latency-badge");
+				if (badge) {
+					badge.setAttribute("role", "button");
+					badge.setAttribute("tabindex", "0");
+					// aria-label 必须包含徽章上可见的文字（延迟/ERR/需 IPv6 等），
+					// 否则会被判为「可见文本与可访问名不一致」（WCAG 2.5.3）。
+					this.setBadgeText(badge, badge.textContent?.trim() || "---");
+					const retry = (event: Event) => {
+						event.preventDefault();
+						event.stopPropagation();
+						const id = link.getAttribute("data-line-id");
+						const url = link.getAttribute("data-base-url");
+						if (!id || !url) return;
+						this.setBadgeState(badge, "pending");
+						this.setBadgeText(badge, "…");
+						void this.updateBadge(
+							id,
+							url,
+							this.isIpv6Only(link as HTMLElement),
+						);
+					};
+					badge.addEventListener("click", retry);
+					badge.addEventListener("keydown", (event) => {
+						const key = (event as KeyboardEvent).key;
+						if (key === "Enter" || key === " ") {
+							retry(event);
+						}
+					});
+				}
+
 				// 初始化 Ping 和 Active 状态
 				this.refreshStatus(link as HTMLElement);
 			});
 
 			// 监听 Swup 页面切换，更新 Active 状态
-			document.addEventListener("swup:contentReplace", () => {
+			// （这里原来监听的是 swup 3 的旧事件名 swup:contentReplace，永远不会触发）
+			document.addEventListener("swup:page:view", () => {
 				this.querySelectorAll(".line-item-link").forEach((link) => {
 					this.updateActiveState(link as HTMLElement);
 				});
 			});
+
+			// 延迟 1s 等首屏稳定后再测速；只在组件可见时执行，隐藏副本不会发请求。
+			setTimeout(() => void this.startProbing(), 1000);
 		}
 
 		refreshStatus(link: HTMLElement) {
-			const id = link.getAttribute("data-line-id");
-			const baseUrl = link.getAttribute("data-base-url");
 			this.updateActiveState(link);
-			if (id && baseUrl) {
-				setTimeout(() => this.updateBadge(id, baseUrl), 1000);
-			}
 		}
 
 		updateActiveState(link: HTMLElement) {
