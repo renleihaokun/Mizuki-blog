@@ -6,7 +6,7 @@
       "url": [
         "http://localhost:4321/",
         "http://localhost:4321/about/",
-        "http://localhost:4321/anime/"
+        "http://localhost:4321/bettercf/"
       ],
       "startServerCommand": "pnpm preview",
       "startServerReadyPattern": "localhost:4321",

@@ -36,9 +36,14 @@ jobs:
       - name: Create ESLint output directory
         run: mkdir -p eslint-results
 
+      # 注意：
+      # 1) 这里不能用 `pnpm lint --format=json`：package.json 的 lint 脚本自带 `--fix`，
+      #    CI 里对工作区做自动修复没有意义，所以直接调用 eslint。
+      # 2) 之前带 `continue-on-error: true`，等于 100 条警告也照样绿灯。
+      #    现在改成显式门禁，阈值锁在当前基线（93 条，全是 no-console / eqeqeq 这类提示），
+      #    意味着「不能再变多」；每清掉一批就把这个数字往下调。
       - name: Run ESLint
-        run: pnpm lint --format=json --output-file=eslint-results/eslint-results.json
-        continue-on-error: true
+        run: pnpm exec eslint ./src --format=json --output-file=eslint-results/eslint-results.json --max-warnings 93
 
       - name: Upload ESLint results
         if: always()

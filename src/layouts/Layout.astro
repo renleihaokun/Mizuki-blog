@@ -117,6 +117,11 @@ const bannerOffsetByPosition = {
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
 
+// GTM 容器 ID：以前是硬编码常量，现在由 siteConfig.googleTagManager 控制
+const gtmContainerId = siteConfig.googleTagManager?.enable
+	? (siteConfig.googleTagManager.containerId ?? "")
+	: "";
+
 // 构建字体配置的 CSS 变量
 // ASCII 字体优先级最高（用于英文、数字等），CJK 字体作为回退
 let bodyFontFamily = "";
@@ -162,8 +167,9 @@ if (siteConfig.font) {
 	<head>
 		<meta charset="UTF-8" />
 
-		<!-- 第三方分析脚本 -->
+		<!-- 第三方分析脚本（GTM 由 googleTagManager 控制，Clarity 由 thirdPartyAnalytics 控制） -->
 		<AnalyticsScripts
+			gtmId={gtmContainerId}
 			thirdPartyAnalytics={siteConfig.thirdPartyAnalytics}
 		/>
 
@@ -211,13 +217,17 @@ if (siteConfig.font) {
 		style={bodyFontFamily ? `font-family: ${bodyFontFamily};` : ""}
 		data-overlayscrollbars-initialize
 	>
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-KRX3XGVH"
-				height="0"
-				width="0"
-				style="display:none;visibility:hidden"></iframe></noscript
-		>
+		{
+			Boolean(gtmContainerId) && (
+				<noscript
+					><iframe
+						src={`https://www.googletagmanager.com/ns.html?id=${gtmContainerId}`}
+						height="0"
+						width="0"
+						style="display:none;visibility:hidden"
+					/></noscript>
+			)
+		}
 		<!-- 页面顶部渐变高光效果 - 只在full和semifull模式下显示 -->
 		{shouldShowTopHighlight && <div class="top-gradient-highlight" />}
 
