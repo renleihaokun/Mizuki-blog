@@ -154,16 +154,54 @@ const { class: className, style } = Astro.props;
 </network-check-widget>
 
 <script>
+	const IPV4_API = "https://ipv4.4848488.xyz/api/ip";
+	const IPV6_API = "https://ipv6.4848488.xyz/api/ip";
+
 	class NetworkCheckWidget extends HTMLElement {
+		/**
+		 * 选择用哪个 IP 接口。
+		 *
+		 * 实测：ipv4.4848488.xyz 是双栈的（A + AAAA），ipv6.4848488.xyz 只有 AAAA。
+		 * 所以：
+		 * - 走 IPv6 访问本站（例如 6.blog.haokun.me 这条纯 AAAA 线路）时，
+		 *   必须用 ipv6 接口，否则 IPv4-only 的接口在 v6-only 网络下解析失败，
+		 *   这个组件会直接进入「网络检测失败」。
+		 * - 其余情况优先用 ipv4 接口，失败时回退到 ipv6 接口。
+		 */
+		private resolvedApi: string | null = null;
+
 		getApiUrl() {
+			if (this.resolvedApi) {
+				return this.resolvedApi;
+			}
 			const host = window.location.hostname;
-			if (host === "blog.4848488.xyz") {
-				return "https://ipv4.4848488.xyz/api/ip";
-			}
+			// 该线路只有 AAAA 记录，访问者必然在 IPv6 网络上
 			if (host === "6.blog.haokun.me") {
-				return "https://ipv6.4848488.xyz/api/ip";
+				return IPV6_API;
 			}
-			return "https://ipv4.4848488.xyz/api/ip";
+			return IPV4_API;
+		}
+
+		/** 双栈访客：主接口失败时自动换另一个协议族再试一次 */
+		async fetchWithFallback() {
+			const primary = this.getApiUrl();
+			const fallback = primary === IPV6_API ? IPV4_API : IPV6_API;
+			const candidates = [primary, fallback];
+
+			let lastError: unknown = null;
+			for (const api of candidates) {
+				try {
+					const response = await fetch(api);
+					if (!response.ok) {
+						throw new Error(`HTTP ${response.status}`);
+					}
+					this.resolvedApi = api;
+					return await response.json();
+				} catch (error) {
+					lastError = error;
+				}
+			}
+			throw lastError ?? new Error("Network API unavailable");
 		}
 
 		connectedCallback() {
@@ -199,16 +237,25 @@ const { class: className, style } = Astro.props;
 
 		async fetchData() {
 			try {
-				const response = await fetch(this.getApiUrl());
-				if (!response.ok) {
-					throw new Error("Network response was not ok");
-				}
-				const data = await response.json();
+				const data = await this.fetchWithFallback();
 				this.updateUI(data);
 			} catch (error) {
 				console.error("Failed to fetch network info:", error);
 				this.showError();
 			}
+		}
+
+		/**
+		 * 实测：只有 cf / 6 / blog.4848488.xyz 这几条线路的后端会返回节点与 RTT，
+		 * 其它线路（eo / esa / vercel / netlify / render）不返回，需要隐藏这两块。
+		 */
+		private hostProvidesNodeAndRtt() {
+			const allowedHosts = [
+				"cf.blog.haokun.me",
+				"blog.4848488.xyz",
+				"6.blog.haokun.me",
+			];
+			return allowedHosts.includes(window.location.hostname);
 		}
 
 		updateUI(data: any) {
@@ -219,12 +266,7 @@ const { class: className, style } = Astro.props;
 			// Node
 			const nodeEl = this.querySelector(".net-node");
 			if (nodeEl) {
-				const allowedHosts = [
-					"cf.blog.haokun.me",
-					"blog.4848488.xyz",
-					"6.blog.haokun.me",
-				];
-				if (allowedHosts.includes(window.location.hostname)) {
+				if (this.hostProvidesNodeAndRtt()) {
 					nodeEl.textContent = data.node?.name || "Unknown";
 					nodeEl.closest(".flex-col")?.classList.remove("hidden");
 				} else {
@@ -259,21 +301,13 @@ const { class: className, style } = Astro.props;
 				".net-rtt-container",
 			) as HTMLElement;
 			if (rttContainer) {
-				const allowedHosts = [
-					"cf.blog.haokun.me",
-					"blog.4848488.xyz",
-					"6.blog.haokun.me",
-				];
 				const rttValue = data.rtt;
 				const hasValidRtt =
 					rttValue !== undefined &&
 					rttValue !== null &&
 					rttValue !== 0;
 
-				if (
-					allowedHosts.includes(window.location.hostname) &&
-					hasValidRtt
-				) {
+				if (this.hostProvidesNodeAndRtt() && hasValidRtt) {
 					rttContainer.classList.remove("hidden");
 					const rttValEl = this.querySelector(".net-rtt-val");
 					const rttBarEl = this.querySelector(
