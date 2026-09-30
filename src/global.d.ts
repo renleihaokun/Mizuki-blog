@@ -53,6 +53,8 @@ declare global {
 		};
 
 		loadPagefind?: () => Promise<void>;
+		/** 单飞 Promise：Pagefind 加载完成（或失败）后 resolve，供搜索组件等待结果 */
+		pagefindReadyPromise?: Promise<void>;
 		toggleFloatingTOC?: () => void;
 		mobileTOCInit?: () => void;
 		initSemifullScrollDetection?: () => void;

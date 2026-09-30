@@ -155,31 +155,40 @@
 				typeof window !== "undefined" &&
 				!!window.pagefind &&
 				typeof window.pagefind.search === "function";
-			console.log("Pagefind status on init:", pagefindLoaded);
 		};
 		if (import.meta.env.DEV) {
-			console.log(
-				"Pagefind is not available in development mode. Using mock data.",
-			);
 			initializeSearch();
 		} else {
+			/**
+			 * 这里曾经只监听 `pagefindready` 事件，但真正负责加载 pagefind 的
+			 * `window.loadPagefind()`（定义在 Navbar.astro）**从来没有被任何地方调用过**，
+			 * 于是事件永远不发、window.pagefind 始终是空的，搜索在线上一直是坏的
+			 * （表现为 2 秒兜底后 pagefindLoaded=false，任何关键词都搜不到）。
+			 * 现在由搜索组件自己触发加载，并保留事件监听作为兜底。
+			 */
+			const loadedByCaller = window.loadPagefind
+				? Promise.resolve(window.loadPagefind()).catch(() => undefined)
+				: Promise.resolve();
+
 			document.addEventListener("pagefindready", () => {
-				console.log("Pagefind ready event received.");
 				initializeSearch();
 			});
 			document.addEventListener("pagefindloaderror", () => {
-				console.warn(
-					"Pagefind load error event received. Search functionality will be limited.",
-				);
 				initializeSearch(); // Initialize with pagefindLoaded as false
 			});
-			// Fallback in case events are not caught or pagefind is already loaded by the time this script runs
-			setTimeout(() => {
-				if (!initialized) {
-					console.log("Fallback: Initializing search after timeout.");
-					initializeSearch();
-				}
-			}, 2000); // Adjust timeout as needed
+
+			// 等加载器跑完再判定状态；这里不再用固定 2 秒兜底
+			void Promise.resolve(window.pagefindReadyPromise ?? loadedByCaller)
+				.then(() => {
+					if (!initialized) {
+						initializeSearch();
+					}
+				})
+				.catch(() => {
+					if (!initialized) {
+						initializeSearch();
+					}
+				});
 		}
 
 		// 监听窗口焦点事件，防止切换窗口时自动展开搜索框
