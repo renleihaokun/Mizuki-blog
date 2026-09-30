@@ -75,7 +75,7 @@ const hasChildren = children.length > 0;
 										: null
 								}
 								class="dropdown-item"
-								aria-label={child.name}
+								aria-label={getLocalizedName(child.name)}
 							>
 								<div class="flex items-center">
 									{child.icon && (
@@ -99,7 +99,7 @@ const hasChildren = children.length > 0;
 			</>
 		) : (
 			<a
-				aria-label={link.name}
+				aria-label={getLocalizedName(link.name)}
 				href={link.external ? link.url : url(link.url)}
 				target={link.external ? "_blank" : null}
 				rel={link.external ? "noopener noreferrer" : null}

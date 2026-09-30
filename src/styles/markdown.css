@@ -9,8 +9,13 @@
     .anchor {
       @apply transition -m-0.5 ms-[0.2ch] p-0.5 select-none opacity-0 no-underline;
 
+      /* `#` 用伪元素绘制：不进入标题文本，也不会被屏幕阅读器念出来 */
       .anchor-icon {
         @apply mx-[0.45ch];
+
+        &::before {
+          content: "#";
+        }
       }
     }
 

@@ -4,11 +4,15 @@ export interface Props {
 }
 
 const { data } = Astro.props;
+
+// JSON.stringify 不转义 "<"，一旦 frontmatter 里出现 "</script>" 就能闭合脚本标签。
+// 把 < 转成 \u003c 后仍然是合法 JSON，但无法再逃逸出 script 元素。
+const safeJson = JSON.stringify(data).replace(/</g, "\\u003c");
 ---
 
 <script
 	is:inline
 	slot="head"
 	type="application/ld+json"
-	set:html={JSON.stringify(data)}
+	set:html={safeJson}
 />

@@ -10,13 +10,18 @@
 interface Props {
 	badge?: string;
 	url?: string;
-	label?: string;
 }
-const { badge, url, label } = Astro.props;
+const { badge, url } = Astro.props;
 ---
 
-<a href={url} aria-label={label}>
+{/*
+	可访问名直接由内容（分类名 + 徽章数字）计算。
+	这里刻意不设置 aria-label：一旦显式指定，就必须保证它包含徽章里的数字，
+	否则会触发 WCAG 2.5.3「可见文本与可访问名不一致」。
+*/}
+<a href={url}>
 	<button
+		type="button"
 		class:list={`
             w-full
             h-10

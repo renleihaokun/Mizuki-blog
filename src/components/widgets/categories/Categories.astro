@@ -36,11 +36,9 @@ const style = Astro.props.style;
 >
 	{
 		categories.map((c) => (
-			<ButtonLink
-				url={c.url}
-				badge={String(c.count)}
-				label={`View all posts in the ${c.name.trim()} category`}
-			>
+			// label 不再需要：可访问名由「分类名 + 徽章数字」自动计算，
+			// 之前传英文 aria-label 会触发 WCAG 2.5.3（可见文本与可访问名不一致）。
+			<ButtonLink url={c.url} badge={String(c.count)}>
 				{c.name.trim()}
 			</ButtonLink>
 		))

@@ -24,9 +24,14 @@ const categoryUrl = linkBase
 		<Icon name="material-symbols:book-2-outline-rounded" class="text-xl" />
 	</div>
 	<div class="flex flex-row flex-nowrap items-center">
+		{/*
+			这里不再用英文 aria-label：可访问名必须包含可见文字「分类名」，
+			否则会被判为 WCAG 2.5.3「可见文本与可访问名不一致」。
+			aria-label 用可见文字开头、后缀补充说明即可。
+		*/}
 		<a
 			href={categoryUrl}
-			aria-label={`View all posts in the ${category} category`}
+			aria-label={`${category || i18n(I18nKey.uncategorized)}（${i18n(I18nKey.categories)}）`}
 			class="link-lg transition text-50 text-sm font-medium hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"
 		>
 			{category || i18n(I18nKey.uncategorized)}
