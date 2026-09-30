@@ -249,6 +249,15 @@ const { headings = [] } = Astro.props;
 				".floating-control-item[data-control-key]",
 			);
 			const totalItems = items.length;
+
+			// 先把布局读取集中做掉：原实现在 class 切换之后才读 getComputedStyle，
+			// 触发了一次整页强制同步布局（实测 57ms 的 forced reflow）。
+			const baseBottom = parseFloat(
+				getComputedStyle(document.documentElement).getPropertyValue(
+					"--fab-group-base-bottom",
+				),
+			);
+
 			let hasVisibleItem = false;
 			let visibleCount = 0;
 
@@ -282,22 +291,14 @@ const { headings = [] } = Astro.props;
 				document.documentElement.style.removeProperty(
 					"--fab-group-bottom",
 				);
-			} else {
-				const baseBottom = parseFloat(
-					getComputedStyle(document.documentElement).getPropertyValue(
-						"--fab-group-base-bottom",
-					),
+			} else if (!isNaN(baseBottom) && totalItems > 0) {
+				const minBottom = 1.5;
+				const ratio = visibleCount / totalItems;
+				const newBottom = minBottom + (baseBottom - minBottom) * ratio;
+				document.documentElement.style.setProperty(
+					"--fab-group-bottom",
+					newBottom + "rem",
 				);
-				if (!isNaN(baseBottom) && totalItems > 0) {
-					const minBottom = 1.5;
-					const ratio = visibleCount / totalItems;
-					const newBottom =
-						minBottom + (baseBottom - minBottom) * ratio;
-					document.documentElement.style.setProperty(
-						"--fab-group-bottom",
-						newBottom + "rem",
-					);
-				}
 			}
 		}
 

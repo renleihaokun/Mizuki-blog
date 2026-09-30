@@ -216,6 +216,14 @@ const { class: className } = Astro.props;
 		}
 
 		init() {
+			// 每次 Swup 切页都会重新调用 init()，所以先把上一轮注册的监听与观察目标清干净，
+			// 否则点击处理函数会一份份累积、IntersectionObserver 还会一直盯着已经脱离文档的旧章节。
+			this.tocEl?.removeEventListener("click", this.handleAnchorClick, {
+				capture: true,
+			});
+			this.observer.disconnect();
+			this.headingIdxMap.clear();
+
 			this.regenerateTOC();
 			this.tocEl = this;
 			this.scrollContainer =

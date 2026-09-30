@@ -51,8 +51,8 @@ function initPageLayout(pageType) {
 		}, 100);
 	});
 
-	// 监听SWUP导航事件
-	document.addEventListener("swup:contentReplaced", () => {
+	// 监听SWUP导航事件（swup 4 的事件名；旧名 swup:contentReplaced 不会触发）
+	document.addEventListener("swup:page:view", () => {
 		setTimeout(() => {
 			const currentLayout =
 				localStorage.getItem("postListLayout") || "list";

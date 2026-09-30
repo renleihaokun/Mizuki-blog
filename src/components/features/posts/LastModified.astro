@@ -15,6 +15,17 @@ dayjs.extend(utc);
 const { updatedDate, class: className } = Astro.props;
 
 const lastModified = dayjs(updatedDate).utc().format("YYYY-MM-DDTHH:mm:ss");
+
+// 语言键值在这里就渲染进 DOM，客户端脚本只负责按秒重算，不需要再去读隐藏节点。
+const runtimeStrings = {
+	prefix: i18n(I18nKey.lastModifiedPrefix),
+	year: i18n(I18nKey.year),
+	month: i18n(I18nKey.month),
+	day: i18n(I18nKey.day),
+	hour: i18n(I18nKey.hour),
+	minute: i18n(I18nKey.minute),
+	second: i18n(I18nKey.second),
+};
 ---
 
 <>
@@ -33,63 +44,81 @@ const lastModified = dayjs(updatedDate).utc().format("YYYY-MM-DDTHH:mm:ss");
 	</div>
 
 	<div class:list={["card-base p-6 mb-4", className]}>
-		<script is:inline>
-			function runtime() {
-				const lastModifiedElement =
-					document.getElementById("last-modified");
-				if (!lastModifiedElement) {
+		<script
+			is:inline
+			data-swup-ignore-script
+			define:vars={{
+				strings: runtimeStrings,
+			}}
+		>
+			// 持久化脚本：只执行一次，自己负责跨 Swup 切页持续更新。
+			// 这里必须用 querySelectorAll + 属性选择器来定位「当前页面的」时间节点，
+			// 否则切页后会继续往上一页的 DOM 里写（原来就是这个问题）。
+			(function () {
+				if (window.__lastModifiedRuntime) {
 					return;
 				}
+				window.__lastModifiedRuntime = true;
 
-				const startDate = new Date(
-					lastModifiedElement.dataset.lastModified,
-				);
-				const currentDate = new Date();
-				const diff = currentDate - startDate;
-				const seconds = Math.floor(diff / 1000);
-				const days = Math.floor(seconds / 86400);
-				const hours = Math.floor((seconds % 86400) / 3600);
-				const minutes = Math.floor((seconds % 3600) / 60);
-				const secs = seconds % 60;
+				function formatRuntime(diffMs) {
+					const seconds = Math.floor(diffMs / 1000);
+					const days = Math.floor(seconds / 86400);
+					const hours = Math.floor((seconds % 86400) / 3600);
+					const minutes = Math.floor((seconds % 3600) / 60);
+					const secs = seconds % 60;
 
-				const years = Math.floor(days / 365);
-				const months = Math.floor((days % 365) / 30);
-				const remainingDays = days % 30;
+					const years = Math.floor(days / 365);
+					const months = Math.floor((days % 365) / 30);
+					const remainingDays = days % 30;
 
-				const prefix = lastModifiedElement.dataset.prefix;
-				const yearKey = lastModifiedElement.dataset.year;
-				const monthKey = lastModifiedElement.dataset.month;
-				const dayKey = lastModifiedElement.dataset.day;
-				const hourKey = lastModifiedElement.dataset.hour;
-				const minuteKey = lastModifiedElement.dataset.minute;
-				const secondKey = lastModifiedElement.dataset.second;
-
-				let runtimeString = prefix + " ";
-				if (years > 0) {
-					runtimeString += `${years} ${yearKey} `;
-				}
-				if (months > 0) {
-					runtimeString += `${months} ${monthKey} `;
-				}
-				if (remainingDays > 0) {
-					runtimeString += `${remainingDays} ${dayKey} `;
-				}
-				runtimeString += `${hours} ${hourKey} `;
-				if (minutes < 10) {
-					runtimeString += `0${minutes} ${minuteKey} `;
-				} else {
-					runtimeString += `${minutes} ${minuteKey} `;
-				}
-				if (secs < 10) {
-					runtimeString += `0${secs} ${secondKey}`;
-				} else {
-					runtimeString += `${secs} ${secondKey}`;
+					let text = strings.prefix + " ";
+					if (years > 0) {
+						text += `${years} ${strings.year} `;
+					}
+					if (months > 0) {
+						text += `${months} ${strings.month} `;
+					}
+					if (remainingDays > 0) {
+						text += `${remainingDays} ${strings.day} `;
+					}
+					text += `${hours} ${strings.hour} `;
+					text += `${minutes < 10 ? "0" + minutes : minutes} ${strings.minute} `;
+					text += `${secs < 10 ? "0" + secs : secs} ${strings.second}`;
+					return text;
 				}
 
-				document.getElementById("modifiedtime").innerHTML =
-					runtimeString;
-			}
-			setInterval(runtime, 1000);
+				function runtime() {
+					const markers = Array.from(
+						document.querySelectorAll(
+							'div[id="last-modified"][data-last-modified]',
+						),
+					);
+					for (const marker of markers) {
+						// 当前页面里的显示节点（marker 与显示节点同属一个页面区块）
+						const container =
+							marker.closest("main") ?? document.body;
+						const target =
+							container.querySelector("#modifiedtime");
+						if (!target) {
+							continue;
+						}
+
+						const startDate = new Date(
+							marker.getAttribute("data-last-modified") ?? "",
+						);
+						if (Number.isNaN(startDate.getTime())) {
+							continue;
+						}
+
+						target.textContent = formatRuntime(
+							Date.now() - startDate.getTime(),
+						);
+					}
+				}
+
+				runtime();
+				setInterval(runtime, 1000);
+			})();
 		</script>
 		<div class="flex items-center gap-3">
 			<div

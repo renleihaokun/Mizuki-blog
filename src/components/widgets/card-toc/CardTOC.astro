@@ -114,7 +114,9 @@ const useJapaneseBadge = siteConfig.toc.useJapaneseBadge;
 		initAllCardTOCs();
 	}
 
-	document.addEventListener("swup:contentReplaced", () => {
+	// 注：原来这里是 swup 3 的旧事件名 swup:contentReplaced，swup 4 不会派发，
+	// 真正的重初始化一直靠下方的 astro:page-load 兜底。
+	document.addEventListener("swup:content:replace", () => {
 		setTimeout(initAllCardTOCs, 100);
 	});
 

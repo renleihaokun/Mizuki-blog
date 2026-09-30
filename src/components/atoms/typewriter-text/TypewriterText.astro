@@ -156,7 +156,9 @@ const textData = Array.isArray(text) ? JSON.stringify(text) : text;
 	});
 
 	// 支持页面切换时重新初始化
-	document.addEventListener("swup:contentReplaced", () => {
+	// 注：原来监听的是 swup 3 的旧事件名 swup:contentReplaced，swup 4（本项目 4.8.3）
+	// 只会派发 swup:content:replace / swup:page:view，所以这段逻辑以前从未执行过。
+	document.addEventListener("swup:page:view", () => {
 		const typewriterElements = document.querySelectorAll(".typewriter");
 		typewriterElements.forEach((element) => {
 			new TypewriterEffect(element as HTMLElement);

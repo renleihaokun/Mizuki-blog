@@ -41,8 +41,6 @@ import { i18n } from "@i18n/translation";
 	updateBackToHomeVisibility();
 
 	document.addEventListener("astro:page-load", updateBackToHomeVisibility);
-	document.addEventListener(
-		"swup:contentReplaced",
-		updateBackToHomeVisibility,
-	);
+	// swup 4 的事件名（原来的 swup:contentReplaced 属于 swup 3，永不触发）
+	document.addEventListener("swup:page:view", updateBackToHomeVisibility);
 </script>

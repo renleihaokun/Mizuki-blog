@@ -286,5 +286,5 @@ const archiveUrl = url("/archive/");
 		updateCategoryBar();
 		initScrollFeatures();
 	});
-	document.addEventListener("swup:contentReplaced", updateCategoryBar);
+	document.addEventListener("swup:page:view", updateCategoryBar);
 </script>

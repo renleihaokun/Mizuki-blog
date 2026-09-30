@@ -153,48 +153,56 @@ const stats = [
 	</div>
 </WidgetLayout>
 
-<script is:inline define:vars={{ siteStartDate, lastPostDate }}>
-	function updateDynamicStats() {
-		const today = new Date();
+<script is:inline data-swup-ignore-script define:vars={{ siteStartDate, lastPostDate }}>
+	// 持久化脚本：只执行一次，避免每次 Swup 切页都多挂一个每小时定时器。
+	if (!window.__siteStatsRuntime) {
+		window.__siteStatsRuntime = true;
 
-		// 更新运行天数
-		const startDate = new Date(siteStartDate);
-		const diffTime = Math.abs(today.getTime() - startDate.getTime());
-		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+		const updateDynamicStats = () => {
+			const today = new Date();
 
-		const runningDaysElements = document.querySelectorAll(
-			'[data-stat-id="running-days"]',
-		);
-		if (runningDaysElements.length > 0) {
-			runningDaysElements.forEach((element) => {
-				element.textContent = diffDays.toString();
-			});
-		}
+			// 更新运行天数
+			const startDate = new Date(siteStartDate);
+			const diffTime = Math.abs(today.getTime() - startDate.getTime());
+			const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-		// 更新最后活动时间
-		if (lastPostDate) {
-			const lastPost = new Date(lastPostDate);
-			const timeSinceLastPost = Math.abs(
-				today.getTime() - lastPost.getTime(),
+			const runningDaysElements = document.querySelectorAll(
+				'[data-stat-id="running-days"]',
 			);
-			const daysSinceLastUpdate = Math.floor(
-				timeSinceLastPost / (1000 * 60 * 60 * 24),
-			);
-
-			const lastUpdateElements = document.querySelectorAll(
-				'[data-stat-id="last-update"]',
-			);
-			if (lastUpdateElements.length > 0) {
-				lastUpdateElements.forEach((element) => {
-					element.textContent = daysSinceLastUpdate.toString();
+			if (runningDaysElements.length > 0) {
+				runningDaysElements.forEach((element) => {
+					element.textContent = diffDays.toString();
 				});
 			}
-		}
+
+			// 更新最后活动时间
+			if (lastPostDate) {
+				const lastPost = new Date(lastPostDate);
+				const timeSinceLastPost = Math.abs(
+					today.getTime() - lastPost.getTime(),
+				);
+				const daysSinceLastUpdate = Math.floor(
+					timeSinceLastPost / (1000 * 60 * 60 * 24),
+				);
+
+				const lastUpdateElements = document.querySelectorAll(
+					'[data-stat-id="last-update"]',
+				);
+				if (lastUpdateElements.length > 0) {
+					lastUpdateElements.forEach((element) => {
+						element.textContent = daysSinceLastUpdate.toString();
+					});
+				}
+			}
+		};
+
+		// 页面加载时更新
+		updateDynamicStats();
+
+		// 每 10 分钟检查一次（天数是慢变量，不需要每小时才更新）
+		setInterval(updateDynamicStats, 10 * 60 * 1000);
+
+		// Swup 切页后侧栏会被替换，立即补一次计算
+		document.addEventListener("swup:page:view", updateDynamicStats);
 	}
-
-	// 页面加载时更新
-	updateDynamicStats();
-
-	// 每小时更新一次（可选，因为天数变化较慢）
-	setInterval(updateDynamicStats, 60 * 60 * 1000);
 </script>
