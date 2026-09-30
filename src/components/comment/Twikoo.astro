@@ -16,14 +16,23 @@ const config = {
 	<div id="tcomment"></div>
 </div>
 
-<script is:inline define:vars={{ config }}>
+<script is:inline data-swup-ignore-script define:vars={{ config }}>
 	(function () {
 		const TWIKOO_CONTAINER_ID = "twikoo-container";
+		const TWIKOO_COMMENT_EL_ID = "tcomment";
 		const TWIKOO_SCRIPT_URL = "/assets/js/twikoo.all.min.js";
 		const ROOT_MARGIN = "200px";
 
+		// 这段脚本是持久化的（data-swup-ignore-script），只执行一次；
+		// 页面切换由 Swup 钩子驱动，所以状态挂在模块作用域里即可。
+		if (window.__twikooCommentRuntime) {
+			return;
+		}
+		window.__twikooCommentRuntime = { activeContainer: null };
+
 		let observer = null;
 		let twikooLoaded = false;
+		let swupHookBound = false;
 
 		function getCurrentPath() {
 			const pathname = window.location.pathname;
@@ -36,7 +45,7 @@ const config = {
 			return {
 				...config,
 				path: getCurrentPath(),
-				el: "#tcomment",
+				el: `#${TWIKOO_COMMENT_EL_ID}`,
 			};
 		}
 
@@ -61,13 +70,40 @@ const config = {
 			});
 		}
 
+		/**
+		 * Twikoo 初始化成功后会把 #tcomment 整段替换成 <div id="twikoo">，
+		 * 所以站点内切页（Swup 换掉 main）后必须重新造出挂载点，
+		 * 否则 getElementById("tcomment") 恒为 null，评论区会一直空白。
+		 */
+		function mountCommentContainer(container) {
+			let mount = document.getElementById(TWIKOO_COMMENT_EL_ID);
+			const mountIsCurrent =
+				mount && container.contains(mount);
+
+			if (!mountIsCurrent) {
+				mount = document.createElement("div");
+				mount.id = TWIKOO_COMMENT_EL_ID;
+				container.replaceChildren(mount);
+			}
+
+			// 卸载上一个页面渲染出来的 Twikoo 实例，避免重复初始化告警。
+			if (mount.firstElementChild) {
+				mount.replaceChildren();
+			}
+
+			window.__twikooCommentRuntime.activeContainer = container;
+			return mount;
+		}
+
 		async function initTwikoo() {
-			const commentEl = document.getElementById("tcomment");
-			if (!commentEl) {
+			const container = document.getElementById(TWIKOO_CONTAINER_ID);
+			if (!container) {
 				return;
 			}
 
 			try {
+				mountCommentContainer(container);
+
 				await loadTwikooScript();
 
 				if (typeof twikoo === "undefined") {
@@ -75,9 +111,7 @@ const config = {
 					return;
 				}
 
-				commentEl.innerHTML = "";
-				const dynamicConfig = createTwikooConfig();
-				await twikoo.init(dynamicConfig);
+				await twikoo.init(createTwikooConfig());
 			} catch (error) {
 				console.error("[Twikoo] 初始化失败:", error);
 			}
@@ -88,15 +122,29 @@ const config = {
 				observer.disconnect();
 				observer = null;
 			}
-			if (window.swup?.hooks) {
-				window.swup.hooks.off("content:replace", initTwikoo);
+			if (swupHookBound && window.swup?.hooks) {
+				window.swup.hooks.off(
+					"content:replace",
+					handleContentReplace,
+				);
+				swupHookBound = false;
 			}
 		}
 
 		function setupLazyLoad() {
 			const container = document.getElementById(TWIKOO_CONTAINER_ID);
 			if (!container) {
+				if (observer) {
+					observer.disconnect();
+					observer = null;
+				}
 				return;
+			}
+
+			// 同一页面上重复调用时不要叠加观察者。
+			if (observer) {
+				observer.disconnect();
+				observer = null;
 			}
 
 			observer = new IntersectionObserver(
@@ -113,19 +161,27 @@ const config = {
 			observer.observe(container);
 		}
 
+		function handleContentReplace() {
+			setTimeout(setupLazyLoad, 200);
+		}
+
 		function setupSwupHooks() {
+			if (swupHookBound) {
+				return;
+			}
 			if (window.swup?.hooks) {
-				window.swup.hooks.on("content:replace", () => {
-					setTimeout(setupLazyLoad, 200);
-				});
+				window.swup.hooks.on("content:replace", handleContentReplace);
+				swupHookBound = true;
 			} else {
 				document.addEventListener(
 					"swup:enable",
 					() => {
-						if (window.swup?.hooks) {
-							window.swup.hooks.on("content:replace", () => {
-								setTimeout(setupLazyLoad, 200);
-							});
+						if (window.swup?.hooks && !swupHookBound) {
+							window.swup.hooks.on(
+								"content:replace",
+								handleContentReplace,
+							);
+							swupHookBound = true;
 						}
 					},
 					{ once: true },
