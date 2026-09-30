@@ -123,7 +123,31 @@ export default defineConfig({
 			},
 		}),
 		svelte(),
-		sitemap(),
+		// 已通过 featurePages 关闭的页面构建产物只是一个跳转占位页，
+		// 不应该出现在 sitemap 里（否则等于主动把死链提交给搜索引擎）。
+		sitemap({
+			filter: (page) => {
+				const disabledFeaturePaths = [];
+				if (!siteConfig.featurePages.anime) {
+					disabledFeaturePaths.push("/anime/");
+				}
+				if (!siteConfig.featurePages.projects) {
+					disabledFeaturePaths.push("/projects/");
+				}
+				if (!siteConfig.featurePages.skills) {
+					disabledFeaturePaths.push("/skills/");
+				}
+
+				if (disabledFeaturePaths.length === 0) {
+					return true;
+				}
+
+				const pathname = new URL(page).pathname;
+				return !disabledFeaturePaths.some((disabled) =>
+					pathname.startsWith(disabled),
+				);
+			},
+		}),
 		mdx(),
 	],
 	markdown: {
@@ -178,15 +202,20 @@ export default defineConfig({
 						properties: {
 							className: ["anchor"],
 						},
-						content: {
-							type: "element",
-							tagName: "span",
-							properties: {
-								className: ["anchor-icon"],
-								"data-pagefind-ignore": true,
+						// `#` 由 CSS 伪元素绘制并标记为 aria-hidden：
+						// 之前它是真实文本节点，会被并入标题的可访问名与 <h1> 文本，
+						// 导致「如何让你CF代理流量更快些#」这种标题。
+						content: () => [
+							{
+								type: "element",
+								tagName: "span",
+								properties: {
+									className: ["anchor-icon"],
+									"aria-hidden": "true",
+								},
+								children: [],
 							},
-							children: [{ type: "text", value: "#" }],
-						},
+						],
 					},
 				],
 				rehypeImageWidth,

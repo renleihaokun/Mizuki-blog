@@ -45,11 +45,25 @@ const keywords = siteConfig.keywords;
 // Favicons
 const favicons: Favicon[] =
 	siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons;
+
+// 规范链接：文章同时存在 /posts/xxx/ 与根目录 permalink 两个可访问地址，
+// 且站点有 8 条镜像线路，因此必须显式声明首选地址。
+// 只使用站点自身配置的 siteURL，镜像域名不会把自己声明成 canonical。
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.siteURL).href;
+
+// Open Graph 图片：文章页用生成的 OG 图，其余页面回退到站点 Logo，
+// 避免所有非文章页完全没有 og:image。
+const ogImage =
+	ogImageUrl ??
+	(siteConfig.navbarTitle?.logo
+		? new URL(url(siteConfig.navbarTitle.logo), siteConfig.siteURL).href
+		: undefined);
 ---
 
 <!-- SEO Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description || title} />
+<link rel="canonical" href={canonicalUrl} />
 {
 	keywords && keywords.length > 0 && (
 		<meta name="keywords" content={keywords.join(", ")} />
@@ -62,7 +76,7 @@ const favicons: Favicon[] =
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description || title} />
-{ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+{ogImage && <meta property="og:image" content={ogImage} />}
 {
 	setOGTypeArticle ? (
 		<meta property="og:type" content="article" />
@@ -76,6 +90,7 @@ const favicons: Favicon[] =
 <meta property="twitter:url" content={Astro.url} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description || title} />
+{ogImage && <meta property="twitter:image" content={ogImage} />}
 
 <!-- Viewport and Generator -->
 <meta name="viewport" content="width=device-width" />

@@ -10,7 +10,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 
 if (!siteConfig.featurePages.diary) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 
 const moments = getDiaryList();

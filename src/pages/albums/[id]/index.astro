@@ -10,7 +10,7 @@ import type { AlbumGroup, Photo } from "../../../types/album";
 import { scanAlbums } from "../../../utils/album-scanner";
 
 if (!siteConfig.featurePages.albums) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 
 export const getStaticPaths = async () => {
@@ -28,7 +28,7 @@ interface Props {
 const { album } = Astro.props;
 
 if (!album) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 ---
 

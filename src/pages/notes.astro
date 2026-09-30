@@ -12,7 +12,7 @@ import { i18n } from "../i18n/translation";
 import { getSortedNotes } from "../utils/content-utils";
 
 if (!siteConfig.featurePages.notes) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 
 // 笔记的判定依据是 frontmatter 的 category: Note（见 utils/content-utils.ts）

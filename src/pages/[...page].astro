@@ -26,9 +26,17 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 
 const len = page.data.length;
+const currentPage = page.currentPage ?? 1;
+
+// 分页页此前与首页共用同一个 <title>/description（「困 - 并非demo」），
+// 属于重复标题，这里给出带页码的独立标题。
+const defaultTitle = siteConfig.subtitle
+	? `${siteConfig.title} - ${siteConfig.subtitle}`
+	: siteConfig.title;
+const pageTitle = currentPage > 1 ? `${defaultTitle} - 第 ${currentPage} 页` : undefined;
 ---
 
-<MainGridLayout>
+<MainGridLayout title={pageTitle}>
 	{showCategoryBar && <CategoryBar />}
 	<PostPage page={page} />
 	<Pagination

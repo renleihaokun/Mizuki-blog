@@ -9,7 +9,7 @@ import { siteConfig } from "@/config";
 
 // 检查收藏页面是否启用
 if (!siteConfig.featurePages.favorites) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 
 // 获取收藏数据

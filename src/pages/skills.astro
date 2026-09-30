@@ -11,7 +11,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 
 if (!siteConfig.featurePages.skills) {
-	return Astro.redirect("/404/");
+	return Astro.redirect("/");
 }
 
 const categories = [...new Set(skillsData.map((skill) => skill.category))];
