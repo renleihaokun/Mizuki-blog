@@ -1,5 +1,7 @@
 # build output
 dist/
+# pnpm clean 改名的旧产物（Windows 句柄未释放时的暂存目录）
+dist.__cleaning__*/
 
 # generated types
 .astro/
