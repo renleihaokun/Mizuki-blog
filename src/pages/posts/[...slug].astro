@@ -1,6 +1,4 @@
 ---
-import path from "node:path";
-
 import Comment from "@components/comment/index.astro";
 import {
 	LastModified,
@@ -20,6 +18,10 @@ import {
 	isNotePost,
 } from "@utils/content-utils";
 import { hasCustomPermalink, initPostIdMap } from "@utils/permalink-utils";
+import {
+	resolvePosterAvatarUrl,
+	resolvePosterCoverUrl,
+} from "@utils/poster-image-utils";
 import {
 	getFileDirFromPath,
 	removeFileExtension,
@@ -112,65 +114,12 @@ const relatedPosts = relatedPostsConfig.enable
 	? await getRelatedPosts(entry, relatedPostsConfig.maxCount)
 	: [];
 
-// Process cover image for SharePoster
-let posterCoverUrl = entry.data.image;
-if (entry.data.image) {
-	const isLocal = !(
-		entry.data.image.startsWith("/") ||
-		entry.data.image.startsWith("http") ||
-		entry.data.image.startsWith("https") ||
-		entry.data.image.startsWith("data:")
-	);
-	if (isLocal) {
-		const basePath = getFileDirFromPath(entry.filePath || "");
-		const files = import.meta.glob<ImageMetadata>("../../**", {
-			import: "default",
-		});
-		const normalizedPath = path
-			.normalize(path.join("../../", basePath, entry.data.image))
-			.replace(/\\/g, "/");
-		const file = files[normalizedPath];
-		if (file) {
-			const img = await file();
-			posterCoverUrl = img.src;
-		}
-	} else if (entry.data.image.startsWith("http")) {
-		try {
-			const response = await fetch(entry.data.image);
-			const arrayBuffer = await response.arrayBuffer();
-			const base64 = Buffer.from(arrayBuffer).toString("base64");
-			const contentType =
-				response.headers.get("content-type") || "image/jpeg";
-			posterCoverUrl = `data:${contentType};base64,${base64}`;
-		} catch {
-			posterCoverUrl = entry.data.image;
-		}
-	}
-}
-
-// Process avatar image for SharePoster
-let posterAvatarUrl = profileConfig.avatar;
-if (profileConfig.avatar) {
-	const isLocal = !(
-		profileConfig.avatar.startsWith("/") ||
-		profileConfig.avatar.startsWith("http") ||
-		profileConfig.avatar.startsWith("https") ||
-		profileConfig.avatar.startsWith("data:")
-	);
-	if (isLocal) {
-		const files = import.meta.glob<ImageMetadata>("../../**", {
-			import: "default",
-		});
-		const normalizedPath = path
-			.normalize(path.join("../../", profileConfig.avatar))
-			.replace(/\\/g, "/");
-		const file = files[normalizedPath];
-		if (file) {
-			const img = await file();
-			posterAvatarUrl = img.src;
-		}
-	}
-}
+// 分享海报用的封面与头像（与 /[...permalink].astro 共用同一套解析逻辑）
+const posterCoverUrl = await resolvePosterCoverUrl(
+	entry.data.image,
+	entry.filePath,
+);
+const posterAvatarUrl = await resolvePosterAvatarUrl(profileConfig.avatar);
 
 // 判断是否为加密文章
 const isEncrypted = !!(entry.data.encrypted && entry.data.password);
@@ -211,7 +160,7 @@ const jsonLd = {
 		is:inline
 		slot="head"
 		type="application/ld+json"
-		set:html={JSON.stringify(jsonLd)}
+		set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")}
 	/>
 	<!-- 引入右侧边栏布局管理器 -->
 	<script>

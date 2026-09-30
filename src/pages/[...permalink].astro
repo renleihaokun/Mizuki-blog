@@ -13,28 +13,44 @@ import {
 	LastModified,
 	PostMeta,
 	PostNavigation,
+	RandomPosts,
+	RelatedPosts,
+	ShareCard,
 } from "@components/features/posts";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts, isNotePost } from "@utils/content-utils";
+import {
+	getRelatedPosts,
+	getSortedPosts,
+	isNotePost,
+} from "@utils/content-utils";
 import {
 	generatePermalinkSlug,
 	hasCustomPermalink,
 	initPostIdMap,
 } from "@utils/permalink-utils";
+import {
+	resolvePosterAvatarUrl,
+	resolvePosterCoverUrl,
+} from "@utils/poster-image-utils";
 import { getFileDirFromPath, url } from "@utils/url-utils";
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { Icon } from "astro-icon/components";
 import CryptoJS from "crypto-js";
-import { licenseConfig } from "src/config";
+import {
+	licenseConfig,
+	permalinkConfig,
+	profileConfig,
+	randomPostsConfig,
+	relatedPostsConfig,
+	shareConfig,
+	siteConfig,
+} from "src/config";
 
-import { permalinkConfig } from "@/config";
-
-import { profileConfig, siteConfig } from "../config";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
 
 export async function getStaticPaths() {
@@ -87,6 +103,18 @@ const isEncrypted = entry.data.encrypted && entry.data.password;
 const isNote = isNotePost(entry);
 const noteLinkBase = isNote ? url("/notes/") : undefined;
 
+// 相关文章（与 /posts/... 保持一致，避免 permalink 页面缺功能）
+const relatedPosts = relatedPostsConfig.enable
+	? await getRelatedPosts(entry, relatedPostsConfig.maxCount)
+	: [];
+
+// 分享海报用的封面与头像
+const posterCoverUrl = await resolvePosterCoverUrl(
+	entry.data.image,
+	entry.filePath,
+);
+const posterAvatarUrl = await resolvePosterAvatarUrl(profileConfig.avatar);
+
 if (isEncrypted) {
 	const contentToEncrypt = "MIZUKI-VERIFY:" + entry.body;
 	encryptedContent = CryptoJS.AES.encrypt(
@@ -126,7 +154,7 @@ const jsonLd = {
 		is:inline
 		slot="head"
 		type="application/ld+json"
-		set:html={JSON.stringify(jsonLd)}
+		set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")}
 	/>
 	<script>
 		import("../scripts/right-sidebar-layout.js");
@@ -257,6 +285,23 @@ const jsonLd = {
 								class="mb-6 rounded-xl license-container onload-animation"
 							/>
 						)}
+						{shareConfig.enable && (
+							<ShareCard
+								class:list={[
+									{ "encrypted-hidden": isEncrypted },
+								]}
+								title={entry.data.title}
+								author={entry.data.author}
+								description={entry.data.description}
+								pubDate={formatDateToYYYYMMDD(
+									entry.data.published,
+								)}
+								coverImage={posterCoverUrl}
+								url={Astro.url.toString()}
+								siteTitle={siteConfig.title}
+								avatar={posterAvatarUrl}
+							/>
+						)}
 					</>
 				)
 			}
@@ -280,4 +325,21 @@ const jsonLd = {
 		nextSlug={entry.data.prevSlug}
 		nextTitle={entry.data.prevTitle}
 	/>
+
+	<!-- 相关文章与随机文章（与 /posts/... 保持一致） -->
+	{
+		(relatedPostsConfig.enable || randomPostsConfig.enable) && (
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+				{relatedPostsConfig.enable && relatedPosts.length > 0 && (
+					<RelatedPosts relatedPosts={relatedPosts} />
+				)}
+				{randomPostsConfig.enable && (
+					<RandomPosts
+						excludeIds={[entry.id]}
+						maxCount={randomPostsConfig.maxCount}
+					/>
+				)}
+			</div>
+		)
+	}
 </MainGridLayout>
