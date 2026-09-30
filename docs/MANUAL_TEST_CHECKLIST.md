@@ -193,7 +193,7 @@ Select-String -Path dist\bettercf\index.html -Pattern 'canonical|og:image'
 | 10.1 | `dist/robots.txt` | **没有** `Disallow: /`；只有 `/api/`、`/anime/`、`/projects/`、`/skills/` |
 | 10.2 | `sitemap-0.xml` | 60 条 URL；**不含** `/anime/`、`/projects/`、`/skills/` |
 | 10.3 | 任意文章页源码 | 有 `<link rel="canonical" href="https://blog.haokun.me/xxx/">`（自指） |
-| 10.4 | 首页与 `/2/` 分页页 | `<title>` **不再相同**（分页页带「第 N 页」） |
+| 10.4 | 首页与 `/2/` 分页页 | `<title>` **不再相同**：首页是「困 - 并非demo」，第 2 页是「第 2 页 - 困」 |
 | 10.5 | 任意页面源码 | 有 `og:image`（文章页是文章封面，其他页回退到站点 Logo） |
 | 10.6 | 手动访问 `/anime/`（已关闭的页面） | 不再 2 秒后跳进不存在的 `/404/`，而是进首页 |
 | 10.7 | `dist/assets/font/` | 只有 2 个 ttf + 2 个 woff2，约 0.82 MB（改动前 84 MB） |

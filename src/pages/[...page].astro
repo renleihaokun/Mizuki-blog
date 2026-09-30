@@ -28,12 +28,11 @@ const { page } = Astro.props;
 const len = page.data.length;
 const currentPage = page.currentPage ?? 1;
 
-// 分页页此前与首页共用同一个 <title>/description（「困 - 并非demo」），
-// 属于重复标题，这里给出带页码的独立标题。
-const defaultTitle = siteConfig.subtitle
-	? `${siteConfig.title} - ${siteConfig.subtitle}`
-	: siteConfig.title;
-const pageTitle = currentPage > 1 ? `${defaultTitle} - 第 ${currentPage} 页` : undefined;
+// 分页页此前与首页共用同一个 <title>/description（「困 - 并非demo」），属于重复标题。
+// 这里只传「本页附加信息」，站点名由 Layout 统一拼在末尾
+// （直接把整串 title 交给 Layout 会拼成「困 - 并非demo - 第 2 页 - 困」）。
+const pageTitle =
+	currentPage > 1 ? `第 ${currentPage} 页` : undefined;
 ---
 
 <MainGridLayout title={pageTitle}>
