@@ -34,15 +34,6 @@
   font-display: swap;
 }
 
-/* 导入 萝莉体 第二版 字体 */
-@font-face {
-  font-family: "萝莉体 第二版";
-  src: url("/assets/font/loli.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
 /* 导入 抖音斜体（加粗） 字体 */
 @font-face {
   font-family: "DouyinSansBold";

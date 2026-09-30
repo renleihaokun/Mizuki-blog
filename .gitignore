@@ -26,6 +26,9 @@ pnpm-debug.log*
 # Large zip files
 *.zip
 
+# 备份文件：不要再让 .bak 进 public/，否则会被原样发布到线上
+*.bak
+
 # macOS-specific files
 .DS_Store
 
@@ -59,3 +62,6 @@ src/data/bilibili-data.json
 
 # 闲的
 .temp/
+
+# workbuddy 记忆目录
+.workbuddy/
