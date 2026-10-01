@@ -327,6 +327,35 @@ const lines = lineSwitchConfig;
 		}
 
 		/**
+		 * 取多次探测的**最小值**作为该线路的延迟。
+		 *
+		 * 为什么要取最小值而不是平均值：
+		 * - 第一次请求包含冷连接的 DNS/TCP/TLS 开销，体积上远大于单个 RTT；
+		 * - 本机上的代理/VPN/策略路由会引入偶发上秒级尖峰
+		 *   （实测 netlify、vercel 各有数次 >1000ms）。
+		 * 取最小值等价于「这条线路在最好情况下能做到多少」，也就是用户真正关心的
+		 * 「哪条最快」；平均值与首次值会把连接建立成本算进去，数值虚高。
+		 *
+		 * 这里用 3 次而非 1 次：第 1 次负责建立连接，第 2、3 次复用同一 keep-alive
+		 * 连接，因此只有后两次是稳态 RTT；取三者最小值即可自动排除首包开销。
+		 */
+		private readonly probeSamples = 3;
+
+		private async measureLine(url: string): Promise<number> {
+			const samples: number[] = [];
+			for (let i = 0; i < this.probeSamples; i++) {
+				const ms = await this.getPing(url);
+				if (ms > 0) {
+					samples.push(ms);
+				}
+				if (i < this.probeSamples - 1) {
+					await new Promise((resolve) => setTimeout(resolve, 60));
+				}
+			}
+			return samples.length > 0 ? Math.min(...samples) : -1;
+		}
+
+		/**
 		 * 组件当前是否真的可见。
 		 *
 		 * 注意：`<line-switch-widget>` 自身是 `display: contents`，不会生成盒子，
@@ -434,9 +463,8 @@ const lines = lineSwitchConfig;
 				return;
 			}
 
-			// 只测一次并复用结果：原来这里先 await 一次把返回值丢掉、再循环测 3 次，
-			// 每次线路探测都白跑 1 个请求。
-			const res = await this.getPing(url);
+			// 多次探测取最小值（见 measureLine 注释）：排除冷连接开销与偶发网络尖峰。
+			const res = await this.measureLine(url);
 			badge.removeAttribute("title");
 
 			if (res < 0) {
