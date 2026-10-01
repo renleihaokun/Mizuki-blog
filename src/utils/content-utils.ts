@@ -58,17 +58,34 @@ async function getRawSortedPosts() {
 	return sorted;
 }
 
+/**
+ * 为一组文章串联「上一篇/下一篇」
+ *
+ * 传入的列表需已按展示顺序（新 → 旧）排好，函数只在该组内部相邻连接。
+ * 四个字段对每个条目都会重新赋值（端点写空字符串）：Astro 的 collection
+ * 条目在构建期是共享缓存，只有显式写空才能保证链条端点不会残留旧值。
+ */
+function linkAdjacentPosts(posts: CollectionEntry<"posts">[]) {
+	for (let i = 0; i < posts.length; i++) {
+		const newer = i > 0 ? posts[i - 1] : undefined;
+		const older = i < posts.length - 1 ? posts[i + 1] : undefined;
+
+		posts[i].data.nextSlug = newer?.id ?? "";
+		posts[i].data.nextTitle = newer?.data.title ?? "";
+		posts[i].data.prevSlug = older?.id ?? "";
+		posts[i].data.prevTitle = older?.data.title ?? "";
+	}
+}
+
 export async function getSortedPosts() {
 	const sorted = await getRawSortedPosts();
 
-	for (let i = 1; i < sorted.length; i++) {
-		sorted[i].data.nextSlug = sorted[i - 1].id;
-		sorted[i].data.nextTitle = sorted[i - 1].data.title;
-	}
-	for (let i = 0; i < sorted.length - 1; i++) {
-		sorted[i].data.prevSlug = sorted[i + 1].id;
-		sorted[i].data.prevTitle = sorted[i + 1].data.title;
-	}
+	// 「上一篇/下一篇」只在同一分区内相邻串联：正文接正文、笔记接笔记。
+	// 若基于全量列表串联，正文底部的按钮会直接把读者带进笔记（反之亦然），
+	// 两个分区就又被连回一条阅读流了。
+	// 返回值仍是全量列表 —— 详情页路由与 %post_id% 序号依赖它。
+	linkAdjacentPosts(sorted.filter((post) => !isNotePost(post)));
+	linkAdjacentPosts(sorted.filter((post) => isNotePost(post)));
 
 	return sorted;
 }
@@ -77,7 +94,7 @@ export async function getSortedPosts() {
  * 获取「非笔记」文章（首页、归档、RSS、侧栏最新文章等聚合入口使用）
  *
  * 刻意不写入 prevTitle/prevSlug/nextTitle/nextSlug —— 这些字段只由
- * getSortedPosts() 基于全量列表统一写入，避免两条调用路径互相覆盖。
+ * getSortedPosts() 按分区统一写入，避免两条调用路径互相覆盖。
  */
 export async function getSortedPostsExcludingNotes(): Promise<
 	CollectionEntry<"posts">[]
@@ -89,9 +106,7 @@ export async function getSortedPostsExcludingNotes(): Promise<
 /**
  * 获取「笔记」文章（/notes/ 页面使用），同样不写入 prev/next 字段
  */
-export async function getSortedNotes(): Promise<
-	CollectionEntry<"posts">[]
-> {
+export async function getSortedNotes(): Promise<CollectionEntry<"posts">[]> {
 	const sorted = await getRawSortedPosts();
 	return sorted.filter((post) => isNotePost(post));
 }
