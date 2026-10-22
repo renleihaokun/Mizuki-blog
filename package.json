@@ -54,7 +54,7 @@
 		"crypto-js": "^4.2.0",
 		"dayjs": "^1.11.21",
 		"hastscript": "^9.0.1",
-		"katex": "^0.17.0",
+		"katex": "^0.18.2",
 		"markdown-it": "^14.3.3",
 		"marked": "^16.4.2",
 		"node-html-parser": "^7.1.0",
