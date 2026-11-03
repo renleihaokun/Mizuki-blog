@@ -1,9 +1,14 @@
 name: Sync to Gitee (HTTPS Only)
 
+# 只做每日定时备份 + 手动触发：不再每次 push 都跑，避免刷屏通知
 on:
-  push:
-    branches: [ master ]
+  schedule:
+    - cron: "0 19 * * *" # 每天 03:00（UTC+8）
   workflow_dispatch: # 允许手动点击按钮触发
+
+concurrency:
+  group: mirror-gitee
+  cancel-in-progress: true
 
 jobs:
   git-mirror:

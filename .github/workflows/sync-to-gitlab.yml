@@ -1,9 +1,14 @@
 name: Mirror to GitLab (Manual Force)
 
+# 只做每日定时备份 + 手动触发：不再每次 push 都跑，避免刷屏通知
 on:
-  push:
-    branches: [ "master", "main" ] # 包含了 master 和 main，防呆
+  schedule:
+    - cron: "0 19 * * *" # 每天 03:00（UTC+8）
   workflow_dispatch:
+
+concurrency:
+  group: mirror-gitlab
+  cancel-in-progress: true
 
 jobs:
   manual-sync:

@@ -3,7 +3,12 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    # 同时最多保留 3 个待合并 PR，避免一次开一堆单子把通知刷爆
+    open-pull-requests-limit: 3
     groups:
       patch-updates:
         patterns:
@@ -17,6 +22,7 @@ updates:
           - "minor"
     pull-request-branch-name:
       separator: "-"
+    rebase-strategy: "auto"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
