@@ -47,7 +47,7 @@
 		"@swup/astro": "^1.8.0",
 		"@tailwindcss/typography": "^0.5.20",
 		"@tailwindcss/vite": "^4.3.3",
-		"astro": "^7.4.4",
+		"astro": "^7.4.12",
 		"astro-expressive-code": "^0.44.3",
 		"astro-icon": "^1.2.0",
 		"axios": "^1.21.0",
@@ -120,6 +120,8 @@
 		"overrides": {
 			"@astrojs/language-server": "2.17.1",
 			"@babel/core": "7.29.7",
+			"@emnapi/core": "1.11.3",
+			"@emnapi/runtime": "1.11.3",
 			"@puppeteer/browsers": "3.2.3",
 			"@xmldom/xmldom": "0.8.15",
 			"baseline-browser-mapping": "2.11.26",
