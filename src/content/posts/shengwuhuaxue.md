@@ -14,6 +14,10 @@ permalink: "shengwuhuaxue"
 image: "https://imgbed.haokun.me/file/1794968421587_IMG20260906205625.webp"
 ---
 
+## 期中死的地方 
+
+* 速度拖沓、没用完答题卡
+
 ## 考试范围  
 
 * 糖+脂+蛋白+酶，也就是徐老师教的部分  

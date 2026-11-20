@@ -14,6 +14,11 @@ permalink: "yichuanxue"
 image: "https://imgbed.haokun.me/file/1794888350539_IMG20261116161307.webp"
 ---
 
+## 期中死的地方
+
+* 伴性遗传、从性遗传、限性遗传没分清
+* 速度拖沓、浪费答题卡
+
 ## 期中考试
 
 * 4 道简答 + 4 道综合分析（计算）
