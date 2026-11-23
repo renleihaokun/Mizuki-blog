@@ -7,7 +7,7 @@ tags: [AI]
 category: AI
 licenseName: "CC BY 4.0"
 author: renleihaokun
-draft: true
+draft: false
 date: 2026-11-18
 pubDate: 2026-11-18
 permalink: "AgentIn2026"
