@@ -2,8 +2,8 @@
 title: 从Chat，到Agent
 published: 2026-11-18
 pinned: false
-description: ""
-tags: [AI]
+description: "核弹爆炸，眩晕瘫坐"
+tags: [AI,Agent]
 category: AI
 licenseName: "CC BY 4.0"
 author: renleihaokun
