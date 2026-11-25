@@ -17,6 +17,7 @@ image: "https://imgbed.haokun.me/file/1794968421587_IMG20260906205625.webp"
 ## 期中死的地方 
 
 * 速度拖沓、没用完答题卡
+* 单糖英文名得认得：**葡萄糖 glucose、果糖 fructose、半乳糖 galactose、甘露糖 mannose、核糖 ribose、脱氧核糖 deoxyribose**
 
 ## 期中考试  
 
